@@ -316,7 +316,7 @@ url('http://localhost:3006/fonts/Neutra2Text_book.woff') format('woff');
 
 @media screen and (max-width: 480px) {
   .article-container-inner .article-rubric {
-    padding: 10px 8px 0 8px;
+    padding: 10px 8px 0 80px;
     line-height: 28px;
     font-size: 22px;
   }

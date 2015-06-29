@@ -1,4 +1,8 @@
+/* hide component panels*/
 
+.component-panel, .component-title {
+  display: none;
+}
 
 .grid {
   position: absolute;
@@ -316,7 +320,7 @@ url('http://localhost:3006/fonts/Neutra2Text_book.woff') format('woff');
 
 @media screen and (max-width: 480px) {
   .article-container-inner .article-rubric {
-    padding: 10px 8px 0 80px;
+    padding: 10px 8px 0 8px;
     line-height: 28px;
     font-size: 22px;
   }
@@ -443,3 +447,428 @@ url('http://localhost:3006/fonts/Neutra2Text_book.woff') format('woff');
 .article-image-caption img {
   width: 100%;
 }
+
+
+
+
+/* TabView styles */
+
+
+
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: url("../img/grid.png");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/*  SECTIONS  */
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF TWELVE  */
+.span_12 {
+  width: 100%;
+}
+
+.span_11 {
+    width: 91.53%;
+}
+.span_10 {
+    width: 83.06%;
+}
+.span_9 {
+    width: 74.6%;
+}
+
+.span_8 {
+    width: 66.13%;
+}
+
+.span_7 {
+    width: 57.66%;
+}
+
+.span_6 {
+    width: 49.2%;
+}
+
+.span_5 {
+    width: 40.73%;
+}
+
+.span_4 {
+    width: 32.26%;
+}
+
+.span_3 {
+    width: 23.8%;
+}
+
+.span_2 {
+    width: 15.33%;
+}
+
+.span_1 {
+    width: 6.866%;
+}
+
+.margin_11 {
+    margin-left: 93.134%;
+}
+
+.margin_10 {
+    margin-left: 84.67%;
+}
+
+.margin_9 {
+    margin-left: 76.2%;
+}
+
+.margin_8 {
+    margin-left: 67.74%;
+}
+
+.margin_7 {
+    margin-left: 59.27%;
+}
+
+.margin_6 {
+    margin-left: 50.8%;
+}
+
+.margin_5 {
+    margin-left: 42.34%;
+}
+
+.margin_4 {
+    margin-left: 33.87%;
+}
+
+.margin_3 {
+    margin-left: 25.4%;
+}
+
+.margin_2 {
+    margin-left: 16.94%;
+}
+
+.margin_1 {
+    margin-left: 8.47%;
+}
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+  .col {  margin: 1% 0 1% 0%; }
+    .span_1, .span_2, .span_3, .span_4, .span_5, .span_6, .span_7, .span_8, .span_9, .span_10, .span_11, .span_12 {
+  width: 100%;
+  }
+
+  .margin_1, .margin_2, .margin_3, .margin_4, .margin_5, .margin_6, .margin_7, .margin_8, .margin_9, .margin_10, .margin_11, .margin_12 {
+  margin-left: 0;
+  }
+}
+
+@font-face {
+font-family: 'Neutra2Display-Inline';
+src: url('http://localhost:3006/fonts/Neutra2Display-Inline.eot'),
+url('http://localhost:3006/fonts/Neutra2Display-Inline.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Display-Medium';
+src: url('http://localhost:3006/fonts/Neutra2Display-Medium.eot'),
+url('http://localhost:3006/fonts/Neutra2Display-Medium.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Display-Titling';
+src: url('http://localhost:3006/fonts/Neutra2Display-Titling.eot'),
+url('http://localhost:3006/fonts/Neutra2Display-Titling.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Text-bold_italic';
+src: url('http://localhost:3006/fonts/Neutra2Text_bold_italic.eot'),
+url('http://localhost:3006/fonts/Neutra2Text_bold_italic.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Text-bold';
+src: url('http://localhost:3006/fonts/Neutra2Text_bold.eot'),
+url('http://localhost:3006/fonts/Neutra2Text_bold.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Text-book_italic';
+src: url('http://localhost:3006/fonts/Neutra2Text_book_italic.eot'),
+url('http://localhost:3006/fonts/Neutra2Text_book_italic.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Neutra2Text-book';
+src: url('http://localhost:3006/fonts/Neutra2Text_book.eot'),
+url('http://localhost:3006/fonts/Neutra2Text_book.woff') format('woff');
+}
+
+
+
+ul, li, .TabView--View--Content {
+  padding: 0;
+  margin: 0;
+}
+
+.TabView {
+  font-family: Neutra2Text-book;
+  background-color: #393f43;
+  max-width: 1200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.TabView:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 18.5%;
+}
+
+@media only screen and (max-width: 800px) {
+  .TabView:before {
+    padding-top: 23%;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView:before {
+    padding-top: 83%;
+  }
+}
+
+.TabView > .TabView--Container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.TabView--Header {
+  background-color: #393f43;
+  height: 30%;
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView--Header {
+    height: 15%;
+  }
+}
+
+.TabView--Tabs {
+  list-style: none;
+  height: 101%;
+}
+
+.TabView--Tab, .TabView--Tab[data-active="true"] {
+  padding: 15px 0 0 15px;
+  text-transform: uppercase;
+  display: inline-table;
+  color: #929ca2;
+  width: 18%;
+  height: 100%;
+  border-right: 1px solid #929ca2;
+  cursor: pointer;
+  background-color: #000;
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView--Tab, .TabView--Tab[data-active="true"] {
+    width: 46%;
+    border-right: none;
+  }
+}
+
+.TabView--Tab:hover {
+  background-color: #4F575C;
+}
+
+.TabView--Tab:nth-last-child(2) {
+  border-right: none;
+}
+
+.TabView--Tab:nth-last-child(1) {
+  background: rgb(0,0,0); /* Old browsers */
+  background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(57,63,67,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(57,63,67,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(57,63,67,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(57,63,67,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(57,63,67,1) 100%); /* IE10+ */
+  background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(57,63,67,1) 100%); /* W3C */
+  border-right: none;
+}
+
+.TabView--Tab[data-active="true"] {
+  color: #fff;
+background-color: #08c5b2
+}
+
+.TabView--Tab:nth-child(2)[data-active="true"] {
+  background-color: red;
+}
+
+.TabView--Tab:nth-child(3)[data-active="true"] {
+  background-color: blue;
+}
+
+.TabView--Tab:nth-child(4)[data-active="true"] {
+  background-color: green;
+}
+
+.TabView--Tab:nth-child(5) {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .TabView--Tab[data-active="true"] {
+    display: inline-table;
+    border-right: none;
+  }
+  .TabView--Tab {
+    display: none;
+  }
+
+  .TabView--Tab:nth-child(5) {
+    display: inline-table;
+  }
+}
+
+.TabView--Views--Container {
+  height: 70%;
+  background-color: #000;
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView--Views--Container {
+    height: 85%;
+  }
+}
+
+.TabView--Views {
+  height: 100%;
+  position: relative;
+  left: 0;
+}
+
+.TabView--View {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: left 0.5s ease-in-out 0.5s;
+  left: 100%;
+/*  filter: sepia(1) hue-rotate(200deg);*/
+  background-color: #000;
+}
+
+.TabView--View[data-active="true"] {
+  z-index: 1;
+  left: 0px;
+  transition-delay: 0s;
+}
+
+
+.TabView--View--Content {
+  height: 100%;
+  width: 25%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView--View--Content {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+
+.TabView--View--Content img {
+  height: 100%;
+  width: 100%;
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 560px) {
+  .TabView--View--Content img {
+    width: 98%;
+  }
+}
+
+
+.TabView--View--Content img:hover {
+  opacity: 1;
+}
+
+.TabView figcaption {
+  position: absolute;
+  pointer-events: none;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-shadow:  2px 2px 3px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.TabView--Views--Tint {
+  pointer-events: none;
+  position: absolute;
+  z-index: 6;
+  width: 100%;
+  height: 100%;
+}
+
+.TabView--View:nth-child(1) .TabView--Views--Tint {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.TabView--View:nth-child(2) .TabView--Views--Tint {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.TabView--View:nth-child(3) .TabView--Views--Tint {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+.TabView--View:nth-child(4) .TabView--Views--Tint {
+  background-color: rgba(230, 150, 50, 0.1);
+}
+
+
+/* TabView styles ends */

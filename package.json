@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@economist/component-devpack": "^1.2.0",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "srcset": "^1.0.0"
   },
   "devDependencies": {
     "@economist/component-devpack": "^1.4.1",

@@ -1,6 +1,6 @@
 import React from 'react';
-import TabView from './../component-tabview';
-import ImageCaption from './../component-imagecaption';
+import TabView from '@economist/component-tabview';
+import ImageCaption from '@economist/component-imagecaption';
 
 export default class ArticleTemplate extends React.Component {
 

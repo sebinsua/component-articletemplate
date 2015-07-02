@@ -4,6 +4,12 @@
   display: none;
 }
 
+
+@import '@economist/component-gridcss';
+@import '@economist/component-customfonts';
+@import '@economist/component-tabview';
+
+
 .grid {
   position: absolute;
   top: 0;

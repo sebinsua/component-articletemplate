@@ -18,13 +18,6 @@ export default class ArticleTemplate extends React.Component {
     super(props);
   }
 
-  //  static defaultProps = {
-  //   mainImage: {
-  //     alt: "The Economist",
-  //     src: "http://lorempixel.com/g/1190/669/people"
-  //   }
-  // };
-
   render() {
     return (
       <div className="article-container-inner">
@@ -135,24 +128,6 @@ export default class ArticleTemplate extends React.Component {
          <a href="#">
           <figure className="TabView--View--Content">
             <img src="http://lorempixel.com/g/300/169/nightlife"/>
-            <figcaption>this is the caption</figcaption>
-          </figure>
-         </a>
-         <a href="#">
-          <figure className="TabView--View--Content">
-            <img src="http://lorempixel.com/g/300/169/sports"/>
-            <figcaption>this is the caption</figcaption>
-          </figure>
-         </a>
-         <a href="#">
-          <figure className="TabView--View--Content">
-            <img src="http://lorempixel.com/g/300/169/food"/>
-            <figcaption>this is the caption</figcaption>
-          </figure>
-         </a>
-         <a href="#">
-          <figure className="TabView--View--Content">
-            <img src="http://lorempixel.com/g/300/169/city"/>
             <figcaption>this is the caption</figcaption>
           </figure>
          </a>

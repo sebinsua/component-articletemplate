@@ -34,12 +34,12 @@ export default class ArticleTemplate extends React.Component {
         </div>
       </div>
       <div className="section group">
-        <h4 className="span_10 article-rubric margin_1">Rluptat inctota tisqui asitio molupti quid essita quatur si
+        <h4 className="span_10 margin_1 article-rubric">Rluptat inctota tisqui asitio molupti quid essita quatur si
         cus, od esequi sitaspe rsperum es enisderis solor sin repeditae ium sitaspe rsperum es enis deris solor sin
         repeditae ium</h4>
       </div>
       <div className="section group">
-        <div className="span_10 article-body margin_1">{this.props.children}</div>
+        <div className="span_12 article-body">{this.props.children}</div>
       </div>
       <TabView>
         <div title="Politics">

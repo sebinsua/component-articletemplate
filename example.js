@@ -1,5 +1,9 @@
 import React from 'react';
 import ArticleTemplate from './';
+import AnimatedPanel from '@economist/component-animatedpanel';
+import Gobbet from '@economist/component-gobbet';
+import customSharebar from '@economist/component-sharebar';
+import ImageCaption from '@economist/component-imagecaption';
 
 export default (
   <ArticleTemplate
@@ -7,7 +11,7 @@ export default (
   title="A billion-person question add more so that we wrap"
   flytitle="If india's monsoon fails add more so that we wrap"
   mainimage="http://lorempixel.com/g/1190/669/people">
-    <p>
+    <p className="span_10 margin_1">
     This is the body with <b>rich text</b> Lorem ipsum dolor sit amet, id erat in, nec id et molestie, tortor donec
     fusce ultrices odio cum id, fusce donec tempus, porttitor inceptos proin. Praesent amet, quis nascetur non in. Duis
     amet faucibus porta vulputate molestie, augue elit urna, adipiscing  metus interdum vitae vivamus voluptatem taciti,
@@ -22,7 +26,13 @@ export default (
     <blockquote className="article-blockqoute-image">This is an example of a qoute, in this case it has an image
     <img src="http://lorempixel.com/g/290/163/people" />
     </blockquote>
-    <p>
+     <Gobbet className="gobbet" showShareBar={true} sharebar={customSharebar}>
+      <ImageCaption caption="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+      dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+      quam felis, ultricies nec, pellentesque eu, pretium quis, sem." src="http://lorempixel.com/g/300/169/food"
+      textposition="top" />
+    </Gobbet>
+    <p className="span_10 margin_1">
     Diam massa proin libero vestibulum, faucibus sollicitudin diam a aliquet, turpis magna, orci facilisis lorem,
     porttitor in sit gravida. Varius vivamus congue porta, leo dolor lorem ullamcorper, id nostra tempus condimentum
     quam. Sit ligula in, phasellus enim pede in in, doloremque fuga felis id ut venenatis, diam nonummy nam varius,
@@ -53,6 +63,7 @@ export default (
     erat dictum. Iaculis augue egestas suspendisse tristique, nulla neque blandit lacus vulputate blandit, nulla
     nulla sed quam sit, ullamcorper orci, nec viverra netus feugiat ligula. Mauris lectus expedita.
     </p>
+     <AnimatedPanel className="span_12" />
     <p>Lacinia morbi, arcu turpis pede bibendum leo eget, venenatis luctus at. Ut quis quisque ac, maecenas vitae wisi
     harum ipsum dapibus ante, mollis amet libero, occaecati pellentesque, vel orci nunc lacus donec. Sed scelerisque
     pretium vehicula vestibulum, luctus ac sem adipiscing, etiam vel magna non lectus, ut lacinia ligula, mus massa

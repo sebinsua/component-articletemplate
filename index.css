@@ -5,8 +5,10 @@
 /* hide component panels*/
 
 @import '@economist/component-gridcss';
-@import '@economist/component-customfonts';
+@import '@economist/component-font-neutra2';
 @import '@economist/component-tabview';
+@import '@economist/component-gobbet';
+
 
 .article-container-inner {
   max-width: 1190px;

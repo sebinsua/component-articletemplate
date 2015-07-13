@@ -1,9 +1,3 @@
-/* hide component panels*/
-.component-panel, .component-title {
-  display: none;
-}
-/* hide component panels*/
-
 @import '@economist/component-gridcss';
 @import '@economist/component-font-neutra2';
 @import '@economist/component-tabview';

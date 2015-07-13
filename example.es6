@@ -2,7 +2,6 @@ import React from 'react';
 import ArticleTemplate from './index.es6';
 import AnimatedPanel from '@economist/component-animatedpanel';
 import WorldIfGobbet from '@economist/component-wifgobbet';
-import customSharebar from '@economist/component-sharebar';
 import ImageCaption from '@economist/component-imagecaption';
 
 

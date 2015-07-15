@@ -13,6 +13,11 @@
     "url": "https://github.com/the-economist-editorial/component-articletemplate/issues"
   },
   "main": "index.js",
+  "files": [
+    "*.js",
+    "*.css",
+    "assets/*"
+  ],
   "eslintConfig": {
     "extends": "strict/react"
   },
@@ -40,7 +45,7 @@
       {
         "contents": "chai.should();mocha.setup('bdd');"
       },
-      "/test/index.es6?debug&external=react",
+      "/test/index.es6?babelifydebug&external=react",
       {
         "contents": "mocha.checkLeaks();mocha.run();"
       }
@@ -55,6 +60,7 @@
     "lint_opts": "--ignore-path .gitignore --ext .es6"
   },
   "scripts": {
+    "build": "npm-assets .",
     "lint": "eslint $npm_package_config_lint_opts .",
     "prepublish": "babel index.es6 --stage=0 --loose > index.js",
     "provision": "devpack-configure ./package.json",
@@ -64,17 +70,19 @@
     "test:watch": "npm run test:base -- -wR min"
   },
   "dependencies": {
-    "@economist/component-tabview": "",
-    "react": "^0.13.3",
-    "srcset": "^1.0.0"
+    "@economist/component-animatedpanel": "^1.0.3",
+    "@economist/component-font-neutra2": "^1.0.1",
+    "@economist/component-gobbet": "^2.0.1",
+    "@economist/component-gridcss": "^1.0.1",
+    "@economist/component-imagecaption": "^1.1.0",
+    "@economist/component-tabview": "^1.0.0",
+    "@economist/component-wifgobbet": "^1.0.1",
+    "react": "^0.13.3"
   },
   "devDependencies": {
-    "@economist/component-devpack": "^2.1.1",
+    "@economist/component-devpack": "^2.3.0",
     "@economist/component-devserver": "^2.0.0",
     "@economist/component-testharness": "^1.1.0",
-    "@economist/component-animatedpanel": "",
-    "@economist/component-wifgobbet": "",
-    "@economist/component-imagecaption": "",
     "babel": "^5.5.8",
     "eslint": "^0.24.0",
     "eslint-config-strict": "^2.4.0",
@@ -83,6 +91,7 @@
     "eslint-plugin-react": "^2.6.3",
     "minifyify": "^7.0.1",
     "mocha": "^2.2.5",
+    "npm-assets": "^0.1.0",
     "pre-commit": "^1.0.10"
   },
   "pre-commit": [

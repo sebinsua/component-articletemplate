@@ -1,6 +1,5 @@
 import React from 'react';
 import ArticleTemplate from './index.es6';
-import AnimatedPanel from '@economist/component-animatedpanel';
 import WorldIfGobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 
@@ -61,7 +60,6 @@ export default (
     erat dictum. Iaculis augue egestas suspendisse tristique, nulla neque blandit lacus vulputate blandit, nulla
     nulla sed quam sit, ullamcorper orci, nec viverra netus feugiat ligula. Mauris lectus expedita.
     </p>
-     <AnimatedPanel className="span_12" />
     <p>Lacinia morbi, arcu turpis pede bibendum leo eget, venenatis luctus at. Ut quis quisque ac, maecenas vitae wisi
     harum ipsum dapibus ante, mollis amet libero, occaecati pellentesque, vel orci nunc lacus donec. Sed scelerisque
     pretium vehicula vestibulum, luctus ac sem adipiscing, etiam vel magna non lectus, ut lacinia ligula, mus massa

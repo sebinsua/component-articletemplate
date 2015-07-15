@@ -2,6 +2,7 @@
 @import '@economist/component-font-neutra2';
 @import '@economist/component-tabview';
 @import '@economist/component-gobbet';
+@import '@economist/component-animatedpanel';
 
 
 .article-container-inner {

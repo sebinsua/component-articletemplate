@@ -1,136 +1,126 @@
 import React from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
+import ArticleStore from '@economist/component-articlestore';
 
+const articleStore = new ArticleStore('/content');
+const articleComponent = {
+  Image: 'img',
+  PullQuote: 'blockquote',
+  ArticleSubHead: 'h3',
+};
 export default class ArticleTemplate extends React.Component {
-
 
   static get propTypes() {
     return {
-      section: React.PropTypes.string,
-      flytitle: React.PropTypes.string,
-      title: React.PropTypes.string,
-      mainimage: React.PropTypes.node,
-      children: React.PropTypes.node,
+      params: React.PropTypes.object.isRequired,
     };
   }
 
+  static get store() {
+    return articleStore;
+  }
+
+  static addComponentType(component, name) {
+    articleComponent[name || component.name] = component;
+  }
+
+  get articleid() {
+    const id = ((this.props || {}).params || {}).id;
+    if (!id) {
+      throw new Error('ArticleTemplate does not have ID');
+    }
+    return id;
+  }
+
+  renderJSONContents(contents) {
+    return contents.map((contentPiece, key) => {
+      if (typeof contentPiece === 'string') {
+        return (
+          <p key={key}>
+            {contentPiece}
+          </p>
+        );
+      }
+      const Component = articleComponent[contentPiece.component];
+      if (!Component) {
+        throw new Error('Unknown component ' + contentPiece.component);
+      }
+      const children = this.renderJSONContents(contentPiece.content);
+      return (
+        <Component key={key} {...contentPiece.props}>
+          {children}
+        </Component>
+      );
+    });
+  }
+
+  renderTabView() {
+    const sections = articleStore
+      .getWhere((item) => item.id !== this.articleid)
+      .reduce((total, article) => {
+        const section = article.attributes.section;
+        total[section] = total[section] || [];
+        total[section].push(article);
+        return total;
+      }, {});
+    return (
+      <TabView>
+        {Object.keys(sections).map((title, key) => (
+          <div title={title} key={key}>
+            <div className="TabView--Views--Tint"></div>
+            {sections[title].map((article) => (
+              <a href={`/article/${article.id}`}>
+                <figure className="TabView--View--Content">
+                  <img src={article.attributes.mainimage}/>
+                  <figcaption>{article.attributes.title}</figcaption>
+                </figure>
+              </a>
+            ))}
+          </div>
+        ))}
+      </TabView>
+    );
+  }
+
   render() {
+    const article = articleStore.get(this.articleid);
+    if (!article) {
+      if (this.state && this.state.requested) {
+        throw new Error('Already requested article id, but failed');
+      }
+      this.state = { requesting: true };
+      articleStore.fetch(this.articleid).then(() => this.setState({ requesting: false, requested: true }));
+      return (
+        <div className="ArticleTemplate--loading">
+          Loading
+        </div>
+      );
+    }
+    const contents = this.renderJSONContents(article.attributes.content);
+    const tabs = this.renderTabView();
     return (
       <div className="article-container-inner">
         <div className="section group">
           <div className="span_12 article-image-container">
             <div className="article-image-container-content">
               <div className="article-title-container">
-                <h2 className="article-section margin_1">{this.props.section}</h2>
-                <h1 className="article-flytitle margin_1 span_10 ">{this.props.flytitle}</h1>
-                <h3 className="article-title margin_1 span_10 ">{this.props.title}</h3>
+                <h2 className="article-section margin_1">{article.attributes.section}</h2>
+                <h1 className="article-flytitle margin_1 span_10 ">{article.attributes.flytitle}</h1>
+                <h3 className="article-title margin_1 span_10 ">{article.attributes.title}</h3>
               </div>
-              <img src={this.props.mainimage} className="article-image" />
+              <img src={article.attributes.mainimage} className="article-image" />
             </div>
           </div>
         </div>
         <div className="section group">
-          <h4 className="span_10 margin_1 article-rubric">Rluptat inctota tisqui asitio molupti quid essita quatur si
-          cus, od esequi sitaspe rsperum es enisderis solor sin repeditae ium sitaspe rsperum es enis deris solor sin
-          repeditae ium</h4>
+          <h4 className="span_10 margin_1 article-rubric">{article.attributes.rubric}</h4>
         </div>
         <div className="section group">
-          <div className="span_12 article-body">{this.props.children}</div>
+          {contents}
         </div>
         <AnimatedPanel/>
-        <TabView>
-          <div title="Politics">
-            <div className="TabView--Views--Tint"></div>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/cats"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/people"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/city"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/fashion"/>
-                  <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-          </div>
-          <div title="Business & Economics">
-            <div className="TabView--Views--Tint"></div>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/food"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/nightlife"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/sports"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/nature"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-          </div>
-          <div title="Science & technology">
-            <div className="TabView--Views--Tint"></div>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/transport"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/abstract"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/technics"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-            <a href="#">
-              <figure className="TabView--View--Content">
-                <img src="http://lorempixel.com/g/300/169/cats"/>
-                <figcaption>this is the caption</figcaption>
-              </figure>
-            </a>
-          </div>
-          <div title="History">
-            <div className="TabView--Views--Tint"></div>
-              <a href="#">
-                <figure className="TabView--View--Content">
-                  <img src="http://lorempixel.com/g/300/169/nightlife"/>
-                  <figcaption>this is the caption</figcaption>
-                </figure>
-              </a>
-          </div>
-        </TabView>
+        {tabs}
       </div>
     );
   }

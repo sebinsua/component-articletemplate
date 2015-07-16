@@ -3,7 +3,14 @@
 @import '@economist/component-tabview';
 @import '@economist/component-gobbet';
 @import '@economist/component-animatedpanel';
+/*@import '@economist/component-imagecaption';*/
+@import '@economist/component-wifgobbet';
 
+.ArticleTemplate--loading {
+  border: 10px solid red;
+  font: bold 100px sans-serif;
+  color: red;
+}
 
 .article-container-inner {
   max-width: 1190px;

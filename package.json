@@ -45,7 +45,7 @@
       {
         "contents": "chai.should();mocha.setup('bdd');"
       },
-      "/test/index.es6?debug&external=react",
+      "/test/index.es6?babelify&debug&external=react",
       {
         "contents": "mocha.checkLeaks();mocha.run();"
       }
@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@economist/component-articlestore": "^1.0.1",
-    "@economist/component-animatedpanel": "^1.0.3",
+    "@economist/component-animatedpanel": "^2.0.0",
     "@economist/component-font-neutra2": "^1.0.1",
     "@economist/component-gobbet": "^2.0.1",
     "@economist/component-gridcss": "^1.0.1",
@@ -81,7 +81,7 @@
     "react": "^0.13.3"
   },
   "devDependencies": {
-    "@economist/component-devpack": "^2.4.0",
+    "@economist/component-devpack": "^2.5.0",
     "@economist/component-devserver": "^2.0.0",
     "@economist/component-testharness": "^1.1.0",
     "babel": "^5.5.8",

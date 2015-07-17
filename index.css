@@ -12,18 +12,18 @@
   color: red;
 }
 
-.article-container-inner {
+.ArticleTemplate--container {
   max-width: 1190px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
 
   {
-    .article-image-container {
+    .ArticleTemplate--imagecontainer {
       position: relative;
 
       {
-        .article-section {
+        .ArticleTemplate--header-section {
           background: #08C5B2;
           height: 30px;
           color: #FFF;
@@ -38,7 +38,7 @@
           margin-top: 0;
         }
 
-        .article-title {
+        .ArticleTemplate--title {
           color: #fff;
           font-size: 50px;
           font-family: Neutra2Display-Titling;
@@ -49,7 +49,7 @@
           margin-bottom: 0;
         }
 
-        .article-flytitle {
+        .ArticleTemplate--flytitle {
           font-family: Neutra2Display-Medium;
           color: orange;
           font-size: 50px;
@@ -59,7 +59,7 @@
           margin-bottom: 0;
         }
 
-        .article-title-container {
+        .ArticleTemplate--header {
           /*height: 33.3%;*/
           height: auto;
           background-color: rgba(0, 0, 0, 0.3);
@@ -68,11 +68,11 @@
           bottom: 0;
         }
 
-        .article-title-container > div {
+/*        .ArticleTemplate--header > div {
           margin-right: 10px;
-        }
+        }*/
 
-        .article-image-container-content {
+        .ArticleTemplate--imagecontainer-inner {
           background-color: rgba(0, 0, 0, 0.3);
           position: absolute;
           top: 0;
@@ -82,7 +82,7 @@
           width: 100%;
           height: 100%;
           {
-          .article-image {
+          .ArticleTemplate--image {
               height: 100%;
               width: auto;
             }
@@ -90,11 +90,11 @@
         }
       }
 
-      p {
+/*      p {
         width: 690px;
-      }
+      }*/
 
-      p:first-child:first-letter {
+      .ArticleTemplate--section > p:first-of-type:first-letter {
         float: left;
         color: #08C5B2;
         font-size: 75px;
@@ -104,8 +104,10 @@
         margin-left: -2px;
         font-family: Neutra2Display-Titling;
       }
-
-      .article-rubric {
+      .ArticleTemplate--section > p {
+        max-width: 66.13%;
+      }
+      .ArticleTemplate--rubric {
         font-family: Neutra2Display;
         font-weight:  bold;
         font-size: 24px;
@@ -115,15 +117,15 @@
         margin-bottom: 0;
       }
 
-      .article-body {
+      .ArticleTemplate--section {
         color: #313131;
         font-size: 21px;
         line-height: 34px;
         font-family: "Georgia, serif";
       }
 
-      .article-blockqoute {
-        padding: 10px 0;
+      .ArticleTemplate--blockquote {
+        /*padding: 10px 0;*/
         border-top: 1px solid #313131;
         clear: both;
         float: right;
@@ -136,27 +138,11 @@
         font-size: 30px;
         line-height: 30px;
         border-bottom: 20px solid #6e7b82;
+        max-width: 300px;
       }
 
-     .article-blockqoute-image {
-       padding-top: 10px;
-       border-top: 1px solid #313131;
-       clear: both;
-       float: right;
-       width: 290px;
-       margin: 0 0 26px 35px;
-       color: #08C5B2;
-       word-wrap: break-word;
-       font-family: Neutra2Display-Titling;
-       text-transform: uppercase;
-       font-size: 30px;
-       line-height: 30px;
-     }
-
-    .article-blockqoute-image img {
-      padding-top: 6px;
-      border-bottom: 20px solid #6e7b82;
-      width: 100%;
+    .ArticleTemplate--blockquote-image {
+       display: block;
     }
 
     .article-image-caption {
@@ -178,14 +164,14 @@
     }
    }
 
-    .article-image-container:before {
+    .ArticleTemplate--imagecontainer:before {
       display: block;
       content: '';
       width: 100%;
       padding-top: 56.25%;
     }
 
-    .article-image-container > .content {
+    .ArticleTemplate--imagecontainer > .content {
       position: absolute;
       top: 0;
       left: 0;
@@ -197,22 +183,22 @@
 }
 
 @media screen and (max-width: 1100px) {
-    .article-container-inner .article-image-container .article-flytitle {
+    .ArticleTemplate--container .ArticleTemplate--imagecontainer .ArticleTemplate--flytitle {
     font-size: 35px;
   }
-    .article-container-inner .article-image-container .article-title {
+    .ArticleTemplate--container .ArticleTemplate--imagecontainer .ArticleTemplate--title {
     font-size: 40px;
   }
 }
 
 @media screen and (max-width: 825px) {
-  .article-container-inner p {
+  .ArticleTemplate--container p {
     width: 96%;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .article-container-inner .article-blockqoute, .article-container-inner .article-blockqoute-image, .article-container-inner .article-image-caption{
+  .ArticleTemplate--container .article-blockqoute, .ArticleTemplate--container .article-blockqoute-image, .ArticleTemplate--container .article-image-caption{
     width: 96%;
     font-size: 24px;
     line-height: 24px;
@@ -222,37 +208,37 @@
 }
 
 @media screen and (max-width: 480px) {
-  .article-container-inner .article-section {
+  .ArticleTemplate--container .ArticleTemplate--header-section {
     height: 22px;
     font-size: 16px;
     padding: 0px 8px;
     line-height: 25px;
   }
 
-  .article-container-inner .article-image-container .article-flytitle {
+  .ArticleTemplate--container .ArticleTemplate--imagecontainer .ArticleTemplate--flytitle {
     font-size: 20px;
     line-height: 18px;
     padding-left: 8px
   }
 
-    .article-container-inner .article-image-container .article-title {
+    .ArticleTemplate--container .ArticleTemplate--imagecontainer .ArticleTemplate--title {
     font-size: 24px;
     line-height: 21px;
     padding-left: 8px
   }
 
-  .article-container-inner .article-image-container {
+  .ArticleTemplate--container .ArticleTemplate--imagecontainer {
     position: relative;
   }
 
-  .article-container-inner .article-image-container:before {
+  .ArticleTemplate--container .ArticleTemplate--imagecontainer:before {
     display: block;
     content: '';
     width: 100%;
     padding-top: 88.125%;
   }
 
-  .article-container-inner .article-image-container > .content {
+  .ArticleTemplate--container .ArticleTemplate--imagecontainer > .content {
     position: absolute;
     top: 0;
     left: 0;
@@ -260,17 +246,17 @@
     bottom: 0;
   }
 
-  .article-container-inner .article-rubric {
+  .ArticleTemplate--container .article-rubric {
     padding: 10px 8px 0 8px;
     line-height: 28px;
     font-size: 22px;
   }
-  .article-container-inner .article-body {
+  .ArticleTemplate--container .article-body {
     padding: 0 8px;
     font-size: 18px;
     line-height: 26px;
   }
-  .article-container-inner p:first-child:first-letter {
+  .ArticleTemplate--container p:first-child:first-letter {
     font-size: 56px;
     line-height: 46px;
     padding-top: 6px;

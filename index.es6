@@ -37,9 +37,7 @@ export default class ArticleTemplate extends React.Component {
     return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
-          <p key={key}>
-            {contentPiece}
-          </p>
+          <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
         );
       }
       const Component = articleComponent[contentPiece.component];
@@ -100,28 +98,24 @@ export default class ArticleTemplate extends React.Component {
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
     return (
-      <div className="article-container-inner">
-        <div className="section group">
-          <div className="span_12 article-image-container">
-            <div className="article-image-container-content">
-              <div className="article-title-container">
-                <h2 className="article-section margin_1">{article.attributes.section}</h2>
-                <h1 className="article-flytitle margin_1 span_10 ">{article.attributes.flytitle}</h1>
-                <h3 className="article-title margin_1 span_10 ">{article.attributes.title}</h3>
-              </div>
-              <img src={article.attributes.mainimage} className="article-image" />
-            </div>
+      <article className="ArticleTemplate--container">
+        <div className="span_12 ArticleTemplate--imagecontainer">
+          <div className="ArticleTemplate--imagecontainer-inner">
+            <header className="ArticleTemplate--header">
+              <h2 className="ArticleTemplate--header-section margin_1">{article.attributes.section}</h2>
+              <h1 className="ArticleTemplate--flytitle margin_1 span_11">{article.attributes.flytitle}</h1>
+              <h3 className="ArticleTemplate--title margin_1 span_11">{article.attributes.title}</h3>
+            </header>
+            <img src={article.attributes.mainimage} className="ArticleTemplate--image" />
           </div>
         </div>
-        <div className="section group">
-          <h4 className="span_10 margin_1 article-rubric">{article.attributes.rubric}</h4>
-        </div>
-        <div className="section group">
+        <p className="span_10 margin_1 ArticleTemplate--rubric">{article.attributes.rubric}</p>
+        <section className="ArticleTemplate--section group margin_1 span_11">
           {contents}
-        </div>
+        </section>
         <AnimatedPanel/>
         {tabs}
-      </div>
+      </article>
     );
   }
 }

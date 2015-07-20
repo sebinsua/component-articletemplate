@@ -70,8 +70,8 @@
     "test:watch": "npm run test:base -- -wR min"
   },
   "dependencies": {
-    "@economist/component-articlestore": "^1.0.1",
     "@economist/component-animatedpanel": "^2.0.0",
+    "@economist/component-articlestore": "^1.0.1",
     "@economist/component-font-neutra2": "^1.0.1",
     "@economist/component-gobbet": "^2.0.1",
     "@economist/component-gridcss": "^1.0.1",

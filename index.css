@@ -124,7 +124,8 @@
         font-family: "Georgia, serif";
       }
 
-      .ArticleTemplate--blockquote {
+      .ArticleTemplate--blockquote,
+      .gobbet {
         /*padding: 10px 0;*/
         border-top: 1px solid #313131;
         clear: both;
@@ -140,29 +141,36 @@
         border-bottom: 20px solid #6e7b82;
         max-width: 300px;
       }
+      .mnv-ec-share-icons .Icon {
+        border-radius: 50%;
+      }
+              
+      .mnv-ec-share-icons svg {
+        width: 30px;
+        height: 30px;
+      }
+      .ArticleTemplate--blockquote-image {
+         display: block;
+      }
 
-    .ArticleTemplate--blockquote-image {
-       display: block;
-    }
+      .article-image-caption {
+        clear: both;
+        float: right;
+        width: 290px;
+        margin: 0 0 26px 35px;
+        color: #313131;
+        font-family: Neutra2Display;
+        font-weight:  bold;
+        font-size: 20px;
+        border-bottom: 1px solid #313131;
+        padding-bottom: 8px;
+        line-height: 26px;
+      }
 
-    .article-image-caption {
-      clear: both;
-      float: right;
-      width: 290px;
-      margin: 0 0 26px 35px;
-      color: #313131;
-      font-family: Neutra2Display;
-      font-weight:  bold;
-      font-size: 20px;
-      border-bottom: 1px solid #313131;
-      padding-bottom: 8px;
-      line-height: 26px;
+      .article-image-caption img {
+        width: 100%;
+      }
     }
-
-    .article-image-caption img {
-      width: 100%;
-    }
-   }
 
     .ArticleTemplate--imagecontainer:before {
       display: block;

@@ -2,12 +2,16 @@ import React from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
 import ArticleStore from '@economist/component-articlestore';
+import Gobbet from '@economist/component-gobbet';
+import ImageCaption from '@economist/component-imagecaption';
 
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
   Image: 'img',
   PullQuote: 'blockquote',
   ArticleSubHead: 'h3',
+  Gobbet,
+  ImageCaption,
 };
 export default class ArticleTemplate extends React.Component {
 
@@ -34,7 +38,7 @@ export default class ArticleTemplate extends React.Component {
   }
 
   renderJSONContents(contents) {
-    return contents.map((contentPiece, key) => {
+    return (contents || []).map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
           <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />

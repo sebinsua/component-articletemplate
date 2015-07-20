@@ -31,22 +31,26 @@ ArticleTemplate.store.add({
               src: 'http://lorempixel.com/g/290/163/people',
               className: 'ArticleTemplate--blockquote-image',
             },
-            content: [],
           },
         ],
       },
-      // {
-      //   name: 'WorldIfGobbet',
-      //   props: {},
-      //   content: [
-      //     name: 'ImageCaption',
-      //     props: {
-      //       caption='Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
-      //       src='http://lorempixel.com/g/300/169/food'
-      //       textposition='top'
-      //     }
-      //   ]
-      // },
+      {
+        component: 'Gobbet',
+        props: {
+          title: 'this is a test',
+          showShareBar: true,
+        },
+        content: [
+          {
+            component: 'ImageCaption',
+            props: {
+              caption: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
+              src: 'http://lorempixel.com/g/300/169/food',
+              textposition: 'top',
+            },
+          },
+        ],
+      },
       `Diam massa proin libero vestibulum, faucibus sollicitudin diam a aliquet, turpis magna, orci facilisis lorem,
       porttitor in sit gravida. Varius vivamus congue porta, leo dolor lorem ullamcorper, id nostra tempus condimentum
       quam. Sit ligula in, phasellus enim pede in in, doloremque fuga felis id ut venenatis, diam nonummy nam varius`,

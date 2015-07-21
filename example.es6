@@ -202,5 +202,5 @@ ArticleTemplate.store.add({
   },
 });
 export default (
-  <ArticleTemplate params={{ id: '1' }}/>
+  <ArticleTemplate id="1"/>
 );

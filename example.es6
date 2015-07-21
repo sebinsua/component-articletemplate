@@ -8,7 +8,8 @@ ArticleTemplate.store.add({
     title: 'A billion-person question add more so that we wrap',
     flytitle: 'If india\'s monsoon fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
-    rubric: 'This is a nice little rubric for testing ',
+    rubric: `This is a nice little rubric for testing, This is a nice little rubric for testing, This is a nice
+    little rubric for testing, This is a nice little rubric for testing`,
     content: [
       `This is the body with <b>rich text</b> Lorem ipsum dolor sit amet, id erat in, nec id et molestie, tortor donec
       fusce ultrices odio cum id, fusce donec tempus, porttitor inceptos proin. Praesent amet, quis nascetur non in.
@@ -37,7 +38,7 @@ ArticleTemplate.store.add({
       {
         component: 'Gobbet',
         props: {
-          title: 'this is a test',
+          title: 'What If',
           showShareBar: true,
         },
         content: [

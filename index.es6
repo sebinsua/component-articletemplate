@@ -17,7 +17,7 @@ export default class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
-      params: React.PropTypes.object.isRequired,
+      id: React.PropTypes.string.isRequired,
     };
   }
 
@@ -27,14 +27,6 @@ export default class ArticleTemplate extends React.Component {
 
   static addComponentType(component, name) {
     articleComponent[name || component.name] = component;
-  }
-
-  get articleid() {
-    const id = ((this.props || {}).params || {}).id;
-    if (!id) {
-      throw new Error('ArticleTemplate does not have ID');
-    }
-    return id;
   }
 
   renderJSONContents(contents) {
@@ -59,7 +51,7 @@ export default class ArticleTemplate extends React.Component {
 
   renderTabView() {
     const sections = articleStore
-      .getWhere((item) => item.id !== this.articleid)
+      .getWhere((item) => item.id !== this.props.id)
       .reduce((total, article) => {
         const section = article.attributes.section;
         total[section] = total[section] || [];
@@ -86,13 +78,13 @@ export default class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const article = articleStore.get(this.articleid);
+    const article = articleStore.get(this.props.id);
     if (!article) {
       if (this.state && this.state.requested) {
         throw new Error('Already requested article id, but failed');
       }
       this.state = { requesting: true };
-      articleStore.fetch(this.articleid).then(() => this.setState({ requesting: false, requested: true }));
+      articleStore.fetch(this.props.id).then(() => this.setState({ requesting: false, requested: true }));
       return (
         <div className="ArticleTemplate--loading">
           Loading

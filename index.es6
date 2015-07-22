@@ -2,7 +2,7 @@ import React from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
 import ArticleStore from '@economist/component-articlestore';
-import Gobbet from '@economist/component-gobbet';
+import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 
 const articleStore = new ArticleStore('/content');
@@ -95,18 +95,18 @@ export default class ArticleTemplate extends React.Component {
     const tabs = this.renderTabView();
     return (
       <article className="ArticleTemplate--container">
-        <div className="span_12 ArticleTemplate--imagecontainer">
+        <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
-            <header className="ArticleTemplate--header">
-              <h2 className="ArticleTemplate--header-section margin_1">{article.attributes.section}</h2>
-              <h1 className="ArticleTemplate--flytitle margin_1 span_11">{article.attributes.flytitle}</h1>
-              <h3 className="ArticleTemplate--title margin_1 span_11">{article.attributes.title}</h3>
-            </header>
             <img src={article.attributes.mainimage} className="ArticleTemplate--image" />
+            <header className="ArticleTemplate--header">
+              <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">{article.attributes.section}</h2>
+              <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">{article.attributes.flytitle}</h1>
+              <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10">{article.attributes.title}</h3>
+            </header>
           </div>
         </div>
-        <p className="span_10 margin_1 ArticleTemplate--rubric">{article.attributes.rubric}</p>
-        <section className="ArticleTemplate--section group margin_1 span_11">
+        <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10">{article.attributes.rubric}</p>
+        <section className="ArticleTemplate--section">
           {contents}
         </section>
         <AnimatedPanel/>

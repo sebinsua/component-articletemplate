@@ -4,7 +4,7 @@ import ArticleTemplate from './index.es6';
 ArticleTemplate.store.add({
   id: '1',
   attributes: {
-    section: 'This is the section',
+    section: 'Business',
     title: 'A billion-person question add more so that we wrap',
     flytitle: 'If india\'s monsoon fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
@@ -115,9 +115,9 @@ ArticleTemplate.store.add({
 ArticleTemplate.store.add({
   id: '2',
   attributes: {
-    section: 'This is the section',
-    title: 'A billion-person question add more so that we wrap',
-    flytitle: 'If india\'s monsoon fails add more so that we wrap',
+    section: 'Politics',
+    title: 'A question that we wrap',
+    flytitle: 'Monsoon fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
     rubric: 'This is a nice little rubric for testing ',
     content: [
@@ -214,9 +214,9 @@ ArticleTemplate.store.add({
 ArticleTemplate.store.add({
   id: '3',
   attributes: {
-    section: 'This is the section',
-    title: 'A 3 billion-person question add more so that we wrap',
-    flytitle: 'If india\'s monsoon fails add more so that we wrap',
+    section: 'Politics',
+    title: 'A Person question that we wrap add more so',
+    flytitle: 'What if fails add more india\'s monsoon  so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
     rubric: 'This is a nice little rubric for testing ',
     content: [
@@ -313,9 +313,9 @@ ArticleTemplate.store.add({
 ArticleTemplate.store.add({
   id: '4',
   attributes: {
-    section: 'This is the section',
-    title: 'A 4 billion-person question add more so that we wrap',
-    flytitle: 'If india\'s monsoon fails add more so that we wrap',
+    section: 'Politics',
+    title: 'This person question add more so that we wrap',
+    flytitle: 'I want to test and fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
     rubric: 'This is a nice little rubric for testing ',
     content: [
@@ -412,7 +412,7 @@ ArticleTemplate.store.add({
 ArticleTemplate.store.add({
   id: '5',
   attributes: {
-    section: 'This is the section',
+    section: 'Science',
     title: 'A 5 billion-person question add more so that we wrap',
     flytitle: 'If india\'s monsoon fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',
@@ -511,7 +511,7 @@ ArticleTemplate.store.add({
 ArticleTemplate.store.add({
   id: '6',
   attributes: {
-    section: 'This is the section',
+    section: 'Business',
     title: 'A 6 billion-person question add more so that we wrap',
     flytitle: 'If india\'s monsoon fails add more so that we wrap',
     mainimage: 'http://lorempixel.com/g/1190/669/people',

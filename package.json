@@ -73,11 +73,10 @@
     "@economist/component-animatedpanel": "^2.0.0",
     "@economist/component-articlestore": "^1.0.1",
     "@economist/component-font-neutra2": "^1.0.4",
-    "@economist/component-gobbet": "^2.0.1",
     "@economist/component-gridcss": "^2.0.0",
     "@economist/component-imagecaption": "^1.1.0",
-    "@economist/component-tabview": "^1.1.0",
-    "@economist/component-wifgobbet": "^1.1.2",
+    "@economist/component-tabview": "^1.2.0",
+    "@economist/component-wifgobbet": "^1.3.1",
     "react": "^0.13.3"
   },
   "devDependencies": {

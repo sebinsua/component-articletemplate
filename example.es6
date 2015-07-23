@@ -29,7 +29,7 @@ ArticleTemplate.store.add({
       sem enim. Egestas et sollicitudin tellus, quam dolor etiam. Ut turpis ac, ut felis augue id risus, vitae libero
       fusce, at ornare sed vel vulputate.`,
       {
-        component: 'PullQuote',
+        component: 'Pullquote',
         props: { 'className': 'ArticleTemplate--blockquote' },
         content: [
           'This is an example of a qoute, in this case it has an image',
@@ -97,7 +97,7 @@ ArticleTemplate.store.add({
       nunc lacus donec. Sed scelerisque pretium vehicula vestibulum, luctus ac sem adipiscing, etiam vel magna non
       lectus, ut lacinia ligula, mus massa tristique nibh nec sed. Sit lacinia. Donec justo lorem sagittis.`,
       {
-        component: 'PullQuote',
+        component: 'Pullquote',
         props: { 'className': 'ArticleTemplate--blockquote' },
         content: [
           'This is an example of a qoute, lets add a few more lines here to pad it out a bit',
@@ -348,7 +348,7 @@ ArticleTemplate.store.add({
       sem enim. Egestas et sollicitudin tellus, quam dolor etiam. Ut turpis ac, ut felis augue id risus, vitae libero
       fusce, at ornare sed vel vulputate.`,
       {
-        component: 'PullQuote',
+        component: 'Pullquote',
         props: { 'className': 'ArticleTemplate--blockquote' },
         content: [
           'This is an example of a qoute, in this case it has an image',
@@ -394,7 +394,7 @@ ArticleTemplate.store.add({
       nunc lacus donec. Sed scelerisque pretium vehicula vestibulum, luctus ac sem adipiscing, etiam vel magna non
       lectus, ut lacinia ligula, mus massa tristique nibh nec sed. Sit lacinia. Donec justo lorem sagittis.`,
       {
-        component: 'PullQuote',
+        component: 'Pullquote',
         props: { 'className': 'ArticleTemplate--blockquote' },
         content: [
           'This is an example of a qoute, lets add a few more lines here to pad it out a bit',

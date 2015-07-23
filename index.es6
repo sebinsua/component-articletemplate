@@ -8,7 +8,7 @@ import ImageCaption from '@economist/component-imagecaption';
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
   Image: 'img',
-  PullQuote: 'blockquote',
+  Pullquote: 'blockquote',
   ArticleSubHead: 'h3',
   Gobbet,
   ImageCaption,

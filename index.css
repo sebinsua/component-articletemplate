@@ -89,7 +89,8 @@
 }
 
 .ArticleTemplate--section > p,
-.ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads,
+.ArticleTemplate--section > figure {
   margin: 0 .9% 15px 7.5%;
   width: 57.9%;
 }
@@ -110,7 +111,10 @@
   line-height: 34px;
   font-family: "Georgia, serif";
 }
-
+.ArticleTemplate--section > figure img{
+  width: 100%;
+  height: auto;
+}
 .ArticleTemplate--blockquote,
 .ArticleTemplate--container .Gobbet--container {
   border-top: 1px solid #313131;
@@ -284,7 +288,8 @@
     line-height: 24px;
   }
   .ArticleTemplate--section > p,
-  .ArticleTemplate--crossheads {
+  .ArticleTemplate--crossheads,
+  .ArticleTemplate--section > figure {
     margin: 0 8.4% 15px;
     width: 83.1%;
   }

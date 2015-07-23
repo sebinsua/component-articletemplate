@@ -15,6 +15,12 @@ ArticleTemplate.store.add({
       fusce ultrices odio cum id, fusce donec tempus, porttitor inceptos proin. Praesent amet, quis nascetur non in.
       Duis amet faucibus porta vulputate molestie, augue elit urna, adipiscing  metus interdum vitae vivamus voluptatem
       taciti, id nulla proin a, sociis est felis massa. Eleifend lectus, nec amet vestibulum pede. Risus juto praesent`,
+      {
+        component: 'ImageCaption',
+        props: {
+          src: 'http://lorempixel.com/g/300/169/food',
+        },
+      },
       `Dolor quis elementum et, ipsum dui, platea ligula urna et bibendum leo, sapien bibendum fermentum, eros in
       adipiscing non facilis curabitur. Tristique molestie eget nonummy vestibulum. Dui nibh duis pellentesque volutpat
       ultricies, erat semper duis mi corporis suspendisse dolor. Viverra nunc vel turpis ligula sed proin. Tellus
@@ -38,7 +44,6 @@ ArticleTemplate.store.add({
       {
         component: 'Gobbet',
         props: {
-          title: 'What If',
           showShareBar: true,
         },
         content: [
@@ -46,7 +51,6 @@ ArticleTemplate.store.add({
             component: 'ImageCaption',
             props: {
               src: 'http://lorempixel.com/g/300/169/food',
-              textposition: 'top',
             },
           },
         ],
@@ -58,6 +62,20 @@ ArticleTemplate.store.add({
       augue risus sit litora amet donec. Quisque magna, urna nostra lacus id, pulvinar wisi, nulla consequat a, a
       mattis mi ac amet suspendisse. Nisl felis labore eu, convallis ac montes dictum at eget quam, lectus euismod
       velit eget nec ultricies tempor. Vel sem feugiat eu et consectetuer, quam aenean, in vitae eu elit eu, eget sed`,
+      {
+        component: 'Gobbet',
+        props: {
+          showShareBar: true,
+        },
+        content: [
+          {
+            component: 'ImageCaption',
+            props: {
+              src: 'http://lorempixel.com/g/300/169/food',
+            },
+          },
+        ],
+      },
       `Proin augue vestibulum luctus vitae laoreet nec. Ultricies vel magna nullam, rutrum odio, vel leo mus arcu.
       Mattis lacinia pellentesque id, risus mauris rhoncus ac suspendisse rutrum. Lacus lectus consectetuer vel,
       imperdiet curabitur sit qui ac ut, morbi aliquam dolor suscipit aliquet, quam at quis maecenas. Scelerisque

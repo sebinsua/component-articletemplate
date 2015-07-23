@@ -67,6 +67,13 @@ ArticleTemplate.store.add({
       scelerisque neque, arcu at non cras ultricies augue imperdiet, erat dictum. Iaculis augue egestas suspendisse
       tristique, nulla neque blandit lacus vulputate blandit, nulla nulla sed quam sit, ullamcorper orci, nec viverra
       netus feugiat ligula. Mauris lectus expedita.`,
+      {
+        component: 'ArticleSubHead',
+        props: {
+          className: 'ArticleTemplate--crossheads',
+        },
+        content: [ 'Something’s gotta give' ],
+      },
       `Lacinia morbi, arcu turpis pede bibendum leo eget, venenatis luctus at. Ut quis quisque ac, maecenas vitae wisi
       harum ipsum dapibus ante, mollis amet libero, occaecati pellentesque, vel orci
       nunc lacus donec. Sed scelerisque pretium vehicula vestibulum, luctus ac sem adipiscing, etiam vel magna non

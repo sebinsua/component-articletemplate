@@ -94,7 +94,10 @@
   margin: 0 .9% 15px 7.5%;
   width: 57.9%;
 }
-
+.ArticleTemplate--copy-images {
+  float: left;
+  margin: 15px 20px 15px 0;
+}
 .ArticleTemplate--rubric {
   font-family: Neutra2Display;
   font-weight:  bold;
@@ -300,6 +303,12 @@
   .ArticleTemplate--container .Gobbet--container {
     margin-left: 2.4%;
     width: 32.7%
+  }
+}
+@media screen and (max-width: 670px) {
+  .ArticleTemplate--copy-images {
+    float: none;
+    width: 100%;
   }
 }
 @media screen and (max-width: 620px) {

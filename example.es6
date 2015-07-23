@@ -24,6 +24,7 @@ ArticleTemplate.store.add({
       `Dolor quis elementum et, ipsum dui, platea ligula urna et bibendum leo, sapien bibendum fermentum, eros in
       adipiscing non facilis curabitur. Tristique molestie eget nonummy vestibulum. Dui nibh duis pellentesque volutpat
       ultricies, erat semper duis mi corporis suspendisse dolor. Viverra nunc vel turpis ligula sed proin. Tellus
+      <img src="http://lorempixel.com/g/300/169/food" class="ArticleTemplate--copy-images" data-reactid=".0.2.$1.1">
       mauris vel morbi elit mauris, iaculis leo corporis vestibulum tincidunt tellus, lobortis nunc, sit sed at, in eu
       sem enim. Egestas et sollicitudin tellus, quam dolor etiam. Ut turpis ac, ut felis augue id risus, vitae libero
       fusce, at ornare sed vel vulputate.`,

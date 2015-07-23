@@ -107,7 +107,7 @@
 }
 
 .ArticleTemplate--blockquote,
-.ArticleTemplate--container .gobbet {
+.ArticleTemplate--container .Gobbet--container {
   border-top: 1px solid #313131;
   clear: both;
   float: right;
@@ -122,9 +122,13 @@
   border-bottom: 20px solid #6e7b82;
   max-width: 500px;
 }
-.ArticleTemplate--container .gobbet {
+.ArticleTemplate--container .Gobbet--container {
   border-top: 0;
 }
+.ArticleTemplate--container .Gobbet--container figure {
+  margin: 0;
+}
+.ArticleTemplate--container .Gobbet--container figcaption,
 .ArticleTemplate--blockquote p {
   margin: 10px 0;
 }
@@ -242,7 +246,7 @@
     width: 83.1%;
   }
   .ArticleTemplate--blockquote,
-  .ArticleTemplate--container .gobbet {
+  .ArticleTemplate--container .Gobbet--container {
     margin-left: 2.4%;
     width: 32.7%
   }
@@ -267,7 +271,7 @@
     line-height: 22px;
   }
   .ArticleTemplate--blockquote,
-  .ArticleTemplate--container .gobbet {
+  .ArticleTemplate--container .Gobbet--container {
     margin: 0 8.4% 15px;
     width: 80.1%;
     float: none;

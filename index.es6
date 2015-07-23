@@ -66,7 +66,10 @@ export default class ArticleTemplate extends React.Component {
             {sections[title].map((article) => (
               <a href={`/article/${article.id}`}>
                 <figure className="TabView--View--Content">
-                  <img src={article.attributes.mainimage}/>
+                  <img
+                    src={article.attributes.mainimage['1x']}
+                    srcSet={this.getSrcSet(article.attributes.mainimage)}
+                  />
                   <figcaption>{article.attributes.title}</figcaption>
                 </figure>
               </a>
@@ -75,6 +78,10 @@ export default class ArticleTemplate extends React.Component {
         ))}
       </TabView>
     );
+  }
+
+  getSrcSet(mainimage) {
+    return Object.keys(mainimage).map((key) => `${mainimage[key]} ${key}`).join(',');
   }
 
   render() {
@@ -97,7 +104,11 @@ export default class ArticleTemplate extends React.Component {
       <article className="ArticleTemplate--container">
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
-            <img src={article.attributes.mainimage} className="ArticleTemplate--image" />
+            <img
+              className="ArticleTemplate--image"
+              src={article.attributes.mainimage['1x']}
+              srcSet={this.getSrcSet(article.attributes.mainimage)}
+            />
             <header className="ArticleTemplate--header">
               <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">{article.attributes.section}</h2>
               <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">{article.attributes.flytitle}</h1>

@@ -81,6 +81,12 @@ ArticleTemplate.store.add({
       Mattis lacinia pellentesque id, risus mauris rhoncus ac suspendisse rutrum. Lacus lectus consectetuer vel,
       imperdiet curabitur sit qui ac ut, morbi aliquam dolor suscipit aliquet, quam at quis maecenas. Scelerisque
       cubilia aliquam donec donec justo porta, at tellus nibh id pede, orci vehicula sed, lectus accumsan nulla.`,
+      {
+        component: 'Video',
+        props: {
+          vid: 'xI_gVUA4ukI',
+        },
+      },
       `Fringilla et, augue gravida mi sapien sapien interdum. Orci elit eget mi, a ac, donec dictumst erat consectetuer
       scelerisque neque, arcu at non cras ultricies augue imperdiet, erat dictum. Iaculis augue egestas suspendisse
       tristique, nulla neque blandit lacus vulputate blandit, nulla nulla sed quam sit, ullamcorper orci, nec viverra

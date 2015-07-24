@@ -4,6 +4,7 @@ import AnimatedPanel from '@economist/component-animatedpanel';
 import ArticleStore from '@economist/component-articlestore';
 import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
+import Video from '@economist/component-video';
 
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
@@ -12,6 +13,7 @@ const articleComponent = {
   ArticleSubHead: 'h3',
   Gobbet,
   ImageCaption,
+  Video,
 };
 export default class ArticleTemplate extends React.Component {
 

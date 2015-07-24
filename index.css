@@ -3,6 +3,7 @@
 @import '@economist/component-tabview';
 @import '@economist/component-animatedpanel';
 @import '@economist/component-wifgobbet';
+@import '@economist/component-video';
 
 .ArticleTemplate--loading {
   border: 10px solid red;
@@ -90,7 +91,8 @@
 
 .ArticleTemplate--section > p,
 .ArticleTemplate--crossheads,
-.ArticleTemplate--section > figure {
+.ArticleTemplate--section > figure,
+.Video--container {
   margin: 0 .9% 15px 7.5%;
   width: 57.9%;
 }
@@ -292,7 +294,8 @@
   }
   .ArticleTemplate--section > p,
   .ArticleTemplate--crossheads,
-  .ArticleTemplate--section > figure {
+  .ArticleTemplate--section > figure,
+  .Video--container {
     margin: 0 8.4% 15px;
     width: 83.1%;
   }

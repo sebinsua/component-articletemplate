@@ -252,6 +252,10 @@
   overflow: hidden;
 }
 
+.ArticleTemplate--container .TabView {
+  clear: both;
+}
+
 @media screen and (max-width: 1100px) {
   .ArticleTemplate--flytitle,
   .ArticleTemplate--title {

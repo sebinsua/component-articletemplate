@@ -124,7 +124,7 @@
 .ArticleTemplate--container .Gobbet--container {
   border-top: 1px solid #313131;
   float: left;
-  width: 27.7%;
+  width: 24.3%;
   margin: 0 6% 26px 0;
   color: #08C5B2;
   word-wrap: break-word;
@@ -148,6 +148,7 @@
   margin-left: 7.5%;
 }
 
+.ArticleTemplate--blockquote,
 .ArticleTemplate--container p + .Gobbet--container {
   clear: both;
   float: right;
@@ -326,10 +327,9 @@
   .ArticleTemplate--crossheads {
     margin-bottom: 0;
   }
-  .ArticleTemplate--blockquote,
+
   .ArticleTemplate--container .Gobbet--container {
-    /*margin-left: 2.4%;*/
-    width: 32.7%
+    width: 39.5%
   }
 
   .ArticleTemplate--container .Gobbet--container:nth-child(3n+3) {
@@ -344,11 +344,10 @@
   .ArticleTemplate--container .Gobbet--container:nth-child(even) {
     margin-left: 0;
   }
+  .ArticleTemplate--blockquote,
   .ArticleTemplate--container p + .Gobbet--container {
-    clear: both;
-    float: right;
     width: 32.7%;
-    margin-left: 2.4%;
+    margin-left: 2.4% !important;
   }
   .ArticleTemplate--container .Gobbet--header-aside {
     height: 36px; 
@@ -384,10 +383,10 @@
     line-height: 22px;
   }
   .ArticleTemplate--blockquote,
-  .ArticleTemplate--container .Gobbet--container {
-    margin: 0 8.4% 15px;
-    width: 80.1%;
-    float: none;
+  .ArticleTemplate--container p + .Gobbet--container {
+    margin: 0 0 15px 8.4%;
+    width: 80.1% !important;
+    float: none !important;
   }
   .ArticleTemplate--container .mnv-ec-share-icons a, 
   .ArticleTemplate--container .mnv-ec-share-icons svg {

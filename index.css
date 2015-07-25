@@ -123,10 +123,9 @@
 .ArticleTemplate--blockquote,
 .ArticleTemplate--container .Gobbet--container {
   border-top: 1px solid #313131;
-  clear: both;
-  float: right;
-  width: 24.3%;
-  margin: 0 8.4% 26px 0;
+  float: left;
+  width: 27.7%;
+  margin: 0 6% 26px 0;
   color: #08C5B2;
   word-wrap: break-word;
   font-family: Neutra2Display-Titling;
@@ -136,9 +135,26 @@
   border-bottom: 20px solid #6e7b82;
   max-width: 500px;
 }
+
 .ArticleTemplate--container .Gobbet--container {
   border: 0;
 }
+
+.ArticleTemplate--container .Gobbet--container:nth-child(3n+3) {
+  margin-right: 0;
+}
+
+.ArticleTemplate--container .Gobbet--container:nth-child(3n+1) {
+  margin-left: 7.5%;
+}
+
+.ArticleTemplate--container p + .Gobbet--container {
+  clear: both;
+  float: right;
+  width: 24.3%;
+  margin-right: 8.4%;
+}
+
 .Gobbet--header {
   background: #6e7b82;
   position: relative;
@@ -151,6 +167,10 @@
 .Gobbet--header-aside .controls {
   width: 35px;
   height: 35px;
+  cursor: pointer;
+}
+.Gobbet--header-aside .controls:hover {
+  background-color: #000;
 }
 .mnv-ec-share-icons {
   position: relative;
@@ -308,8 +328,30 @@
   }
   .ArticleTemplate--blockquote,
   .ArticleTemplate--container .Gobbet--container {
-    margin-left: 2.4%;
+    /*margin-left: 2.4%;*/
     width: 32.7%
+  }
+
+  .ArticleTemplate--container .Gobbet--container:nth-child(3n+3) {
+    margin-right: 6%;
+    margin-left: 7.5%;
+  }
+
+  .ArticleTemplate--container .Gobbet--container:nth-child(odd) {
+    clear: both;
+    margin-left: 7.5%;
+  }
+  .ArticleTemplate--container .Gobbet--container:nth-child(even) {
+    margin-left: 0;
+  }
+  .ArticleTemplate--container p + .Gobbet--container {
+    clear: both;
+    float: right;
+    width: 32.7%;
+    margin-left: 2.4%;
+  }
+  .ArticleTemplate--container .Gobbet--header-aside {
+    height: 36px; 
   }
 }
 @media screen and (max-width: 670px) {
@@ -354,6 +396,16 @@
   }
   .ArticleTemplate--container .mnv-ec-share-icons a {
     margin: 3px 0 0 10px !important;
+  }
+
+  .ArticleTemplate--container .Gobbet--header {
+    height: 35px;
+  }
+  .ArticleTemplate--container .mnv-ec-share-icons-container {
+    top: 0;
+  }
+  .ArticleTemplate--container .Gobbet--container:nth-child(even) {
+    margin-left: 7.5%;
   }
 }
 

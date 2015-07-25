@@ -14,6 +14,7 @@ const articleComponent = {
   Gobbet,
   ImageCaption,
   Video,
+  AnimatedPanel,
 };
 export default class ArticleTemplate extends React.Component {
 
@@ -122,7 +123,6 @@ export default class ArticleTemplate extends React.Component {
         <section className="ArticleTemplate--section">
           {contents}
         </section>
-        <AnimatedPanel/>
         {tabs}
       </article>
     );

@@ -441,26 +441,26 @@
 
 .ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--header-section,
 .ArticleTemplate--container[data-section='Politics'] .Gobbet--title-right {
-  background-color: #08c5b2;
+  background-color: #e3120b;
 }
 
 .ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--section > p:first-of-type:first-letter,
 .ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--blockquote,
 .ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--crossheads,
 .ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--flytitle {
-  color: #08c5b2;
+  color: #e3120b;
 }
 
 .ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--header-section,
 .ArticleTemplate--container[data-section='Business & economics'] .Gobbet--title-right {
-  background-color: #e3120b;
+  background-color: #08c5b2;
 }
 
 .ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--section > p:first-of-type:first-letter,
 .ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--blockquote,
 .ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--crossheads,
 .ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--flytitle {
-  color: #e3120b;
+  color: #08c5b2;
 }
 
 .ArticleTemplate--container[data-section='Science & technology'] .ArticleTemplate--header-section,

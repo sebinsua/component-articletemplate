@@ -104,7 +104,7 @@ export default class ArticleTemplate extends React.Component {
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
     return (
-      <article className="ArticleTemplate--container">
+      <article className="ArticleTemplate--container" data-section={article.attributes.section}>
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
             <img

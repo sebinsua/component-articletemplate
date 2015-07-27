@@ -24,6 +24,17 @@ export default class ArticleTemplate extends React.Component {
     };
   }
 
+  shouldComponentUpdate(props) {
+    if (!props.id) {
+      return false;
+    }
+    if (articleStore.get(props.id) === null) {
+      articleStore.fetch(props.id).then(() => this.setState({ update: Date.now() }));
+      return false;
+    }
+    return true;
+  }
+
   static get store() {
     return articleStore;
   }
@@ -126,11 +137,7 @@ export default class ArticleTemplate extends React.Component {
   render() {
     const article = articleStore.get(this.props.id);
     if (!article) {
-      if (this.state && this.state.requested) {
-        throw new Error('Already requested article id, but failed');
-      }
-      this.state = { requesting: true };
-      articleStore.fetch(this.props.id).then(() => this.setState({ requesting: false, requested: true }));
+      articleStore.fetch(this.props.id).then(() => this.setState({ update: Date.now() }));
       return (
         <div className="ArticleTemplate--loading">
           Loading

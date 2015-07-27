@@ -19,7 +19,10 @@
     "assets/*"
   ],
   "eslintConfig": {
-    "extends": "strict/react"
+    "extends": "strict/react",
+    "env": {
+      "browser": true
+    }
   },
   "component-devserver": {
     "example": "./example.es6",

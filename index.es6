@@ -25,6 +25,15 @@ export default class ArticleTemplate extends React.Component {
     };
   }
 
+  constructor() {
+    super();
+    this.state = { isLoggedIn: false, now: new Date() };
+  }
+
+  componentDidMount() {
+    this.getLoginState();
+  }
+
   static get store() {
     return articleStore;
   }
@@ -88,6 +97,18 @@ export default class ArticleTemplate extends React.Component {
     return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
   }
 
+  getLoginState() {
+    this.setState({ isLoggedIn: this.getCookie('mm-logged-in-state') });
+  }
+
+  getCookie(name) {
+    if (typeof document !== 'undefined') {
+      const re = new RegExp(name + '=([^;]+)');
+      const value = re.exec(document.cookie);
+      return (value !== null) ? 'logged-in' : 'logged-out';
+    }
+  }
+
   render() {
     const article = articleStore.get(this.props.id);
     if (!article) {
@@ -122,6 +143,7 @@ export default class ArticleTemplate extends React.Component {
       prop4 = 'homepage';
       prop5 = 'home';
     }
+    const login = (this.state.isLoggedIn) ? 'logged_in' : 'not_logged_in';
     return (
       <article className="ArticleTemplate--container" data-section={article.attributes.section}>
         <div className="ArticleTemplate--imagecontainer">
@@ -151,9 +173,9 @@ export default class ArticleTemplate extends React.Component {
           prop3="web"
           prop4={prop4}
           prop5={prop5}
-          prop11="not_logged_in"
+          prop11={login}
           prop13="anonymous"
-          prop31="2013|08|14"
+          prop31={this.state.now}
         />
       </article>
     );

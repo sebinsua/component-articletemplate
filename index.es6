@@ -78,7 +78,7 @@ export default class ArticleTemplate extends React.Component {
           <div title={title} key={key}>
             <div className="TabView--Views--Tint"></div>
             {sections[title].map((article) => (
-              <a href={`/article/${article.id}`}>
+              <a href={`/article/${article.id}/${article.attributes.slug}`}>
                 <figure className="TabView--View--Content">
                   <img
                     src={`${article.attributes.tileimage['1x']}`}

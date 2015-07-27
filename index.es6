@@ -34,6 +34,17 @@ export default class ArticleTemplate extends React.Component {
     this.getLoginState();
   }
 
+  shouldComponentUpdate(props) {
+    if (!props.id) {
+      return false;
+    }
+    if (articleStore.get(props.id) === null) {
+      articleStore.fetch(props.id).then(() => this.setState({ update: Date.now() }));
+      return false;
+    }
+    return true;
+  }
+
   static get store() {
     return articleStore;
   }
@@ -77,7 +88,7 @@ export default class ArticleTemplate extends React.Component {
           <div title={title} key={key}>
             <div className="TabView--Views--Tint"></div>
             {sections[title].map((article) => (
-              <a href={`/article/${article.id}`}>
+              <a href={`/article/${article.id}/${article.attributes.slug}`}>
                 <figure className="TabView--View--Content">
                   <img
                     src={`${article.attributes.tileimage['1x']}`}
@@ -109,14 +120,46 @@ export default class ArticleTemplate extends React.Component {
     }
   }
 
+  renderHeader(attributes) {
+    let section = null;
+    let flytitle = null;
+    let title = null;
+    if (attributes.flytitle) {
+      flytitle = (
+        <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">
+          {attributes.flytitle}
+        </h1>
+      );
+    }
+    if (attributes.title) {
+      title = (
+        <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10">
+          {attributes.title}
+        </h3>
+      );
+    }
+    if (flytitle || title) {
+      if (attributes.section) {
+        section = (
+          <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">
+            {attributes.section}
+          </h2>
+        );
+      }
+      return (
+        <header className="ArticleTemplate--header">
+          {section}
+          {flytitle}
+          {title}
+        </header>
+      );
+    }
+  }
+
   render() {
     const article = articleStore.get(this.props.id);
     if (!article) {
-      if (this.state && this.state.requested) {
-        throw new Error('Already requested article id, but failed');
-      }
-      this.state = { requesting: true };
-      articleStore.fetch(this.props.id).then(() => this.setState({ requesting: false, requested: true }));
+      articleStore.fetch(this.props.id).then(() => this.setState({ update: Date.now() }));
       return (
         <div className="ArticleTemplate--loading">
           Loading
@@ -144,20 +187,20 @@ export default class ArticleTemplate extends React.Component {
       prop5 = 'home';
     }
     const login = (this.state.isLoggedIn) ? 'logged_in' : 'not_logged_in';
+    let image = null;
+    if (article.attributes.mainimage) {
+      image = (<img
+        className="ArticleTemplate--image"
+        src={`${article.attributes.mainimage['1x']}`}
+        srcSet={this.getSrcSet(article.attributes.mainimage)}
+      />);
+    }
     return (
       <article className="ArticleTemplate--container" data-section={article.attributes.section}>
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
-            <img
-              className="ArticleTemplate--image"
-              src={`${article.attributes.mainimage['1x']}`}
-              srcSet={this.getSrcSet(article.attributes.mainimage)}
-            />
-            <header className="ArticleTemplate--header">
-              <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">{article.attributes.section}</h2>
-              <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">{article.attributes.flytitle}</h1>
-              <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10">{article.attributes.title}</h3>
-            </header>
+            {image}
+            {this.renderHeader(article.attributes)}
           </div>
         </div>
         <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10">{article.attributes.rubric}</p>

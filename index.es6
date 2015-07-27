@@ -102,13 +102,6 @@ export default class ArticleTemplate extends React.Component {
     let section = null;
     let flytitle = null;
     let title = null;
-    if (attributes.section) {
-      section = (
-        <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">
-          {attributes.section}
-        </h2>
-      );
-    }
     if (attributes.flytitle) {
       flytitle = (
         <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">
@@ -123,7 +116,14 @@ export default class ArticleTemplate extends React.Component {
         </h3>
       );
     }
-    if (section || flytitle || title) {
+    if (flytitle || title) {
+      if (attributes.section) {
+        section = (
+          <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">
+            {attributes.section}
+          </h2>
+        );
+      }
       return (
         <header className="ArticleTemplate--header">
           {section}

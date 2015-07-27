@@ -5,6 +5,7 @@ import ArticleStore from '@economist/component-articlestore';
 import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
+import Omniture from '@economist/component-omniture';
 
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
@@ -103,6 +104,24 @@ export default class ArticleTemplate extends React.Component {
     }
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
+    let pageName;
+    let channel;
+    let prop1;
+    let prop4;
+    let prop5;
+    if (article.type === 'posts') {
+      pageName = article.attributes.section + '|article|' + article.attributes.title;
+      channel = article.attributes.section;
+      prop1 = article.attributes.title;
+      prop4 = 'article';
+      prop5 = article.attributes.title;
+    } else {
+      pageName = 'homepage';
+      channel = 'home';
+      prop1 = 'homepage';
+      prop4 = 'homepage';
+      prop5 = 'home';
+    }
     return (
       <article className="ArticleTemplate--container" data-section={article.attributes.section}>
         <div className="ArticleTemplate--imagecontainer">
@@ -124,6 +143,18 @@ export default class ArticleTemplate extends React.Component {
           {contents}
         </section>
         {tabs}
+        <Omniture
+          pageName={pageName}
+          server="economist.com"
+          channel={channel}
+          prop1={prop1}
+          prop3="web"
+          prop4={prop4}
+          prop5={prop5}
+          prop11="not_logged_in"
+          prop13="anonymous"
+          prop31="2013|08|14"
+        />
       </article>
     );
   }

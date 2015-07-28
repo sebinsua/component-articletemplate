@@ -7,5 +7,5 @@ for (const article of WorldIfContent.data[0].relationships.posts.data) {
 }
 
 export default (
-  <ArticleTemplate id="1"/>
+  <ArticleTemplate id="7"/>
 );

@@ -75,7 +75,6 @@
   "dependencies": {
     "@economist/component-animatedpanel": "^2.1.5",
     "@economist/component-articlestore": "^1.1.2",
-    "@economist/component-devpack": "^2.5.0",
     "@economist/component-font-neutra2": "^1.0.4",
     "@economist/component-gridcss": "^2.0.0",
     "@economist/component-imagecaption": "^1.1.1",
@@ -89,7 +88,7 @@
     "@economist/component-devpack": "^2.5.0",
     "@economist/component-devserver": "^2.0.0",
     "@economist/component-testharness": "^1.1.0",
-    "@economist/world-if-assets": "0.0.8",
+    "@economist/world-if-assets": "0.0.12",
     "babel": "^5.8.9",
     "eslint": "^0.24.0",
     "eslint-config-strict": "^2.4.0",

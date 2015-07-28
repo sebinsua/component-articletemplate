@@ -91,10 +91,10 @@ export default class ArticleTemplate extends React.Component {
               <a href={`/article/${article.id}/${article.attributes.slug}`}>
                 <figure className="TabView--View--Content">
                   <img
-                    src={`${article.attributes.tileimage['1x']}`}
+                    src={`${article.attributes.tileimage['1.0x']}`}
                     srcSet={this.getSrcSet(article.attributes.tileimage)}
                   />
-                  <figcaption>{article.attributes.title}</figcaption>
+                  <figcaption>{article.attributes.toc}</figcaption>
                 </figure>
               </a>
             ))}
@@ -191,7 +191,7 @@ export default class ArticleTemplate extends React.Component {
     if (article.attributes.mainimage) {
       image = (<img
         className="ArticleTemplate--image"
-        src={`${article.attributes.mainimage['1x']}`}
+        src={`${article.attributes.mainimage['1.0x']}`}
         srcSet={this.getSrcSet(article.attributes.mainimage)}
       />);
     }

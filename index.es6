@@ -6,6 +6,7 @@ import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Omniture from '@economist/component-omniture';
+import NotFound from '@economist/component-404';
 
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
@@ -32,17 +33,6 @@ export default class ArticleTemplate extends React.Component {
 
   componentDidMount() {
     this.getLoginState();
-  }
-
-  shouldComponentUpdate(props) {
-    if (!props.id) {
-      return false;
-    }
-    if (articleStore.get(props.id) === null) {
-      articleStore.fetch(props.id).then(() => this.setState({ update: Date.now() }));
-      return false;
-    }
-    return true;
   }
 
   static get store() {
@@ -159,12 +149,7 @@ export default class ArticleTemplate extends React.Component {
   render() {
     const article = articleStore.get(this.props.id);
     if (!article) {
-      articleStore.fetch(this.props.id).then(() => this.setState({ update: Date.now() }));
-      return (
-        <div className="ArticleTemplate--loading">
-          Loading
-        </div>
-      );
+      return (<NotFound/>);
     }
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();

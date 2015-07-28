@@ -4,6 +4,7 @@
 @import '@economist/component-animatedpanel';
 @import '@economist/component-wifgobbet';
 @import '@economist/component-video';
+@import '@economist/component-404';
 
 .ArticleTemplate--loading {
   border: 10px solid red;
@@ -240,7 +241,7 @@
   border-radius: 50%;
   background: none !important;
 }
-        
+
 .ArticleTemplate--container .mnv-ec-share-icons svg {
   background: none !important;
 }

@@ -7,6 +7,7 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Omniture from '@economist/component-omniture';
 import NotFound from '@economist/component-404';
+import Gallery from '@economist/component-gallery';
 
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
@@ -17,6 +18,7 @@ const articleComponent = {
   ImageCaption,
   Video,
   AnimatedPanel,
+  Gallery,
 };
 export default class ArticleTemplate extends React.Component {
 

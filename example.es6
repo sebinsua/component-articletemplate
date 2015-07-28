@@ -5,5 +5,5 @@ import WorldIfContent from '@economist/world-if-assets';
 ArticleTemplate.store.setContent(WorldIfContent);
 
 export default (
-  <ArticleTemplate id="7"/>
+  <ArticleTemplate id="6"/>
 );

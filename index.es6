@@ -136,12 +136,18 @@ export default class ArticleTemplate extends React.Component {
     }
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
-    const pageName = article.attributes.section + '|article|' + article.attributes.title;
-    const channel = article.attributes.section;
-    const prop1 = article.attributes.title;
-    const prop4 = 'article';
-    const prop5 = article.attributes.title;
-    const loggedin = (authenticated.getCookie('mm-logged-in-state')) ? 'logged_in' : 'not_logged_in';
+    const omnitureProps = {
+      pageName: `${article.attributes.section}|article|${article.attributes.title}`,
+      server: 'economist.com',
+      channel: article.attributes.section,
+      prop1: article.attributes.title,
+      prop3: 'web',
+      prop4: 'article',
+      prop5: article.attributes.title,
+      prop11: authenticated.getCookie('mm-logged-in-state') ? 'logged_in' : 'not_logged_in',
+      prop13: 'anonymous',
+      prop31: new Date(),
+    };
     let image = null;
     if (article.attributes.mainimage) {
       image = (<img
@@ -163,18 +169,7 @@ export default class ArticleTemplate extends React.Component {
           {contents}
         </section>
         {tabs}
-        <Omniture
-          pageName={pageName}
-          server="economist.com"
-          channel={channel}
-          prop1={prop1}
-          prop3="web"
-          prop4={prop4}
-          prop5={prop5}
-          prop11={loggedin}
-          prop13="anonymous"
-          prop31={new Date()}
-        />
+        <Omniture {...omnitureProps} />
       </article>
     );
   }

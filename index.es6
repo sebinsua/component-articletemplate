@@ -7,7 +7,10 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Omniture from '@economist/component-omniture';
 import NotFound from '@economist/component-404';
+import Gallery from '@economist/component-gallery';
+import Authenticated from '@economist/component-authenticated';
 
+const authenticated = new Authenticated();
 const articleStore = new ArticleStore('/content');
 const articleComponent = {
   Image: 'img',
@@ -17,6 +20,7 @@ const articleComponent = {
   ImageCaption,
   Video,
   AnimatedPanel,
+  Gallery,
 };
 export default class ArticleTemplate extends React.Component {
 
@@ -24,15 +28,6 @@ export default class ArticleTemplate extends React.Component {
     return {
       id: React.PropTypes.string.isRequired,
     };
-  }
-
-  constructor() {
-    super();
-    this.state = { isLoggedIn: false, now: new Date() };
-  }
-
-  componentDidMount() {
-    this.getLoginState();
   }
 
   static get store() {
@@ -98,18 +93,6 @@ export default class ArticleTemplate extends React.Component {
     return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
   }
 
-  getLoginState() {
-    this.setState({ isLoggedIn: this.getCookie('mm-logged-in-state') });
-  }
-
-  getCookie(name) {
-    if (typeof document !== 'undefined') {
-      const re = new RegExp(name + '=([^;]+)');
-      const value = re.exec(document.cookie);
-      return (value !== null) ? 'logged-in' : 'logged-out';
-    }
-  }
-
   renderHeader(attributes) {
     let section = null;
     let flytitle = null;
@@ -153,25 +136,18 @@ export default class ArticleTemplate extends React.Component {
     }
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
-    let pageName;
-    let channel;
-    let prop1;
-    let prop4;
-    let prop5;
-    if (article.type === 'posts') {
-      pageName = article.attributes.section + '|article|' + article.attributes.title;
-      channel = article.attributes.section;
-      prop1 = article.attributes.title;
-      prop4 = 'article';
-      prop5 = article.attributes.title;
-    } else {
-      pageName = 'homepage';
-      channel = 'home';
-      prop1 = 'homepage';
-      prop4 = 'homepage';
-      prop5 = 'home';
-    }
-    const login = (this.state.isLoggedIn) ? 'logged_in' : 'not_logged_in';
+    const omnitureProps = {
+      pageName: `${article.attributes.section}|article|${article.attributes.title}`,
+      server: 'economist.com',
+      channel: article.attributes.section,
+      prop1: article.attributes.title,
+      prop3: 'web',
+      prop4: 'article',
+      prop5: article.attributes.title,
+      prop11: authenticated.getCookie('mm-logged-in-state') ? 'logged_in' : 'not_logged_in',
+      prop13: 'anonymous',
+      prop31: new Date(),
+    };
     let image = null;
     if (article.attributes.mainimage) {
       image = (<img
@@ -193,18 +169,7 @@ export default class ArticleTemplate extends React.Component {
           {contents}
         </section>
         {tabs}
-        <Omniture
-          pageName={pageName}
-          server="economist.com"
-          channel={channel}
-          prop1={prop1}
-          prop3="web"
-          prop4={prop4}
-          prop5={prop5}
-          prop11={login}
-          prop13="anonymous"
-          prop31={this.state.now}
-        />
+        <Omniture {...omnitureProps} />
       </article>
     );
   }

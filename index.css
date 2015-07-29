@@ -5,6 +5,7 @@
 @import '@economist/component-wifgobbet';
 @import '@economist/component-video';
 @import '@economist/component-404';
+@import '@economist/component-gallery';
 
 .ArticleTemplate--loading {
   border: 10px solid red;
@@ -84,7 +85,7 @@
   color: #08C5B2;
   font-size: 75px;
   line-height: 60px;
-  padding-top: 8px;
+  padding-top: 6px;
   padding-right: 8px;
   margin-left: -2px;
   font-family: Neutra2Display-Titling;
@@ -127,9 +128,6 @@
 .ArticleTemplate--blockquote,
 .ArticleTemplate--container .Gobbet--container {
   border-top: 1px solid #313131;
-  float: left;
-  width: 24.3%;
-  margin: 0 6% 26px 0;
   color: #08C5B2;
   word-wrap: break-word;
   font-family: Neutra2Display-Titling;
@@ -138,6 +136,11 @@
   line-height: 24px;
   border-bottom: 20px solid #6e7b82;
   max-width: 500px;
+}
+.ArticleTemplate--blockquote,
+.ArticleTemplate--container .Gobbet--container,
+figure.ImageCaption-floated-right {
+  margin: 0 6% 26px 0;
 }
 
 .ArticleTemplate--container .Gobbet--container {
@@ -153,7 +156,8 @@
 }
 
 .ArticleTemplate--blockquote,
-.ArticleTemplate--container p + .Gobbet--container {
+.ArticleTemplate--container p + .Gobbet--container,
+figure.ImageCaption-floated-right  {
   clear: both;
   float: right;
   width: 24.3%;
@@ -348,7 +352,8 @@
     margin-left: 0;
   }
   .ArticleTemplate--blockquote,
-  .ArticleTemplate--container p + .Gobbet--container {
+  .ArticleTemplate--container p + .Gobbet--container,
+  figure.ImageCaption-floated-right {
     width: 32.7%;
     margin-left: 2.4% !important;
   }
@@ -391,7 +396,8 @@
   }
 
   .ArticleTemplate--blockquote,
-  .ArticleTemplate--container p + .Gobbet--container {
+  .ArticleTemplate--container p + .Gobbet--container,
+  figure.ImageCaption-floated-right {
     margin: 0 0 15px 8.4% !important;
     width: 80.1% !important;
     float: none !important;
@@ -429,12 +435,14 @@
     text-shadow: none;
     color: #535353;
   }
-  .ArticleTemplate--section > p:first-of-type::first-letter {
+  .ArticleTemplate--section > p:first-of-type:first-letter {
     font-size: 57px;
+    padding-top: 0;
+    line-height: 55px;
   }
   .ArticleTemplate--section > p {
     font-size: 18px;
-    line-height: 26px;
+    line-height: 28px;
   }
    .ArticleTemplate--crossheads p {
     font-size: 18px;

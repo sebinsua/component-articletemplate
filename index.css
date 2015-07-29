@@ -164,6 +164,11 @@ figure.ImageCaption-floated-right  {
   margin-right: 8.4% !important;
 }
 
+.ArticleTemplate--blockquote img {
+  width: 100%;
+  height: auto;
+}
+
 .Gobbet--header {
   background: #6e7b82;
   position: relative;

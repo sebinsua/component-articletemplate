@@ -76,14 +76,15 @@
     "@economist/component-404": "^2.0.0",
     "@economist/component-animatedpanel": "^2.1.6",
     "@economist/component-articlestore": "^2.0.0",
+    "@economist/component-authenticated": "^2.0.0",
     "@economist/component-font-neutra2": "^1.0.4",
+    "@economist/component-gallery": "^3.0.0",
     "@economist/component-gridcss": "^2.0.0",
     "@economist/component-imagecaption": "^1.2.0",
     "@economist/component-omniture": "^1.0.5",
     "@economist/component-tabview": "^1.2.3",
     "@economist/component-video": "^1.0.0",
     "@economist/component-wifgobbet": "^1.3.4",
-    "@economist/component-gallery": "^3.0.0",
     "react": "^0.13.3"
   },
   "devDependencies": {

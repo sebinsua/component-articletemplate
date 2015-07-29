@@ -179,6 +179,10 @@ figure.ImageCaption-floated-right  {
   width: 83.1%;
 }
 
+.AnimatedPanel--container {
+  margin-bottom: 30px;
+}
+
 .ArticleTemplate--blockquote img {
   width: 100%;
   height: auto;

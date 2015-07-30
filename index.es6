@@ -137,14 +137,15 @@ export default class ArticleTemplate extends React.Component {
     }
     const contents = this.renderJSONContents(article.attributes.content);
     const tabs = this.renderTabView();
+    const title = article.attributes.title || article.attributes.slug;
     const omnitureProps = {
-      pageName: `${article.attributes.section}|article|${article.attributes.title}`,
+      pageName: `${article.attributes.section}|article|${title}`,
       server: 'economist.com',
       channel: article.attributes.section,
-      prop1: article.attributes.title,
+      prop1: 'the_world_if',
       prop3: 'web',
       prop4: 'article',
-      prop5: article.attributes.title,
+      prop5: title,
       prop11: authenticated.getCookie('mm-logged-in-state') ? 'logged_in' : 'not_logged_in',
       prop13: 'anonymous',
       prop31: new Date(),

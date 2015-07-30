@@ -167,6 +167,22 @@ figure.ImageCaption-floated-right  {
   margin-right: 8.4% !important;
 }
 
+.ImageCaption-floated-right figcaption {
+  font-size: 24px;
+  font-family: Neutra2Display;
+  font-weight: bold;
+  line-height: 26px;
+}
+
+.Gallery {
+  margin: 0 7.5% 30px;
+  width: 83.1%;
+}
+
+.AnimatedPanel--container {
+  margin-bottom: 30px;
+}
+
 .ArticleTemplate--blockquote img {
   width: 100%;
   height: auto;
@@ -384,6 +400,11 @@ figure.ImageCaption-floated-right  {
   .ArticleTemplate--image {
     width: 110%;
   }
+
+  [data-id="page-4"] .ArticleTemplate--image {
+    width: 100%;
+  }
+  
   .ArticleTemplate--flytitle,
   .ArticleTemplate--title {
     font-size: 26px;

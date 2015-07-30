@@ -186,6 +186,7 @@ figure.ImageCaption-floated-right  {
 .ArticleTemplate--blockquote img {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 .Gobbet--header {

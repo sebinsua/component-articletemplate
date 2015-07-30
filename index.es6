@@ -139,7 +139,7 @@ export default class ArticleTemplate extends React.Component {
     const tabs = this.renderTabView();
     const title = article.attributes.title || article.attributes.slug;
     const omnitureProps = {
-      pageName: `${article.attributes.section}|article|${title}`,
+      pageName: `the_world_if|${article.attributes.section}|${title}`,
       server: 'economist.com',
       channel: article.attributes.section,
       prop1: 'the_world_if',

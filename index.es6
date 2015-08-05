@@ -79,8 +79,9 @@ export default class ArticleTemplate extends React.Component {
                     src={`${article.attributes.tileimage['1.0x']}`}
                     srcSet={this.getSrcSet(article.attributes.tileimage)}
                     alt={article.attributes.imagealt}
+                    itemProp="image"
                   />
-                  <figcaption>{article.attributes.toc}</figcaption>
+                  <figcaption itemProp="caption">{article.attributes.toc}</figcaption>
                 </figure>
               </a>
             ))}

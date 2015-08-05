@@ -70,10 +70,10 @@ export default class ArticleTemplate extends React.Component {
     return (
       <TabView>
         {Object.keys(sections).map((title, key) => (
-          <div title={title} key={key}>
+          <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
             <div className="TabView--Views--Tint"></div>
             {sections[title].map((article) => (
-              <a href={`/article/${article.id}/${article.attributes.slug}`}>
+              <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
                 <figure className="TabView--View--Content">
                   <img
                     src={`${article.attributes.tileimage['1.0x']}`}

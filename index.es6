@@ -70,17 +70,18 @@ export default class ArticleTemplate extends React.Component {
     return (
       <TabView>
         {Object.keys(sections).map((title, key) => (
-          <div title={title} key={key}>
+          <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
             <div className="TabView--Views--Tint"></div>
             {sections[title].map((article) => (
-              <a href={`/article/${article.id}/${article.attributes.slug}`}>
+              <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
                 <figure className="TabView--View--Content">
                   <img
                     src={`${article.attributes.tileimage['1.0x']}`}
                     srcSet={this.getSrcSet(article.attributes.tileimage)}
                     alt={article.attributes.imagealt}
+                    itemProp="image"
                   />
-                  <figcaption>{article.attributes.toc}</figcaption>
+                  <figcaption itemProp="caption">{article.attributes.toc}</figcaption>
                 </figure>
               </a>
             ))}
@@ -100,14 +101,14 @@ export default class ArticleTemplate extends React.Component {
     let title = null;
     if (attributes.flytitle) {
       flytitle = (
-        <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10">
+        <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10" itemProp="headline">
           {attributes.flytitle}
         </h1>
       );
     }
     if (attributes.title) {
       title = (
-        <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10">
+        <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10" itemProp="alternativeHeadline">
           {attributes.title}
         </h3>
       );
@@ -115,7 +116,7 @@ export default class ArticleTemplate extends React.Component {
     if (flytitle || title) {
       if (attributes.section) {
         section = (
-          <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l">
+          <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l" itemProp="articleSection">
             {attributes.section}
           </h2>
         );
@@ -157,18 +158,21 @@ export default class ArticleTemplate extends React.Component {
         src={`${article.attributes.mainimage['1.0x']}`}
         srcSet={this.getSrcSet(article.attributes.mainimage)}
         alt={article.attributes.imagealt}
+        itemProp="image"
       />);
     }
     return (
-      <article className="ArticleTemplate--container" data-section={article.attributes.section}>
+      <article className="ArticleTemplate--container" data-section={article.attributes.section}
+      itemScope itemType="http://schema.org/NewsArticle">
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
             {image}
             {this.renderHeader(article.attributes)}
           </div>
         </div>
-        <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10">{article.attributes.rubric}</p>
-        <section className="ArticleTemplate--section">
+        <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10"
+        itemProp="description">{article.attributes.rubric}</p>
+        <section className="ArticleTemplate--section" itemProp="articleBody">
           {contents}
         </section>
         {tabs}

@@ -24,8 +24,16 @@ export default class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
-      article: PropTypes.object.isRequired,
-      sections: PropTypes.arrayOf(PropTypes.object).isRequired,
+      id: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      flytitle: PropTypes.string.isRequired,
+      rubric: PropTypes.string.isRequired,
+      section: PropTypes.string.isRequired,
+      mainImage: PropTypes.string.isRequired,
+      imageAlt: PropTypes.string.isRequired,
+      content: PropTypes.array.isRequired,
+      sections: PropTypes.object.isRequired,
     };
   }
 
@@ -55,8 +63,8 @@ export default class ArticleTemplate extends React.Component {
 
   renderTabView() {
     const notCurrentArticle = (article) => {
-      const currentArticle = this.props.article;
-      return currentArticle.id !== article.id;
+      const currentArticleId = this.props.id;
+      return currentArticleId !== article.id;
     };
 
     const sections = this.props.sections;
@@ -88,29 +96,29 @@ export default class ArticleTemplate extends React.Component {
     return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
   }
 
-  renderHeader(attributes) {
+  renderHeader() {
     let section = null;
     let flytitle = null;
     let title = null;
-    if (attributes.flytitle) {
+    if (this.props.flytitle) {
       flytitle = (
         <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10" itemProp="headline">
-          {attributes.flytitle}
+          {this.props.flytitle}
         </h1>
       );
     }
-    if (attributes.title) {
+    if (this.props.title) {
       title = (
         <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10" itemProp="alternativeHeadline">
-          {attributes.title}
+          {this.props.title}
         </h3>
       );
     }
     if (flytitle || title) {
-      if (attributes.section) {
+      if (this.props.section) {
         section = (
           <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l" itemProp="articleSection">
-            {attributes.section}
+            {this.props.section}
           </h2>
         );
       }
@@ -125,17 +133,13 @@ export default class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const article = this.props.article;
-    if (!article) {
-      return (<NotFound/>);
-    }
-    const contents = this.renderJSONContents(article.attributes.content);
+    const contents = this.renderJSONContents(this.props.content);
     const tabs = this.renderTabView();
-    const title = article.attributes.title || article.attributes.slug;
+    const title = this.props.title || this.props.slug;
     const omnitureProps = {
-      pageName: `the_world_if|${article.attributes.section}|${title}`,
+      pageName: `the_world_if|${this.props.section}|${title}`,
       server: 'economist.com',
-      channel: article.attributes.section,
+      channel: this.props.section,
       prop1: 'the_world_if',
       prop3: 'web',
       prop4: 'article',
@@ -145,26 +149,26 @@ export default class ArticleTemplate extends React.Component {
       prop31: new Date(),
     };
     let image = null;
-    if (article.attributes.mainimage) {
+    if (this.props.mainImage) {
       image = (<img
         className="ArticleTemplate--image"
-        src={`${article.attributes.mainimage['1.0x']}`}
-        srcSet={this.getSrcSet(article.attributes.mainimage)}
-        alt={article.attributes.imagealt}
+        src={`${this.props.mainImage['1.0x']}`}
+        srcSet={this.getSrcSet(this.props.mainImage)}
+        alt={this.props.imageAlt}
         itemProp="image"
       />);
     }
     return (
-      <article className="ArticleTemplate--container" data-section={article.attributes.section}
+      <article className="ArticleTemplate--container" data-section={this.props.section}
       itemScope itemType="http://schema.org/NewsArticle">
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
             {image}
-            {this.renderHeader(article.attributes)}
+            {this.renderHeader()}
           </div>
         </div>
         <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10"
-        itemProp="description">{article.attributes.rubric}</p>
+        itemProp="description">{this.props.rubric}</p>
         <section className="ArticleTemplate--section" itemProp="articleBody">
           {contents}
         </section>

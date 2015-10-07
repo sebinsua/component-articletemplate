@@ -133,7 +133,6 @@
   "dependencies": {
     "@economist/component-404": "^2.0.0",
     "@economist/component-animatedpanel": "^2.1.8",
-    "@economist/component-articlestore": "^2.0.0",
     "@economist/component-authenticated": "^2.0.0",
     "@economist/component-font-neutra2": "^1.0.4",
     "@economist/component-gallery": "^4.1.0",

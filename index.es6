@@ -1,7 +1,6 @@
 import React from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
-import ArticleStore from '@economist/component-articlestore';
 import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
@@ -11,7 +10,6 @@ import Gallery from '@economist/component-gallery';
 import Authenticated from '@economist/component-authenticated';
 
 const authenticated = new Authenticated();
-const articleStore = new ArticleStore('/content');
 const articleComponent = {
   Image: 'img',
   Pullquote: 'blockquote',
@@ -28,10 +26,6 @@ export default class ArticleTemplate extends React.Component {
     return {
       id: React.PropTypes.string.isRequired,
     };
-  }
-
-  static get store() {
-    return articleStore;
   }
 
   static addComponentType(component, name) {
@@ -59,14 +53,7 @@ export default class ArticleTemplate extends React.Component {
   }
 
   renderTabView() {
-    const sections = articleStore
-      .getWhere((item) => item.id !== this.props.id)
-      .reduce((total, article) => {
-        const section = article.attributes.section;
-        total[section] = total[section] || [];
-        total[section].push(article);
-        return total;
-      }, {});
+    const sections = this.props.sections;
     return (
       <TabView>
         {Object.keys(sections).map((title, key) => (
@@ -132,7 +119,7 @@ export default class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const article = articleStore.get(this.props.id);
+    const article = this.props.article;
     if (!article) {
       return (<NotFound/>);
     }

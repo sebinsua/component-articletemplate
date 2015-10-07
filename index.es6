@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
 import Gobbet from '@economist/component-wifgobbet';
@@ -24,7 +24,8 @@ export default class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
-      id: React.PropTypes.string.isRequired,
+      article: PropTypes.object.isRequired,
+      sections: PropTypes.arrayOf(PropTypes.object).isRequired,
     };
   }
 
@@ -53,13 +54,18 @@ export default class ArticleTemplate extends React.Component {
   }
 
   renderTabView() {
+    const notCurrentArticle = (article) => {
+      const currentArticle = this.props.article;
+      return currentArticle.id !== article.id;
+    };
+
     const sections = this.props.sections;
     return (
       <TabView>
         {Object.keys(sections).map((title, key) => (
           <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
             <div className="TabView--Views--Tint"></div>
-            {sections[title].map((article) => (
+            {sections[title].filter(notCurrentArticle).map((article) => (
               <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
                 <figure className="TabView--View--Content">
                   <img

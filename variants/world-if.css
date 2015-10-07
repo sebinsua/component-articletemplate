@@ -1,14 +1,4 @@
-@import '@economist/component-gridcss';
-@import '@economist/component-font-neutra2';
-@import '@economist/component-tabview';
-@import '@economist/component-animatedpanel';
-@import '@economist/component-wifgobbet';
-@import '@economist/component-video';
-@import '@economist/component-404';
-@import '@economist/component-gallery';
-@import "variants/world-in.css";
-
-/*.ArticleTemplate--loading {
+.ArticleTemplate--loading {
   border: 10px solid red;
   font: bold 100px sans-serif;
   color: red;
@@ -522,4 +512,4 @@ figure.ImageCaption-floated-right  {
 .ArticleTemplate--container[data-section='History'] .ArticleTemplate--blockquote,
 .ArticleTemplate--container[data-section='History'] .ArticleTemplate--flytitle {
   color: #4e64b5;
-}*/
+}

@@ -4,10 +4,6 @@ import ArticleTemplate from './index.es6';
 import article from './test/data/article';
 import sections from './test/data/sections';
 
-// TODO: `tileimage` and some other properties are required to render the sections.
-// TODO: At some point before data is passed in we should 404 if no article.
-// TODO: Split the individual `render*()` methods within into their own components.
-
 export default (
   <ArticleTemplate
     id={article.id}

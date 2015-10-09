@@ -6,6 +6,7 @@ import sections from './test/data/sections';
 
 export default (
   <ArticleTemplate
+    variantType={'world-if'}
     id={article.id}
     slug={article.attributes.slug}
     title={article.attributes.title}

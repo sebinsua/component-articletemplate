@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
+
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
 import Gobbet from '@economist/component-wifgobbet';
@@ -8,6 +10,10 @@ import Omniture from '@economist/component-omniture';
 import NotFound from '@economist/component-404';
 import Gallery from '@economist/component-gallery';
 import Authenticated from '@economist/component-authenticated';
+
+const variantTypes = [
+  'world-if',
+];
 
 const authenticated = new Authenticated();
 const articleComponent = {
@@ -36,6 +42,13 @@ export default class ArticleTemplate extends React.Component {
       }).isRequired,
       content: PropTypes.array.isRequired,
       sections: PropTypes.object.isRequired,
+      variantType: PropTypes.oneOf(variantTypes),
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      variantType: 'world-if',
     };
   }
 
@@ -43,7 +56,20 @@ export default class ArticleTemplate extends React.Component {
     articleComponent[name || component.name] = component;
   }
 
-  renderJSONContents(contents) {
+  static get defaultClassName() {
+    return 'ArticleTemplate';
+  }
+
+  getClassNameVariations = (className) => {
+    const { variantType } = this.props;
+    if (!variantType) {
+      return [ className ];
+    }
+
+    return [ className, `${variantType}-${className}` ];
+  }
+
+  renderJSONContents(contents, variantType) {
     return (contents || []).map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
@@ -54,30 +80,45 @@ export default class ArticleTemplate extends React.Component {
       if (!Component) {
         throw new Error('Unknown component ' + contentPiece.component);
       }
-      const children = this.renderJSONContents(contentPiece.content);
+      const children = this.renderJSONContents(contentPiece.content, variantType);
       return (
-        <Component key={key} {...contentPiece.props}>
+        <Component
+          key={key}
+          variantType={variantType}
+          {...contentPiece.props}
+        >
           {children}
         </Component>
       );
     });
   }
 
-  renderTabView() {
+  renderTabView = (variantType) => {
     const notCurrentArticle = (article) => {
       const currentArticleId = this.props.id;
       return currentArticleId !== article.id;
     };
 
     const sections = this.props.sections;
+    const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
     return (
-      <TabView>
+      <TabView
+        variantType={variantType}
+      >
         {Object.keys(sections).map((title, key) => (
           <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
-            <div className="TabView--Views--Tint"></div>
+            <div
+              className={classnames(
+                this.getClassNameVariations(`${TabViewDefaultClassName}--Views--Tint`)
+              )}
+            ></div>
             {sections[title].filter(notCurrentArticle).map((article) => (
               <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
-                <figure className="TabView--View--Content">
+                <figure
+                  className={classnames(
+                    this.getClassNameVariations(`${TabViewDefaultClassName}--View--Content`)
+                  )}
+                >
                   <img
                     src={`${article.attributes.tileimage['1.0x']}`}
                     srcSet={this.getSrcSet(article.attributes.tileimage)}
@@ -104,14 +145,30 @@ export default class ArticleTemplate extends React.Component {
     let title = null;
     if (this.props.flytitle) {
       flytitle = (
-        <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10" itemProp="headline">
+        <h1
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--flytitle`),
+            'margin-l-1',
+            'gutter-l',
+            'col-10'
+          )}
+          itemProp="headline"
+        >
           {this.props.flytitle}
         </h1>
       );
     }
     if (this.props.title) {
       title = (
-        <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10" itemProp="alternativeHeadline">
+        <h3
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--title`),
+            'margin-l-1',
+            'gutter-l',
+            'col-10'
+          )}
+          itemProp="alternativeHeadline"
+        >
           {this.props.title}
         </h3>
       );
@@ -119,13 +176,24 @@ export default class ArticleTemplate extends React.Component {
     if (flytitle || title) {
       if (this.props.section) {
         section = (
-          <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l" itemProp="articleSection">
+          <h2
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header-section`),
+              'margin-l-1',
+              'gutter-l'
+            )}
+            itemProp="articleSection"
+          >
             {this.props.section}
           </h2>
         );
       }
       return (
-        <header className="ArticleTemplate--header">
+        <header
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header`)
+          )}
+        >
           {section}
           {flytitle}
           {title}
@@ -135,8 +203,8 @@ export default class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const contents = this.renderJSONContents(this.props.content);
-    const tabs = this.renderTabView();
+    const contents = this.renderJSONContents(this.props.content, this.props.variantType);
+    const tabs = this.renderTabView(this.props.variantType);
     const title = this.props.title || this.props.slug;
     const omnitureProps = {
       pageName: `the_world_if|${this.props.section}|${title}`,
@@ -152,26 +220,58 @@ export default class ArticleTemplate extends React.Component {
     };
     let image = null;
     if (this.props.mainImage) {
-      image = (<img
-        className="ArticleTemplate--image"
-        src={`${this.props.mainImage.src['1.0x']}`}
-        srcSet={this.getSrcSet(this.props.mainImage.src)}
-        alt={this.props.mainImage.alt}
-        itemProp="image"
-      />);
+      image = (
+        <img
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--image`)
+          )}
+          src={`${this.props.mainImage.src['1.0x']}`}
+          srcSet={this.getSrcSet(this.props.mainImage.src)}
+          alt={this.props.mainImage.alt}
+          itemProp="image"
+        />
+      );
     }
     return (
-      <article className="ArticleTemplate--container" data-section={this.props.section}
-      itemScope itemType="http://schema.org/NewsArticle">
-        <div className="ArticleTemplate--imagecontainer">
-          <div className="ArticleTemplate--imagecontainer-inner">
+      <article
+        className={classnames(
+          this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--container`)
+        )}
+        data-section={this.props.section}
+        itemScope
+        itemType="http://schema.org/NewsArticle"
+      >
+        <div
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--imagecontainer`)
+          )}
+        >
+          <div
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--imagecontainer-inner`)
+            )}
+          >
             {image}
             {this.renderHeader()}
           </div>
         </div>
-        <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10"
-        itemProp="description">{this.props.rubric}</p>
-        <section className="ArticleTemplate--section" itemProp="articleBody">
+        <p
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--rubric`),
+            'margin-l-1',
+            'gutter-l',
+            'col-10'
+          )}
+          itemProp="description"
+        >
+          {this.props.rubric}
+        </p>
+        <section
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--section`),
+          )}
+          itemProp="articleBody"
+        >
           {contents}
         </section>
         {tabs}

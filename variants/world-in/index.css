@@ -1,5 +1,4 @@
-/* need to add the following fonts as a component possibly? */
-
+/* TODO: Need to add the following fonts as a component. */
 @font-face {
   font-family: 'Officina';
   src: url('http://cdn.static-economist.com/sites/all/themes/econfinal/font/Officina.eot');
@@ -21,7 +20,6 @@
   font-style: normal;
 }
 
-
 :root {
   --color-white: #fff;
   --color-black: #000;
@@ -31,8 +29,7 @@
   --color-econ-red: #E3120B;
   --color-econ-red-hover: #a6130e;
   --color-published-blue: #367FB6;
-};
-
+}
 
 .ArticleTemplate--loading {
   border: 10px solid red;
@@ -529,47 +526,3 @@ figure.ImageCaption-floated-right  {
     font-size: 18px;
   }
 }
-
-/*.ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--header-section,
-.ArticleTemplate--container[data-section='Politics'] .Gobbet--title-right {
-  background-color: #e3120b;
-}
-
-.ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--section > p:first-of-type:first-letter,
-.ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--blockquote,
-.ArticleTemplate--container[data-section='Politics'] .ArticleTemplate--flytitle {
-  color: #e3120b;
-}
-
-.ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--header-section,
-.ArticleTemplate--container[data-section='Business & economics'] .Gobbet--title-right {
-  background-color: #08c5b2;
-}
-
-.ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--section > p:first-of-type:first-letter,
-.ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--blockquote,
-.ArticleTemplate--container[data-section='Business & economics'] .ArticleTemplate--flytitle {
-  color: #08c5b2;
-}
-
-.ArticleTemplate--container[data-section='Science & technology'] .ArticleTemplate--header-section,
-.ArticleTemplate--container[data-section='Science & technology'] .Gobbet--title-right {
-  background-color: #f39200;
-}
-
-.ArticleTemplate--container[data-section='Science & technology'] .ArticleTemplate--section > p:first-of-type:first-letter,
-.ArticleTemplate--container[data-section='Science & technology'] .ArticleTemplate--blockquote,
-.ArticleTemplate--container[data-section='Science & technology'] .ArticleTemplate--flytitle {
-  color: #f39200;
-}
-
-.ArticleTemplate--container[data-section='History'] .ArticleTemplate--header-section,
-.ArticleTemplate--container[data-section='History'] .Gobbet--title-right {
-  background-color: #4e64b5;
-}
-
-.ArticleTemplate--container[data-section='History'] .ArticleTemplate--section > p:first-of-type:first-letter,
-.ArticleTemplate--container[data-section='History'] .ArticleTemplate--blockquote,
-.ArticleTemplate--container[data-section='History'] .ArticleTemplate--flytitle {
-  color: #4e64b5;
-}*/

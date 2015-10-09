@@ -30,8 +30,10 @@ export default class ArticleTemplate extends React.Component {
       flytitle: PropTypes.string.isRequired,
       rubric: PropTypes.string.isRequired,
       section: PropTypes.string.isRequired,
-      mainImage: PropTypes.string.isRequired,
-      imageAlt: PropTypes.string.isRequired,
+      mainImage: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+      }).isRequired,
       content: PropTypes.array.isRequired,
       sections: PropTypes.object.isRequired,
     };
@@ -152,9 +154,9 @@ export default class ArticleTemplate extends React.Component {
     if (this.props.mainImage) {
       image = (<img
         className="ArticleTemplate--image"
-        src={`${this.props.mainImage['1.0x']}`}
-        srcSet={this.getSrcSet(this.props.mainImage)}
-        alt={this.props.imageAlt}
+        src={`${this.props.mainImage.src['1.0x']}`}
+        srcSet={this.getSrcSet(this.props.mainImage.src)}
+        alt={this.props.mainImage.alt}
         itemProp="image"
       />);
     }

@@ -13,6 +13,7 @@ import Authenticated from '@economist/component-authenticated';
 
 const variantTypes = [
   'world-if',
+  'world-in',
 ];
 
 const authenticated = new Authenticated();
@@ -139,7 +140,111 @@ export default class ArticleTemplate extends React.Component {
     return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
   }
 
-  renderHeader() {
+  renderHeader = () => {
+    if (this.props.variantType === 'world-if') {
+      return this.renderWifHeader();
+    } else {
+      return this.renderWinHeader();
+    }
+  }
+
+  renderWinSubHeader = () => {
+    let byline2 = null;
+      return (
+        <header
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--subheader`),
+            'margin-l-1',
+            'gutter-l',
+            'col-10'
+          )}
+        >
+          <h2
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="byline"
+          >
+            By-line to follow
+          </h2>
+
+          <h2
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--pubdate`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="publishdate"
+          >
+            Publish date to follow
+          </h2>
+
+          <h2
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--section-section`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="section"
+          >
+            {this.props.section}
+          </h2>
+        </header>
+      )
+  }
+
+  renderWinHeader = () => {
+    let section = null;
+    let flytitle = null;
+    let title = null;
+    if (this.props.flytitle) {
+      flytitle = (
+        <h1
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--flytitle`),
+            'gutter-l',
+            'col-10'
+          )}
+          itemProp="headline"
+        >
+          {this.props.flytitle}
+        </h1>
+      );
+    }
+    if (this.props.title) {
+      title = (
+        <h3
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--title`),
+            'gutter-l',
+            'col-10'
+          )}
+          itemProp="alternativeHeadline"
+        >
+          {this.props.title}
+        </h3>
+      );
+    }
+    if (flytitle || title) {
+      return (
+        <header
+          className={classnames(
+            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header`)
+          )}
+        >
+          {flytitle}
+          {title}
+        </header>
+      );
+    }
+  }
+
+  renderWifHeader = () => {
     let section = null;
     let flytitle = null;
     let title = null;
@@ -255,17 +360,22 @@ export default class ArticleTemplate extends React.Component {
             {this.renderHeader()}
           </div>
         </div>
-        <p
-          className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--rubric`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="description"
-        >
-          {this.props.rubric}
-        </p>
+        {this.renderWinSubHeader()}
+
+        {this.props.variantType === 'world-if' ?
+          <p
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--rubric`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="description"
+          >
+            {this.props.rubric}
+          </p>
+        : ''}
+
         <section
           className={classnames(
             this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--section`),
@@ -274,7 +384,42 @@ export default class ArticleTemplate extends React.Component {
         >
           {contents}
         </section>
-        {tabs}
+
+        {this.props.variantType === 'world-in' ?
+
+          <div
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline-footer`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+          >
+          <h3
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline`),
+              'margin-l-1',
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="byline"
+          >
+          Zanny Minton Beddoes
+          </h3>
+
+          <span
+            className={classnames(
+              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline-details`),
+              'gutter-l',
+              'col-10'
+            )}
+            itemProp="bylinedetails"
+          >
+          business affairs editor, The Economist
+          </span>
+          </div>
+        : ''}
+
         <Omniture {...omnitureProps} />
       </article>
     );

@@ -165,8 +165,8 @@ figure.ImageCaption-floated-right  {
   line-height: 26px;
 }
 
-.Gallery {
-  margin: 0 7.5% 30px;
+.world-if-ArticleTemplate .Gallery {
+  /*margin: 0 7.5% 30px;*/
   width: 83.1%;
 }
 

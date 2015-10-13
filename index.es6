@@ -6,14 +6,11 @@ import AnimatedPanel from '@economist/component-animatedpanel';
 import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
-import Omniture from '@economist/component-omniture';
 import NotFound from '@economist/component-404';
 import Gallery from '@economist/component-gallery';
-import Authenticated from '@economist/component-authenticated';
 
 import variantify from './variantify';
 
-const authenticated = new Authenticated();
 const articleComponent = {
   Image: 'img',
   Pullquote: 'blockquote',
@@ -313,18 +310,7 @@ class ArticleTemplate extends React.Component {
     const tabs = <WifTabView {...this.props} />;
 
     const title = this.props.title || this.props.slug;
-    const omnitureProps = {
-      pageName: `the_world_if|${this.props.section}|${title}`,
-      server: 'economist.com',
-      channel: this.props.section,
-      prop1: 'the_world_if',
-      prop3: 'web',
-      prop4: 'article',
-      prop5: title,
-      prop11: authenticated.getCookie('mm-logged-in-state') ? 'logged_in' : 'not_logged_in',
-      prop13: 'anonymous',
-      prop31: new Date(),
-    };
+
     let image = null;
     if (this.props.mainImage) {
       image = (

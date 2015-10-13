@@ -15,7 +15,7 @@ export default function variantify(defaultClassName, variantTypes = [], defaultV
       };
     }
 
-    get defaultClassName() {
+    static get defaultClassName() {
       return defaultClassName;
     }
 
@@ -30,7 +30,7 @@ export default function variantify(defaultClassName, variantTypes = [], defaultV
 
       return (
         <ComposedComponent
-          defaultClassName={this.defaultClassName}
+          defaultClassName={VariantComponent.defaultClassName}
           getVariantClassNames={this.getVariantClassNamesGetter(variantType)}
           {...this.props}
         />

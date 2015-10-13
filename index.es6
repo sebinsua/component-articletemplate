@@ -2,26 +2,10 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import TabView from '@economist/component-tabview';
-import AnimatedPanel from '@economist/component-animatedpanel';
-import Gobbet from '@economist/component-wifgobbet';
-import ImageCaption from '@economist/component-imagecaption';
-import Video from '@economist/component-video';
-import NotFound from '@economist/component-404';
-import Gallery from '@economist/component-gallery';
+
+import ArticleBody from './body';
 
 import variantify from './variantify';
-
-const articleComponent = {
-  Image: 'img',
-  Pullquote: 'blockquote',
-  ArticleSubHead: 'h3',
-  Gobbet,
-  ImageCaption,
-  Video,
-  AnimatedPanel,
-  Gallery,
-};
-
 const variantTypes = [
   'world-if',
   'world-in',
@@ -227,50 +211,6 @@ const WifTabView = (props) => {
   );
 }
 
-@variantify('ArticleTemplate--section', variantTypes, 'world-if')
-class ArticleBody extends React.Component {
-
-  renderJSONContents(contents = [], variantType) {
-    return contents.map((contentPiece, key) => {
-      if (typeof contentPiece === 'string') {
-        return (
-          <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
-        );
-      }
-      const Component = articleComponent[contentPiece.component];
-      if (!Component) {
-        throw new Error('Unknown component ' + contentPiece.component);
-      }
-      const children = this.renderJSONContents(contentPiece.content, variantType);
-      return (
-        <Component
-          key={key}
-          variantType={variantType}
-          {...contentPiece.props}
-        >
-          {children}
-        </Component>
-      );
-    });
-  }
-
-  render() {
-    const contents = this.renderJSONContents(this.props.content, this.props.variantType);
-
-    return (
-      <section
-        className={classnames(
-          this.props.getVariantClassNames(),
-        )}
-        itemProp="articleBody"
-      >
-        {contents}
-      </section>
-    );
-  }
-
-}
-
 @variantify('ArticleTemplate', variantTypes, 'world-if')
 class ArticleTemplate extends React.Component {
 
@@ -289,13 +229,6 @@ class ArticleTemplate extends React.Component {
       content: PropTypes.array.isRequired,
       sections: PropTypes.object.isRequired,
     };
-  }
-
-  // TODO: This should be removed because:
-  // (1) It introduces global state.
-  // (2) It is no longer accessible once behind a HOC.
-  static addComponentType(component, name) {
-    articleComponent[name || component.name] = component;
   }
 
   renderHeader = () => {
@@ -404,7 +337,6 @@ class ArticleTemplate extends React.Component {
           </div>
         : ''}
         {tabs}
-        <Omniture {...omnitureProps} />
       </article>
     );
   }

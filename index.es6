@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TabView from '@economist/component-tabview';
 import AnimatedPanel from '@economist/component-animatedpanel';
-import ArticleStore from '@economist/component-articlestore';
 import Gobbet from '@economist/component-wifgobbet';
 import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
@@ -11,7 +10,6 @@ import Gallery from '@economist/component-gallery';
 import Authenticated from '@economist/component-authenticated';
 
 const authenticated = new Authenticated();
-const articleStore = new ArticleStore('/content');
 const articleComponent = {
   Image: 'img',
   Pullquote: 'blockquote',
@@ -26,12 +24,19 @@ export default class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
-      id: React.PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      flytitle: PropTypes.string.isRequired,
+      rubric: PropTypes.string.isRequired,
+      section: PropTypes.string.isRequired,
+      mainImage: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+      }).isRequired,
+      content: PropTypes.array.isRequired,
+      sections: PropTypes.object.isRequired,
     };
-  }
-
-  static get store() {
-    return articleStore;
   }
 
   static addComponentType(component, name) {
@@ -59,20 +64,18 @@ export default class ArticleTemplate extends React.Component {
   }
 
   renderTabView() {
-    const sections = articleStore
-      .getWhere((item) => item.id !== this.props.id)
-      .reduce((total, article) => {
-        const section = article.attributes.section;
-        total[section] = total[section] || [];
-        total[section].push(article);
-        return total;
-      }, {});
+    const notCurrentArticle = (article) => {
+      const currentArticleId = this.props.id;
+      return currentArticleId !== article.id;
+    };
+
+    const sections = this.props.sections;
     return (
       <TabView>
         {Object.keys(sections).map((title, key) => (
           <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
             <div className="TabView--Views--Tint"></div>
-            {sections[title].map((article) => (
+            {sections[title].filter(notCurrentArticle).map((article) => (
               <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
                 <figure className="TabView--View--Content">
                   <img
@@ -95,29 +98,29 @@ export default class ArticleTemplate extends React.Component {
     return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
   }
 
-  renderHeader(attributes) {
+  renderHeader() {
     let section = null;
     let flytitle = null;
     let title = null;
-    if (attributes.flytitle) {
+    if (this.props.flytitle) {
       flytitle = (
         <h1 className="ArticleTemplate--flytitle margin-l-1 gutter-l col-10" itemProp="headline">
-          {attributes.flytitle}
+          {this.props.flytitle}
         </h1>
       );
     }
-    if (attributes.title) {
+    if (this.props.title) {
       title = (
         <h3 className="ArticleTemplate--title margin-l-1 gutter-l col-10" itemProp="alternativeHeadline">
-          {attributes.title}
+          {this.props.title}
         </h3>
       );
     }
     if (flytitle || title) {
-      if (attributes.section) {
+      if (this.props.section) {
         section = (
           <h2 className="ArticleTemplate--header-section margin-l-1 gutter-l" itemProp="articleSection">
-            {attributes.section}
+            {this.props.section}
           </h2>
         );
       }
@@ -132,17 +135,13 @@ export default class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const article = articleStore.get(this.props.id);
-    if (!article) {
-      return (<NotFound/>);
-    }
-    const contents = this.renderJSONContents(article.attributes.content);
+    const contents = this.renderJSONContents(this.props.content);
     const tabs = this.renderTabView();
-    const title = article.attributes.title || article.attributes.slug;
+    const title = this.props.title || this.props.slug;
     const omnitureProps = {
-      pageName: `the_world_if|${article.attributes.section}|${title}`,
+      pageName: `the_world_if|${this.props.section}|${title}`,
       server: 'economist.com',
-      channel: article.attributes.section,
+      channel: this.props.section,
       prop1: 'the_world_if',
       prop3: 'web',
       prop4: 'article',
@@ -152,26 +151,26 @@ export default class ArticleTemplate extends React.Component {
       prop31: new Date(),
     };
     let image = null;
-    if (article.attributes.mainimage) {
+    if (this.props.mainImage) {
       image = (<img
         className="ArticleTemplate--image"
-        src={`${article.attributes.mainimage['1.0x']}`}
-        srcSet={this.getSrcSet(article.attributes.mainimage)}
-        alt={article.attributes.imagealt}
+        src={`${this.props.mainImage.src['1.0x']}`}
+        srcSet={this.getSrcSet(this.props.mainImage.src)}
+        alt={this.props.mainImage.alt}
         itemProp="image"
       />);
     }
     return (
-      <article className="ArticleTemplate--container" data-section={article.attributes.section}
+      <article className="ArticleTemplate--container" data-section={this.props.section}
       itemScope itemType="http://schema.org/NewsArticle">
         <div className="ArticleTemplate--imagecontainer">
           <div className="ArticleTemplate--imagecontainer-inner">
             {image}
-            {this.renderHeader(article.attributes)}
+            {this.renderHeader()}
           </div>
         </div>
         <p className="margin-l-1 gutter-l ArticleTemplate--rubric col-10"
-        itemProp="description">{article.attributes.rubric}</p>
+        itemProp="description">{this.props.rubric}</p>
         <section className="ArticleTemplate--section" itemProp="articleBody">
           {contents}
         </section>

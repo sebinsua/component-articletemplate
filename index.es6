@@ -30,32 +30,211 @@ const variantTypes = [
   'world-in',
 ];
 
-@variantify('ArticleTemplate', variantTypes, 'world-if')
-class ArticleTemplate extends React.Component {
+const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
-  static get propTypes() {
-    return {
-      id: PropTypes.number.isRequired,
-      slug: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      flytitle: PropTypes.string.isRequired,
-      rubric: PropTypes.string.isRequired,
-      section: PropTypes.string.isRequired,
-      mainImage: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-        alt: PropTypes.string.isRequired,
-      }).isRequired,
-      content: PropTypes.array.isRequired,
-      sections: PropTypes.object.isRequired,
-    };
+const WinSubheader = (props) => {
+  return <header
+    className={classnames(
+      props.getVariantClassNames(`${props.defaultClassName}--subheader`),
+      'margin-l-1',
+      'gutter-l',
+      'col-10'
+    )}
+  >
+    <h2
+      className={classnames(
+        props.getVariantClassNames(`${props.defaultClassName}--byline`),
+        'margin-l-1',
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="byline"
+    >
+      By-line to follow
+    </h2>
+
+    <h2
+      className={classnames(
+        props.getVariantClassNames(`${props.defaultClassName}--pubdate`),
+        'margin-l-1',
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="publishdate"
+    >
+      Publish date to follow
+    </h2>
+
+    <h2
+      className={classnames(
+        props.getVariantClassNames(`${props.defaultClassName}--section-section`),
+        'margin-l-1',
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="section"
+    >
+      {props.section}
+    </h2>
+  </header>
+};
+
+const WinHeader = (props) => {
+  let section = null;
+  let flytitle = null;
+  let title = null;
+  if (props.flytitle) {
+    flytitle = (
+      <h1
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--flytitle`),
+          'gutter-l',
+          'col-10'
+        )}
+        itemProp="headline"
+      >
+        {props.flytitle}
+      </h1>
+    );
   }
-
-  static addComponentType(component, name) {
-    articleComponent[name || component.name] = component;
+  if (props.title) {
+    title = (
+      <h3
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--title`),
+          'gutter-l',
+          'col-10'
+        )}
+        itemProp="alternativeHeadline"
+      >
+        {props.title}
+      </h3>
+    );
   }
+  if (flytitle || title) {
+    return (
+      <header
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--header`)
+        )}
+      >
+        {flytitle}
+        {title}
+      </header>
+    );
+  }
+};
 
-  renderJSONContents(contents, variantType) {
-    return (contents || []).map((contentPiece, key) => {
+const WifHeader = (props) => {
+  let section = null;
+  let flytitle = null;
+  let title = null;
+  if (props.flytitle) {
+    flytitle = (
+      <h1
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--flytitle`),
+          'margin-l-1',
+          'gutter-l',
+          'col-10'
+        )}
+        itemProp="headline"
+      >
+        {props.flytitle}
+      </h1>
+    );
+  }
+  if (props.title) {
+    title = (
+      <h3
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--title`),
+          'margin-l-1',
+          'gutter-l',
+          'col-10'
+        )}
+        itemProp="alternativeHeadline"
+      >
+        {props.title}
+      </h3>
+    );
+  }
+  if (flytitle || title) {
+    if (props.section) {
+      section = (
+        <h2
+          className={classnames(
+            props.getVariantClassNames(`${props.defaultClassName}--header-section`),
+            'margin-l-1',
+            'gutter-l'
+          )}
+          itemProp="articleSection"
+        >
+          {props.section}
+        </h2>
+      );
+    }
+    return (
+      <header
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--header`)
+        )}
+      >
+        {section}
+        {flytitle}
+        {title}
+      </header>
+    );
+  }
+};
+
+const WifTabView = (props) => {
+  const notCurrentArticle = (article) => {
+    const currentArticleId = props.id;
+    return currentArticleId !== article.id;
+  };
+
+  const sections = props.sections;
+  const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
+  return (
+    <TabView
+      variantType={props.variantType}
+    >
+      {Object.keys(sections).map((title, key) => (
+        <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
+          <div
+            className={classnames(
+              props.getVariantClassNames(`${TabViewDefaultClassName}--Views--Tint`)
+            )}
+          ></div>
+          {sections[title].filter(notCurrentArticle).map((article) => (
+            <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
+              <figure
+                className={classnames(
+                  props.getVariantClassNames(`${TabViewDefaultClassName}--View--Content`)
+                )}
+              >
+                <img
+                  src={`${article.attributes.tileimage['1.0x']}`}
+                  srcSet={getSrcSet(article.attributes.tileimage)}
+                  alt={article.attributes.imagealt}
+                  itemProp="image"
+                />
+                <figcaption itemProp="caption">{article.attributes.toc}</figcaption>
+              </figure>
+            </a>
+          ))}
+        </div>
+      ))}
+    </TabView>
+  );
+}
+
+@variantify('ArticleTemplate--section', variantTypes, 'world-if')
+class ArticleBody extends React.Component {
+
+  renderJSONContents(contents = [], variantType) {
+    return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
           <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
@@ -78,222 +257,61 @@ class ArticleTemplate extends React.Component {
     });
   }
 
-  renderTabView = (variantType) => {
-    const notCurrentArticle = (article) => {
-      const currentArticleId = this.props.id;
-      return currentArticleId !== article.id;
-    };
+  render() {
+    const contents = this.renderJSONContents(this.props.content, this.props.variantType);
 
-    const sections = this.props.sections;
-    const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
     return (
-      <TabView
-        variantType={variantType}
+      <section
+        className={classnames(
+          this.props.getVariantClassNames(),
+        )}
+        itemProp="articleBody"
       >
-        {Object.keys(sections).map((title, key) => (
-          <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
-            <div
-              className={classnames(
-                this.props.getVariantClassNames(`${TabViewDefaultClassName}--Views--Tint`)
-              )}
-            ></div>
-            {sections[title].filter(notCurrentArticle).map((article) => (
-              <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
-                <figure
-                  className={classnames(
-                    this.props.getVariantClassNames(`${TabViewDefaultClassName}--View--Content`)
-                  )}
-                >
-                  <img
-                    src={`${article.attributes.tileimage['1.0x']}`}
-                    srcSet={this.getSrcSet(article.attributes.tileimage)}
-                    alt={article.attributes.imagealt}
-                    itemProp="image"
-                  />
-                  <figcaption itemProp="caption">{article.attributes.toc}</figcaption>
-                </figure>
-              </a>
-            ))}
-          </div>
-        ))}
-      </TabView>
+        {contents}
+      </section>
     );
   }
 
-  getSrcSet(image) {
-    return Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
+}
+
+@variantify('ArticleTemplate', variantTypes, 'world-if')
+class ArticleTemplate extends React.Component {
+
+  static get propTypes() {
+    return {
+      id: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      flytitle: PropTypes.string.isRequired,
+      rubric: PropTypes.string.isRequired,
+      section: PropTypes.string.isRequired,
+      mainImage: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+      }).isRequired,
+      content: PropTypes.array.isRequired,
+      sections: PropTypes.object.isRequired,
+    };
+  }
+
+  // TODO: This should be removed because:
+  // (1) It introduces global state.
+  // (2) It is no longer accessible once behind a HOC.
+  static addComponentType(component, name) {
+    articleComponent[name || component.name] = component;
   }
 
   renderHeader = () => {
     if (this.props.variantType === 'world-if') {
-      return this.renderWifHeader();
+      return <WifHeader {...this.props} />;
     } else {
-      return this.renderWinHeader();
-    }
-  }
-
-  renderWinSubHeader = () => {
-    let byline2 = null;
-      return (
-        <header
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--subheader`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-        >
-          <h2
-            className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--byline`),
-              'margin-l-1',
-              'gutter-l',
-              'col-10'
-            )}
-            itemProp="byline"
-          >
-            By-line to follow
-          </h2>
-
-          <h2
-            className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--pubdate`),
-              'margin-l-1',
-              'gutter-l',
-              'col-10'
-            )}
-            itemProp="publishdate"
-          >
-            Publish date to follow
-          </h2>
-
-          <h2
-            className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--section-section`),
-              'margin-l-1',
-              'gutter-l',
-              'col-10'
-            )}
-            itemProp="section"
-          >
-            {this.props.section}
-          </h2>
-        </header>
-      )
-  }
-
-  renderWinHeader = () => {
-    let section = null;
-    let flytitle = null;
-    let title = null;
-    if (this.props.flytitle) {
-      flytitle = (
-        <h1
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--flytitle`),
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="headline"
-        >
-          {this.props.flytitle}
-        </h1>
-      );
-    }
-    if (this.props.title) {
-      title = (
-        <h3
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--title`),
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="alternativeHeadline"
-        >
-          {this.props.title}
-        </h3>
-      );
-    }
-    if (flytitle || title) {
-      return (
-        <header
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--header`)
-          )}
-        >
-          {flytitle}
-          {title}
-        </header>
-      );
-    }
-  }
-
-  renderWifHeader = () => {
-    let section = null;
-    let flytitle = null;
-    let title = null;
-    if (this.props.flytitle) {
-      flytitle = (
-        <h1
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--flytitle`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="headline"
-        >
-          {this.props.flytitle}
-        </h1>
-      );
-    }
-    if (this.props.title) {
-      title = (
-        <h3
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--title`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="alternativeHeadline"
-        >
-          {this.props.title}
-        </h3>
-      );
-    }
-    if (flytitle || title) {
-      if (this.props.section) {
-        section = (
-          <h2
-            className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--header-section`),
-              'margin-l-1',
-              'gutter-l'
-            )}
-            itemProp="articleSection"
-          >
-            {this.props.section}
-          </h2>
-        );
-      }
-      return (
-        <header
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--header`)
-          )}
-        >
-          {section}
-          {flytitle}
-          {title}
-        </header>
-      );
+      return <WinHeader {...this.props} />;
     }
   }
 
   render() {
-    const contents = this.renderJSONContents(this.props.content, this.props.variantType);
-    const tabs = this.renderTabView(this.props.variantType);
+    const tabs = <WifTabView {...this.props} />;
+
     const title = this.props.title || this.props.slug;
     const omnitureProps = {
       pageName: `the_world_if|${this.props.section}|${title}`,
@@ -315,7 +333,7 @@ class ArticleTemplate extends React.Component {
             this.props.getVariantClassNames(`${this.props.defaultClassName}--image`)
           )}
           src={`${this.props.mainImage.src['1.0x']}`}
-          srcSet={this.getSrcSet(this.props.mainImage.src)}
+          srcSet={getSrcSet(this.props.mainImage.src)}
           alt={this.props.mainImage.alt}
           itemProp="image"
         />
@@ -344,7 +362,7 @@ class ArticleTemplate extends React.Component {
             {this.renderHeader()}
           </div>
         </div>
-        {this.renderWinSubHeader()}
+        <WinSubheader {...this.props} />
 
         {this.props.variantType === 'world-if' ?
 
@@ -362,14 +380,10 @@ class ArticleTemplate extends React.Component {
 
         : ''}
 
-        <section
-          className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--section`),
-          )}
-          itemProp="articleBody"
-        >
-          {contents}
-        </section>
+        <ArticleBody
+          variantType={this.props.variantType}
+          content={this.props.content}
+        />
 
         {this.props.variantType === 'world-in' ?
           <div
@@ -403,6 +417,7 @@ class ArticleTemplate extends React.Component {
             </span>
           </div>
         : ''}
+        {tabs}
         <Omniture {...omnitureProps} />
       </article>
     );

@@ -240,8 +240,6 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const tabs = <WifTabView {...this.props} />;
-
     const title = this.props.title || this.props.slug;
 
     let image = null;
@@ -336,7 +334,7 @@ class ArticleTemplate extends React.Component {
             </span>
           </div>
         : ''}
-        {tabs}
+        <WifTabView {...this.props} />
       </article>
     );
   }

@@ -11,10 +11,7 @@ import NotFound from '@economist/component-404';
 import Gallery from '@economist/component-gallery';
 import Authenticated from '@economist/component-authenticated';
 
-const variantTypes = [
-  'world-if',
-  'world-in',
-];
+import variantify from './variantify';
 
 const authenticated = new Authenticated();
 const articleComponent = {
@@ -27,7 +24,14 @@ const articleComponent = {
   AnimatedPanel,
   Gallery,
 };
-export default class ArticleTemplate extends React.Component {
+
+const variantTypes = [
+  'world-if',
+  'world-in',
+];
+
+@variantify('ArticleTemplate', variantTypes, 'world-if')
+class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
@@ -43,31 +47,11 @@ export default class ArticleTemplate extends React.Component {
       }).isRequired,
       content: PropTypes.array.isRequired,
       sections: PropTypes.object.isRequired,
-      variantType: PropTypes.oneOf(variantTypes),
-    };
-  }
-
-  static get defaultProps() {
-    return {
-      variantType: 'world-if',
     };
   }
 
   static addComponentType(component, name) {
     articleComponent[name || component.name] = component;
-  }
-
-  static get defaultClassName() {
-    return 'ArticleTemplate';
-  }
-
-  getClassNameVariations = (className) => {
-    const { variantType } = this.props;
-    if (!variantType) {
-      return [ className ];
-    }
-
-    return [ className, `${variantType}-${className}` ];
   }
 
   renderJSONContents(contents, variantType) {
@@ -110,14 +94,14 @@ export default class ArticleTemplate extends React.Component {
           <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
             <div
               className={classnames(
-                this.getClassNameVariations(`${TabViewDefaultClassName}--Views--Tint`)
+                this.props.getVariantClassNames(`${TabViewDefaultClassName}--Views--Tint`)
               )}
             ></div>
             {sections[title].filter(notCurrentArticle).map((article) => (
               <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
                 <figure
                   className={classnames(
-                    this.getClassNameVariations(`${TabViewDefaultClassName}--View--Content`)
+                    this.props.getVariantClassNames(`${TabViewDefaultClassName}--View--Content`)
                   )}
                 >
                   <img
@@ -153,7 +137,7 @@ export default class ArticleTemplate extends React.Component {
       return (
         <header
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--subheader`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--subheader`),
             'margin-l-1',
             'gutter-l',
             'col-10'
@@ -161,7 +145,7 @@ export default class ArticleTemplate extends React.Component {
         >
           <h2
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--byline`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -173,7 +157,7 @@ export default class ArticleTemplate extends React.Component {
 
           <h2
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--pubdate`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--pubdate`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -185,7 +169,7 @@ export default class ArticleTemplate extends React.Component {
 
           <h2
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--section-section`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--section-section`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -206,7 +190,7 @@ export default class ArticleTemplate extends React.Component {
       flytitle = (
         <h1
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--flytitle`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--flytitle`),
             'gutter-l',
             'col-10'
           )}
@@ -220,7 +204,7 @@ export default class ArticleTemplate extends React.Component {
       title = (
         <h3
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--title`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--title`),
             'gutter-l',
             'col-10'
           )}
@@ -234,7 +218,7 @@ export default class ArticleTemplate extends React.Component {
       return (
         <header
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header`)
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--header`)
           )}
         >
           {flytitle}
@@ -252,7 +236,7 @@ export default class ArticleTemplate extends React.Component {
       flytitle = (
         <h1
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--flytitle`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--flytitle`),
             'margin-l-1',
             'gutter-l',
             'col-10'
@@ -267,7 +251,7 @@ export default class ArticleTemplate extends React.Component {
       title = (
         <h3
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--title`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--title`),
             'margin-l-1',
             'gutter-l',
             'col-10'
@@ -283,7 +267,7 @@ export default class ArticleTemplate extends React.Component {
         section = (
           <h2
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header-section`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--header-section`),
               'margin-l-1',
               'gutter-l'
             )}
@@ -296,7 +280,7 @@ export default class ArticleTemplate extends React.Component {
       return (
         <header
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--header`)
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--header`)
           )}
         >
           {section}
@@ -328,7 +312,7 @@ export default class ArticleTemplate extends React.Component {
       image = (
         <img
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--image`)
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--image`)
           )}
           src={`${this.props.mainImage.src['1.0x']}`}
           srcSet={this.getSrcSet(this.props.mainImage.src)}
@@ -340,7 +324,7 @@ export default class ArticleTemplate extends React.Component {
     return (
       <article
         className={classnames(
-          this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--container`)
+          this.props.getVariantClassNames(`${this.props.defaultClassName}--container`)
         )}
         data-section={this.props.section}
         itemScope
@@ -348,12 +332,12 @@ export default class ArticleTemplate extends React.Component {
       >
         <div
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--imagecontainer`)
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--imagecontainer`)
           )}
         >
           <div
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--imagecontainer-inner`)
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--imagecontainer-inner`)
             )}
           >
             {image}
@@ -363,9 +347,10 @@ export default class ArticleTemplate extends React.Component {
         {this.renderWinSubHeader()}
 
         {this.props.variantType === 'world-if' ?
+
           <p
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--rubric`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--rubric`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -374,11 +359,12 @@ export default class ArticleTemplate extends React.Component {
           >
             {this.props.rubric}
           </p>
+
         : ''}
 
         <section
           className={classnames(
-            this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--section`),
+            this.props.getVariantClassNames(`${this.props.defaultClassName}--section`),
           )}
           itemProp="articleBody"
         >
@@ -386,42 +372,41 @@ export default class ArticleTemplate extends React.Component {
         </section>
 
         {this.props.variantType === 'world-in' ?
-
           <div
             className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline-footer`),
+              this.props.getVariantClassNames(`${this.props.defaultClassName}--byline-footer`),
               'margin-l-1',
               'gutter-l',
               'col-10'
             )}
           >
-          <h3
-            className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline`),
-              'margin-l-1',
-              'gutter-l',
-              'col-10'
-            )}
-            itemProp="byline"
-          >
-          Zanny Minton Beddoes
-          </h3>
-
-          <span
-            className={classnames(
-              this.getClassNameVariations(`${ArticleTemplate.defaultClassName}--byline-details`),
-              'gutter-l',
-              'col-10'
-            )}
-            itemProp="bylinedetails"
-          >
-          business affairs editor, The Economist
-          </span>
+            <h3
+              className={classnames(
+                this.props.getVariantClassNames(`${this.props.defaultClassName}--byline`),
+                'margin-l-1',
+                'gutter-l',
+                'col-10'
+              )}
+              itemProp="byline"
+            >
+              Zanny Minton Beddoes
+            </h3>
+            <span
+              className={classnames(
+                this.props.getVariantClassNames(`${this.props.defaultClassName}--byline-details`),
+                'gutter-l',
+                'col-10'
+              )}
+              itemProp="bylinedetails"
+            >
+            business affairs editor, The Economist
+            </span>
           </div>
         : ''}
-
         <Omniture {...omnitureProps} />
       </article>
     );
   }
 }
+
+export default ArticleTemplate;

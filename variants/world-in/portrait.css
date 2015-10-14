@@ -1,3 +1,4 @@
+
 .world-in-portrait-ArticleTemplate--loading {
   border: 10px solid red;
   font: bold 100px sans-serif;
@@ -64,9 +65,9 @@
 .world-in-portrait-ArticleTemplate--header::after {
   content: '';
   width: 150px;
-  height: 83px;
+  height: 43px;
   color: white;
-  background-color: white;
+  background-color: #E7EBEB;
   display: block;
   position: absolute;
   left: 100%;
@@ -80,7 +81,7 @@
 }
 
 .world-in-portrait-ArticleTemplate--section > p,
-.world-in-portrait-ArticleTemplate--crossheads,
+.ArticleTemplate--crossheads,
 .world-in-portrait-ArticleTemplate--section > figure {
   padding-left: 3%;
   width: 57.9%;
@@ -228,12 +229,12 @@ figure.ImageCaption-floated-right  {
   margin: 10px 0;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   margin-bottom: 0;
   margin-top: 30px;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
@@ -394,7 +395,7 @@ figure.ImageCaption-floated-right  {
   margin-left: 5px;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads p::after , .world-in-portrait-ArticleTemplate--blockquote p::after {
+.ArticleTemplate--crossheads p::after , .ArticleTemplate--blockquote p::after {
   content: none !important;
 }
 
@@ -402,18 +403,18 @@ figure.ImageCaption-floated-right  {
   margin: 0 .9% 15px 7.5%;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   font-family: "Officina_bold";
   font-size: 22px;
   margin: 0;
   padding-top: 30px;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin: 0;
 }
 
-.world-in-portrait-ArticleTemplate--crossheads + p {
+.ArticleTemplate--crossheads + p {
   margin-top: 0;
 }
 
@@ -452,12 +453,12 @@ figure.ImageCaption-floated-right  {
   }
 
   .world-in-portrait-ArticleTemplate--section > p,
-  .world-in-portrait-ArticleTemplate--crossheads,
+  .ArticleTemplate--crossheads,
   .world-in-portrait-ArticleTemplate--section > figure {
     width: 83.1%;
   }
 
-  .world-in-portrait-ArticleTemplate--crossheads {
+  .ArticleTemplate--crossheads {
     margin-bottom: 0;
   }
 
@@ -551,7 +552,7 @@ figure.ImageCaption-floated-right  {
     line-height: 38px;
   }
 
-  .world-in-portrait-ArticleTemplate--section > p, .world-in-portrait-ArticleTemplate--crossheads, .world-in-portrait-ArticleTemplate--section > figure {
+  .world-in-portrait-ArticleTemplate--section > p, .ArticleTemplate--crossheads, .world-in-portrait-ArticleTemplate--section > figure {
     padding-left: 0;
   }
 
@@ -577,7 +578,7 @@ figure.ImageCaption-floated-right  {
     font-size: 18px;
     line-height: 28px;
   }
-   .world-in-portrait-ArticleTemplate--crossheads p {
+   .ArticleTemplate--crossheads p {
     font-size: 18px;
   }
 
@@ -624,7 +625,7 @@ figure.ImageCaption-floated-right  {
   color: var(--color-white);
   border-left: 1px solid grey;
   background-color: #748C94;
-  width: 100%;
+  width: 97%;
 }
 
 .world-in-portrait-ArticleTemplate--header {
@@ -636,12 +637,11 @@ figure.ImageCaption-floated-right  {
   bottom: 0;
 }
 
-.world-in-portrait-ArticleTemplate--header:after {
+/*.world-in-portrait-ArticleTemplate--header:after {
     content: none;
-}
+}*/
 
 .world-in-portrait-ArticleTemplate--title {
-  border-left: 1px solid var(--color-econ-red);
   padding: 25px 0 25px 3%;
   color: var(--color-worldin-bodycopy-black);
   width: 100%;
@@ -654,7 +654,7 @@ figure.ImageCaption-floated-right  {
 
 @media screen and (max-width: 480px) {
   .world-in-portrait-ArticleTemplate--header {
-    margin-top: -54%;
+    margin-top: -50%;
     position: relative;
   }
   .world-in-portrait-ArticleTemplate--title {

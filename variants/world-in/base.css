@@ -57,7 +57,7 @@
 }
 
 .world-in-base-ArticleTemplate--section > p,
-.world-in-base-ArticleTemplate--crossheads,
+.ArticleTemplate--crossheads,
 .world-in-base-ArticleTemplate--section > figure {
   padding-left: 3%;
   width: 57.9%;
@@ -205,12 +205,12 @@ figure.ImageCaption-floated-right  {
   margin: 10px 0;
 }
 
-.world-in-base-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   margin-bottom: 0;
   margin-top: 30px;
 }
 
-.world-in-base-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
@@ -371,7 +371,7 @@ figure.ImageCaption-floated-right  {
   margin-left: 5px;
 }
 
-.world-in-base-ArticleTemplate--crossheads p::after , .world-in-base-ArticleTemplate--blockquote p::after {
+.ArticleTemplate--crossheads p::after , .ArticleTemplate--blockquote p::after {
   content: none !important;
 }
 
@@ -379,18 +379,18 @@ figure.ImageCaption-floated-right  {
   margin: 0 .9% 15px 7.5%;
 }
 
-.world-in-base-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   font-family: "Officina_bold";
   font-size: 22px;
   margin: 0;
   padding-top: 30px;
 }
 
-.world-in-base-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin: 0;
 }
 
-.world-in-base-ArticleTemplate--crossheads + p {
+.ArticleTemplate--crossheads + p {
   margin-top: 0;
 }
 
@@ -429,12 +429,12 @@ figure.ImageCaption-floated-right  {
   }
 
   .world-in-base-ArticleTemplate--section > p,
-  .world-in-base-ArticleTemplate--crossheads,
+  .ArticleTemplate--crossheads,
   .world-in-base-ArticleTemplate--section > figure {
     width: 83.1%;
   }
 
-  .world-in-base-ArticleTemplate--crossheads {
+  .ArticleTemplate--crossheads {
     margin-bottom: 0;
   }
 
@@ -528,7 +528,7 @@ figure.ImageCaption-floated-right  {
     line-height: 38px;
   }
 
-  .world-in-base-ArticleTemplate--section > p, .world-in-base-ArticleTemplate--crossheads, .world-in-base-ArticleTemplate--section > figure {
+  .world-in-base-ArticleTemplate--section > p, .ArticleTemplate--crossheads, .world-in-base-ArticleTemplate--section > figure {
     padding-left: 0;
   }
 
@@ -545,16 +545,12 @@ figure.ImageCaption-floated-right  {
     min-height: auto;
     background: none;
   }
-  .world-in-base-ArticleTemplate--header {
-    position: relative;
-    margin-top: -83px;
-  }
 
   .world-in-base-ArticleTemplate--section > p {
     font-size: 18px;
     line-height: 28px;
   }
-   .world-in-base-ArticleTemplate--crossheads p {
+   .ArticleTemplate--crossheads p {
     font-size: 18px;
   }
 
@@ -594,6 +590,7 @@ figure.ImageCaption-floated-right  {
 
 /* base only styles */
 
+
 .world-in-base-ArticleTemplate--header {
   height: auto;
   min-height: 140px;
@@ -615,4 +612,11 @@ figure.ImageCaption-floated-right  {
   position: absolute;
   left: 100%;
   bottom: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .world-in-base-ArticleTemplate--header {
+    position: relative;
+    margin-top: -16%;
+  }
 }

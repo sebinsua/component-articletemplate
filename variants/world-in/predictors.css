@@ -46,10 +46,6 @@
   padding-left: 3%;
 }
 
-.world-in-predictors-ArticleTemplate--flytitle {
-  display: none;
-}
-
 .world-in-predictors-ArticleTemplate--header {
   height: auto;
   min-height: 140px;
@@ -80,7 +76,7 @@
 }
 
 .world-in-predictors-ArticleTemplate--section > p,
-.world-in-predictors-ArticleTemplate--crossheads,
+.ArticleTemplate--crossheads,
 .world-in-predictors-ArticleTemplate--section > figure {
   padding-left: 3%;
   width: 57.9%;
@@ -228,12 +224,12 @@ figure.ImageCaption-floated-right  {
   margin: 10px 0;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   margin-bottom: 0;
   margin-top: 30px;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
@@ -394,7 +390,7 @@ figure.ImageCaption-floated-right  {
   margin-left: 5px;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads p::after , .world-in-predictors-ArticleTemplate--blockquote p::after {
+.ArticleTemplate--crossheads p::after , .ArticleTemplate--blockquote p::after {
   content: none !important;
 }
 
@@ -402,18 +398,18 @@ figure.ImageCaption-floated-right  {
   margin: 0 .9% 15px 7.5%;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads {
+.ArticleTemplate--crossheads {
   font-family: "Officina_bold";
   font-size: 22px;
   margin: 0;
   padding-top: 30px;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads p {
+.ArticleTemplate--crossheads p {
   margin: 0;
 }
 
-.world-in-predictors-ArticleTemplate--crossheads + p {
+.ArticleTemplate--crossheads + p {
   margin-top: 0;
 }
 
@@ -452,12 +448,12 @@ figure.ImageCaption-floated-right  {
   }
 
   .world-in-predictors-ArticleTemplate--section > p,
-  .world-in-predictors-ArticleTemplate--crossheads,
+  .ArticleTemplate--crossheads,
   .world-in-predictors-ArticleTemplate--section > figure {
     width: 83.1%;
   }
 
-  .world-in-predictors-ArticleTemplate--crossheads {
+  .ArticleTemplate--crossheads {
     margin-bottom: 0;
   }
 
@@ -551,7 +547,7 @@ figure.ImageCaption-floated-right  {
     line-height: 38px;
   }
 
-  .world-in-predictors-ArticleTemplate--section > p, .world-in-predictors-ArticleTemplate--crossheads, .world-in-predictors-ArticleTemplate--section > figure {
+  .world-in-predictors-ArticleTemplate--section > p, .ArticleTemplate--crossheads, .world-in-predictors-ArticleTemplate--section > figure {
     padding-left: 0;
   }
 
@@ -577,7 +573,7 @@ figure.ImageCaption-floated-right  {
     font-size: 18px;
     line-height: 28px;
   }
-   .world-in-predictors-ArticleTemplate--crossheads p {
+   .ArticleTemplate--crossheads p {
     font-size: 18px;
   }
 

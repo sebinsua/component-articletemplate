@@ -64,6 +64,7 @@ const WinHeader = (props) => {
   let section = null;
   let flytitle = null;
   let title = null;
+  let rubric = null;
   if (props.flytitle) {
     flytitle = (
       <h1
@@ -92,7 +93,21 @@ const WinHeader = (props) => {
       </h3>
     );
   }
-  if (flytitle || title) {
+  if (props.rubric) {
+    rubric = (
+      <h3
+        className={classnames(
+          props.getVariantClassNames(`${props.defaultClassName}--rubric`),
+          'gutter-l',
+          'col-10'
+        )}
+        itemProp="rubric"
+      >
+        {props.rubric}
+      </h3>
+    );
+  }
+  if (flytitle || title || rubric) {
     return (
       <header
         className={classnames(
@@ -101,6 +116,7 @@ const WinHeader = (props) => {
       >
         {flytitle}
         {title}
+        {rubric}
       </header>
     );
   }

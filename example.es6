@@ -6,7 +6,6 @@ import sections from './test/data/sections';
 
 export default (
   <ArticleTemplate
-<<<<<<< HEAD
     variantType={'world-in'}
     id={article.id}
     slug={article.attributes.slug}
@@ -16,13 +15,9 @@ export default (
     section={article.attributes.section}
     mainImage={{
       src: article.attributes.mainimage,
-      alt: article.attributes.imagealt
+      alt: article.attributes.imagealt,
     }}
     content={article.attributes.content}
     sections={sections}
-=======
-    id="2"
-    variantType="world-in"
->>>>>>> initial css for base template, varient template render method still to be decided
   />
 );

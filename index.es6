@@ -5,14 +5,8 @@ import TabView from '@economist/component-tabview';
 
 import ArticleBody from './body';
 
+import { variantTypes } from './variants';
 import variantify from './variantify';
-const variantTypes = [
-  'world-if',
-  'world-in',
-  'world-in-portrait',
-  'world-in-leader',
-  'world-in-predictors'
-];
 
 const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
@@ -291,7 +285,7 @@ class ArticleTemplate extends React.Component {
         className={classnames(
           this.props.getVariantClassNames(`${this.props.defaultClassName}--container`)
         )}
-        data-section={this.props.section}
+        data-section={this.props.sectionName}
         itemScope
         itemType="http://schema.org/NewsArticle"
       >

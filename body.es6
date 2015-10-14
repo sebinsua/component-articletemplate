@@ -7,14 +7,8 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
+import { variantTypes } from './variants';
 import variantify from './variantify';
-const variantTypes = [
-  'world-if',
-  'world-in',
-  'world-in-portrait',
-  'world-in-leader',
-  'world-in-predictors'
-];
 
 @variantify('ArticleTemplate--section', variantTypes, 'world-if')
 class ArticleBody extends React.Component {

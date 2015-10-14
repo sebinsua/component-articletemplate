@@ -30,7 +30,7 @@ export default function variantify(className, { variantTypes = [], defaultVarian
       return (specifiedClassName = className) => {
         const classNameList = [ specifiedClassName ];
         if (variantType) {
-          classNameList.push(`${variantType}-${specifiedClassName}`);
+          classNameList.unshift(`${variantType}-${specifiedClassName}`);
         }
         return classNameList;
       };

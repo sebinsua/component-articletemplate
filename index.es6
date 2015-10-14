@@ -68,66 +68,61 @@ const WinSubheader = (props) => {
   </header>
 };
 
-const WinHeader = (props) => {
-  let section = null;
-  let flytitle = null;
-  let title = null;
-  let rubric = null;
-  if (props.flytitle) {
-    flytitle = (
+const WinHeader = ({ getClassNameList, className, flytitle, title, rubric }) => {
+  let flytitleEl = null;
+  let titleEl = null;
+  let rubricEl = null;
+  if (flytitle) {
+    flytitleEl = (
       <h1
         className={classnames(
-          props.getClassNameList(`${props.className}--flytitle`),
+          getClassNameList(`${className}--flytitle`),
           'gutter-l',
           'col-10'
         )}
         itemProp="headline"
       >
-        {props.flytitle}
+        {flytitle}
       </h1>
     );
   }
-  if (props.title) {
-    title = (
+  if (title) {
+    titleEl = (
       <h3
         className={classnames(
-          props.getClassNameList(`${props.className}--title`),
+          getClassNameList(`${className}--title`),
           'gutter-l',
           'col-10'
         )}
         itemProp="alternativeHeadline"
       >
-        {props.title}
+        {title}
       </h3>
     );
   }
-  if (props.rubric) {
-    rubric = (
+  if (rubric) {
+    rubricEl = (
       <h3
         className={classnames(
-          props.getClassNameList(`${props.className}--rubric`),
+          getClassNameList(`${className}--rubric`),
           'gutter-l',
           'col-10'
         )}
         itemProp="rubric"
       >
-        {props.rubric}
+        {rubric}
       </h3>
     );
   }
-  if (flytitle || title || rubric) {
-    return (
-      <header
-        className={classnames(
-          props.getClassNameList(`${props.className}--header`)
-        )}
-      >
-        {flytitle}
-        {title}
-        {rubric}
-      </header>
-    );
-  }
+  return (
+    <header
+      className={classnames(getClassNameList(`${className}--header`))}
+    >
+      {flytitleEl}
+      {titleEl}
+      {rubricEl}
+    </header>
+  );
 };
 
 const WifHeader = (props) => {

@@ -9,11 +9,15 @@ import variantify from './variantify';
 const variantTypes = [
   'world-if',
   'world-in',
+  'world-in-portrait',
+  'world-in-leader',
+  'world-in-predictors'
 ];
 
 const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
 const WinSubheader = (props) => {
+
   return <header
     className={classnames(
       props.getVariantClassNames(`${props.defaultClassName}--subheader`),
@@ -22,6 +26,11 @@ const WinSubheader = (props) => {
       'col-10'
     )}
   >
+
+{props.variantType !== 'world-if' ?
+<div>
+
+{props.variantType !== 'world-in-leader' ?
     <h2
       className={classnames(
         props.getVariantClassNames(`${props.defaultClassName}--byline`),
@@ -33,6 +42,7 @@ const WinSubheader = (props) => {
     >
       By-line to follow
     </h2>
+        : ''}
 
     <h2
       className={classnames(
@@ -57,6 +67,10 @@ const WinSubheader = (props) => {
     >
       {props.section}
     </h2>
+</div>
+      : ''}
+
+
   </header>
 };
 
@@ -291,7 +305,11 @@ class ArticleTemplate extends React.Component {
               this.props.getVariantClassNames(`${this.props.defaultClassName}--imagecontainer-inner`)
             )}
           >
-            {image}
+
+          {this.props.variantType !== 'world-in-predictors' ?
+            image
+            : ''}
+
             {this.renderHeader()}
           </div>
         </div>
@@ -318,7 +336,9 @@ class ArticleTemplate extends React.Component {
           content={this.props.content}
         />
 
-        {this.props.variantType === 'world-in' ?
+          {this.props.variantType !== 'world-if' ?
+
+
           <div
             className={classnames(
               this.props.getVariantClassNames(`${this.props.defaultClassName}--byline-footer`),
@@ -349,7 +369,9 @@ class ArticleTemplate extends React.Component {
             business affairs editor, The Economist
             </span>
           </div>
-        : ''}
+            : ''}
+
+
         <WifTabView {...this.props} />
       </article>
     );

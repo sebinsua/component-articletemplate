@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
-export default function variantify(defaultClassName, variantTypes = [], defaultVariantType = '') {
+// TODO: It would be nice to be able to
+//       take a className directly still?
+export default function variantify(className, { variantTypes = [], defaultVariantType = '' }) {
   return (ComposedComponent) => class VariantComponent extends React.Component {
 
     static get propTypes() {
@@ -15,23 +17,38 @@ export default function variantify(defaultClassName, variantTypes = [], defaultV
       };
     }
 
-    static get defaultClassName() {
-      return defaultClassName;
+    static get className() {
+      return className;
     }
 
-    getVariantClassNamesGetter(variantType) {
-      return (className = defaultClassName) => {
-        return !variantType ? [ className ] : [ className, `${variantType}-${className}` ];
+    get variantClassName() {
+      const variantType = this.props.variantType;
+      return variantType ? `${variantType}-${className}` : null;
+    }
+
+    getSpecifiedClassNamesGetter(variantType) {
+      return (specifiedClassName = className) => {
+        const classNameList = [ specifiedClassName ];
+        if (variantType) {
+          classNameList.push(`${variantType}-${specifiedClassName}`);
+        }
+        return classNameList;
       };
     }
 
     render() {
       const variantType = this.props.variantType;
-
+      const getClassNameList = this.getSpecifiedClassNamesGetter(variantType);
+      const className = VariantComponent.className;
+      const variantClassName = this.variantClassName;
+      const classNameList = getClassNameList();
       return (
         <ComposedComponent
-          defaultClassName={VariantComponent.defaultClassName}
-          getVariantClassNames={this.getVariantClassNamesGetter(variantType)}
+          variantType={variantType}
+          getClassNameList={getClassNameList}
+          className={className}
+          variantClassName={variantClassName}
+          classNameList={classNameList}
           {...this.props}
         />
       );

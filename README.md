@@ -3,15 +3,24 @@
 
 ## TODO
 
-- [x] `variantTypes` needs to be shared in the files it is used. See `Variant`
-      definitions.
-- [x] `data-section={this.props.section}` This is not what it's meant to do.
-- [ ] `variantify` might handle some of the classnames stuff? The
-      interface within the child is hella messy currently.
+- [ ] Is it wrong to get the className from a decorator?
+- [ ] Is there a benefit in using `variantify` in more places?
 - [ ] Find a way for the relationship between the HOC and the child to be more
       explicit.
+- [ ] Do all `<div>`s need to be components for className stuff to be nice?
 - [ ] Standard `ArticleTemplate` `render()` is not very clean. Need to lose
       `if-else` mess and separate into smaller components.
+```
+      What is a ArticleTemplate?
+
+      ArticleHeader
+        -> ImageContainer (ArticleHeader)
+        -> ArticleSubheader
+      ArticleBody
+      ArticleFooter
+       -> ArticleByline
+          ArticleSeeMore
+```
 - [ ] `renderHeader()` and other `if-else`ing parts should not exist.
       Instead we should pick up the correct `Header` from a definition that is
       passed into the `ArticleTemplate`.

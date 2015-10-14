@@ -7,10 +7,10 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
-import { variantTypes } from './variants';
+import variants from './variants';
 import variantify from './variantify';
 
-@variantify('ArticleTemplate--section', variantTypes, 'world-if')
+@variantify('ArticleTemplate--section', variants)
 class ArticleBody extends React.Component {
 
   static get defaultProps() {
@@ -63,9 +63,7 @@ class ArticleBody extends React.Component {
   render() {
     return (
       <section
-        className={classnames(
-          this.props.getVariantClassNames(),
-        )}
+        className={classnames(this.props.classNameList)}
         itemProp="articleBody"
       >
         {

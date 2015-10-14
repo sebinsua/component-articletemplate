@@ -5,7 +5,7 @@ import TabView from '@economist/component-tabview';
 
 import ArticleBody from './body';
 
-import { variantTypes } from './variants';
+import variants from './variants';
 import variantify from './variantify';
 
 const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
@@ -14,7 +14,7 @@ const WinSubheader = (props) => {
 
   return <header
     className={classnames(
-      props.getVariantClassNames(`${props.defaultClassName}--subheader`),
+      props.getClassNameList(`${props.className}--subheader`),
       'margin-l-1',
       'gutter-l',
       'col-10'
@@ -27,7 +27,7 @@ const WinSubheader = (props) => {
 {props.variantType !== 'world-in-leader' ?
     <h2
       className={classnames(
-        props.getVariantClassNames(`${props.defaultClassName}--byline`),
+        props.getClassNameList(`${props.className}--byline`),
         'margin-l-1',
         'gutter-l',
         'col-10'
@@ -40,7 +40,7 @@ const WinSubheader = (props) => {
 
     <h2
       className={classnames(
-        props.getVariantClassNames(`${props.defaultClassName}--pubdate`),
+        props.getClassNameList(`${props.className}--pubdate`),
         'margin-l-1',
         'gutter-l',
         'col-10'
@@ -52,7 +52,7 @@ const WinSubheader = (props) => {
 
     <h2
       className={classnames(
-        props.getVariantClassNames(`${props.defaultClassName}--section-section`),
+        props.getClassNameList(`${props.className}--section-section`),
         'margin-l-1',
         'gutter-l',
         'col-10'
@@ -77,7 +77,7 @@ const WinHeader = (props) => {
     flytitle = (
       <h1
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--flytitle`),
+          props.getClassNameList(`${props.className}--flytitle`),
           'gutter-l',
           'col-10'
         )}
@@ -91,7 +91,7 @@ const WinHeader = (props) => {
     title = (
       <h3
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--title`),
+          props.getClassNameList(`${props.className}--title`),
           'gutter-l',
           'col-10'
         )}
@@ -105,7 +105,7 @@ const WinHeader = (props) => {
     rubric = (
       <h3
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--rubric`),
+          props.getClassNameList(`${props.className}--rubric`),
           'gutter-l',
           'col-10'
         )}
@@ -119,7 +119,7 @@ const WinHeader = (props) => {
     return (
       <header
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--header`)
+          props.getClassNameList(`${props.className}--header`)
         )}
       >
         {flytitle}
@@ -138,7 +138,7 @@ const WifHeader = (props) => {
     flytitle = (
       <h1
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--flytitle`),
+          props.getClassNameList(`${props.className}--flytitle`),
           'margin-l-1',
           'gutter-l',
           'col-10'
@@ -153,7 +153,7 @@ const WifHeader = (props) => {
     title = (
       <h3
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--title`),
+          props.getClassNameList(`${props.className}--title`),
           'margin-l-1',
           'gutter-l',
           'col-10'
@@ -169,7 +169,7 @@ const WifHeader = (props) => {
       section = (
         <h2
           className={classnames(
-            props.getVariantClassNames(`${props.defaultClassName}--header-section`),
+            props.getClassNameList(`${props.className}--header-section`),
             'margin-l-1',
             'gutter-l'
           )}
@@ -182,7 +182,7 @@ const WifHeader = (props) => {
     return (
       <header
         className={classnames(
-          props.getVariantClassNames(`${props.defaultClassName}--header`)
+          props.getClassNameList(`${props.className}--header`)
         )}
       >
         {section}
@@ -209,14 +209,14 @@ const WifTabView = (props) => {
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
           <div
             className={classnames(
-              props.getVariantClassNames(`${TabViewDefaultClassName}--Views--Tint`)
+              props.getClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
             )}
           ></div>
           {sections[title].filter(notCurrentArticle).map((article) => (
             <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
               <figure
                 className={classnames(
-                  props.getVariantClassNames(`${TabViewDefaultClassName}--View--Content`)
+                  props.getClassNameList(`${TabViewDefaultClassName}--View--Content`)
                 )}
               >
                 <img
@@ -235,7 +235,7 @@ const WifTabView = (props) => {
   );
 }
 
-@variantify('ArticleTemplate', variantTypes, 'world-if')
+@variantify('ArticleTemplate', variants)
 class ArticleTemplate extends React.Component {
 
   static get propTypes() {
@@ -271,7 +271,7 @@ class ArticleTemplate extends React.Component {
       image = (
         <img
           className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--image`)
+            this.props.getClassNameList(`${this.props.className}--image`)
           )}
           src={`${this.props.mainImage.src['1.0x']}`}
           srcSet={getSrcSet(this.props.mainImage.src)}
@@ -283,7 +283,7 @@ class ArticleTemplate extends React.Component {
     return (
       <article
         className={classnames(
-          this.props.getVariantClassNames(`${this.props.defaultClassName}--container`)
+          this.props.getClassNameList(`${this.props.className}--container`)
         )}
         data-section={this.props.sectionName}
         itemScope
@@ -291,12 +291,12 @@ class ArticleTemplate extends React.Component {
       >
         <div
           className={classnames(
-            this.props.getVariantClassNames(`${this.props.defaultClassName}--imagecontainer`)
+            this.props.getClassNameList(`${this.props.className}--imagecontainer`)
           )}
         >
           <div
             className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--imagecontainer-inner`)
+              this.props.getClassNameList(`${this.props.className}--imagecontainer-inner`)
             )}
           >
 
@@ -313,7 +313,7 @@ class ArticleTemplate extends React.Component {
 
           <p
             className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--rubric`),
+              this.props.getClassNameList(`${this.props.className}--rubric`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -335,7 +335,7 @@ class ArticleTemplate extends React.Component {
 
           <div
             className={classnames(
-              this.props.getVariantClassNames(`${this.props.defaultClassName}--byline-footer`),
+              this.props.getClassNameList(`${this.props.className}--byline-footer`),
               'margin-l-1',
               'gutter-l',
               'col-10'
@@ -343,7 +343,7 @@ class ArticleTemplate extends React.Component {
           >
             <h3
               className={classnames(
-                this.props.getVariantClassNames(`${this.props.defaultClassName}--byline`),
+                this.props.getClassNameList(`${this.props.className}--byline`),
                 'margin-l-1',
                 'gutter-l',
                 'col-10'
@@ -354,7 +354,7 @@ class ArticleTemplate extends React.Component {
             </h3>
             <span
               className={classnames(
-                this.props.getVariantClassNames(`${this.props.defaultClassName}--byline-details`),
+                this.props.getClassNameList(`${this.props.className}--byline-details`),
                 'gutter-l',
                 'col-10'
               )}

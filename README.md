@@ -4,10 +4,12 @@
 ## TODO
 
 - [ ] Is there a benefit in using `variantify` in more places?
-- [ ] Find a way for the relationship between the HOC and the child to be more
+      Consider renaming decorator `withVariantClassNameGenerator`.
+      Then variantify would maybe be something else, for handling multiple components.
+- [x] Find a way for the relationship between the HOC and the child to be more
       explicit.
 - [ ] Do all `<div>`s need to be components for className stuff to be nice?
-- [ ] Standard `ArticleTemplate` `render()` is not very clean. Need to lose
+- [x] Standard `ArticleTemplate` `render()` is not very clean. Need to lose
       `if-else` mess and separate into smaller components.
 ```
       What is a ArticleTemplate?

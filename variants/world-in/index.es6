@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { ArticleHeader } from '../..';
+import { getSrcSet, ArticleHeader, ArticleSubheader, ArticleFooter } from '../..';
 
 import variants from '..';
 import variantify from '../../variantify';
 
-const ArticleHeaderItem = variantify(variants)(({ getClassNameList, HeaderItemComponent = h1, className, itemProp, children }) => (
+const ArticleHeaderItem = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -48,61 +48,164 @@ const Rubric = ({ variantType, children }) => (
   </ArticleHeaderItem>
 );
 
-export const WinArticleHeader = ({ variantType, flytitle, title, rubric }) => {
+export const WinArticleHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
   return (
-    <ArticleHeader variantType={variantType}>
-      { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
-      { title ? <Title variantType={variantType}>{title}</Title> : '' }
-      { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
-    </ArticleHeader>
+    <div
+      className={classnames(
+        getClassNameList(`ArticleTemplate--imagecontainer`)
+      )}
+    >
+      <div
+        className={classnames(
+          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+        )}
+      >
+
+        {mainImage ?
+          <img
+            className={classnames(
+              getClassNameList(`ArticleTemplate--image`)
+            )}
+            src={`${mainImage.src['1.0x']}`}
+            srcSet={getSrcSet(mainImage.src)}
+            alt={mainImage.alt}
+            itemProp="image"
+          />
+        : ''}
+
+        <ArticleHeader variantType={variantType}>
+          { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
+          { title ? <Title variantType={variantType}>{title}</Title> : '' }
+          { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
+        </ArticleHeader>
+      </div>
+    </div>
   );
 };
-export const WinSubheader = (props) => {
+
+export const WinPredictorsArticleHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
   return (
-    <header
+    <div
       className={classnames(
-        props.getClassNameList(`ArticleTemplate--subheader`),
+        getClassNameList(`ArticleTemplate--imagecontainer`)
+      )}
+    >
+      <div
+        className={classnames(
+          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+        )}
+      >
+        <ArticleHeader variantType={variantType}>
+          { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
+          {mainImage ?
+            <img
+              className={classnames(
+                getClassNameList(`ArticleTemplate--image`)
+              )}
+              src={`${mainImage.src['1.0x']}`}
+              srcSet={getSrcSet(mainImage.src)}
+              alt={mainImage.alt}
+              itemProp="image"
+            />
+          : ''}
+          { title ? <Title variantType={variantType}>{title}</Title> : '' }
+          { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
+        </ArticleHeader>
+      </div>
+    </div>
+  );
+};
+
+const ArticleSubheaderItem = variantify(variants)(({ getClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
+  <SubheaderItemComponent
+    className={classnames(
+      getClassNameList(className),
+      'margin-l-1',
+      'gutter-l',
+      'col-10'
+    )}
+    itemProp={itemProp}
+  >
+    {children}
+  </SubheaderItemComponent>
+));
+const Byline = ({ variantType, children }) => (
+  <ArticleSubheaderItem
+    variantType={variantType}
+    SubheaderItemComponent={'h2'}
+    className="ArticleTemplate--byline"
+    itemProp="byline">
+    {children}
+  </ArticleSubheaderItem>
+);
+const PublishDate = ({ variantType, children }) => (
+  <ArticleSubheaderItem
+    variantType={variantType}
+    SubheaderItemComponent={'h2'}
+    className="ArticleTemplate--pubdate"
+    itemProp="publishdate">
+    {children}
+  </ArticleSubheaderItem>
+);
+const Section = ({ variantType, children }) => (
+  <ArticleSubheaderItem
+    variantType={variantType}
+    SubheaderItemComponent={'h2'}
+    className="ArticleTemplate--section-section"
+    itemProp="section">
+    {children}
+  </ArticleSubheaderItem>
+);
+
+export const WinSubheader = ({ variantType, sectionName }) => (
+  <ArticleSubheader variantType={variantType}>
+    <Byline variantType={variantType}>By-line to follow</Byline>
+    <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
+    <Section variantType={variantType}>{sectionName}</Section>
+  </ArticleSubheader>
+);
+export const WinLeaderSubheader = ({ variantType, sectionName }) => (
+  <ArticleSubheader variantType={variantType}>
+    <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
+    <Section variantType={variantType}>{sectionName}</Section>
+  </ArticleSubheader>
+);
+
+const BylineFooter = ({ getClassNameList }) => (
+  <div
+    className={classnames(
+      getClassNameList(`ArticleTemplate--byline-footer`),
+      'margin-l-1',
+      'gutter-l',
+      'col-10'
+    )}
+  >
+    <h3
+      className={classnames(
+        getClassNameList(`ArticleTemplate--byline`),
         'margin-l-1',
         'gutter-l',
         'col-10'
       )}
+      itemProp="byline"
     >
-      {props.variantType !== 'world-in-leader' ?
-        <h2
-          className={classnames(
-            props.getClassNameList(`ArticleTemplate--byline`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="byline"
-        >
-          By-line to follow
-        </h2> : ''}
+      Zanny Minton Beddoes
+    </h3>
+    <span
+      className={classnames(
+        getClassNameList(`ArticleTemplate--byline-details`),
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="bylinedetails"
+    >
+    business affairs editor, The Economist
+    </span>
+  </div>
+);
 
-        <h2
-          className={classnames(
-            props.getClassNameList(`ArticleTemplate--pubdate`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="publishdate"
-        >
-          Publish date to follow
-        </h2>
-
-        <h2
-          className={classnames(
-            props.getClassNameList(`ArticleTemplate--section-section`),
-            'margin-l-1',
-            'gutter-l',
-            'col-10'
-          )}
-          itemProp="section"
-        >
-          {props.section}
-        </h2>
-    </header>
-  );
-};
+export const WinFooter = ({ variantType, getClassNameList }) => (
+  <ArticleFooter variantType={variantType}>
+    <BylineFooter getClassNameList={getClassNameList} />
+  </ArticleFooter>
+);

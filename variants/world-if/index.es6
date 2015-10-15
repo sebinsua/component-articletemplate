@@ -3,12 +3,12 @@ import classnames from 'classnames';
 
 import TabView from '@economist/component-tabview';
 
-import { ArticleHeader, getSrcSet } from '../..';
+import { ArticleHeader, ArticleFooter, getSrcSet } from '../..';
 
 import variants from '..';
 import variantify from '../../variantify';
 
-const WifArticleHeaderItem1 = variantify(variants)(({ getClassNameList, HeaderItemComponent = h1, className, itemProp, children }) => (
+const ArticleHeaderItem1 = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -21,7 +21,7 @@ const WifArticleHeaderItem1 = variantify(variants)(({ getClassNameList, HeaderIt
     {children}
   </HeaderItemComponent>
 ));
-const WifArticleHeaderItem2 = variantify(variants)(({ getClassNameList, HeaderItemComponent = h1, className, itemProp, children }) => (
+const ArticleHeaderItem2 = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -33,50 +33,106 @@ const WifArticleHeaderItem2 = variantify(variants)(({ getClassNameList, HeaderIt
     {children}
   </HeaderItemComponent>
 ));
-const WifSection = ({ variantType, children }) => (
-  <WifArticleHeaderItem2
+const Section = ({ variantType, children }) => (
+  <ArticleHeaderItem2
     variantType={variantType}
     HeaderItemComponent={'h2'}
     className="ArticleTemplate--header-section"
     itemProp="articleSection"
   >
     {children}
-  </WifArticleHeaderItem2>
+  </ArticleHeaderItem2>
 );
-const WifFlyTitle = ({ variantType, children }) => (
-  <WifArticleHeaderItem1
+const FlyTitle = ({ variantType, children }) => (
+  <ArticleHeaderItem1
     variantType={variantType}
     HeaderItemComponent={'h1'}
     className="ArticleTemplate--flytitle"
     itemProp="headline"
   >
     {children}
-  </WifArticleHeaderItem1>
+  </ArticleHeaderItem1>
 );
-const WifTitle = ({ variantType, children }) => (
-  <WifArticleHeaderItem1
+const Title = ({ variantType, children }) => (
+  <ArticleHeaderItem1
     variantType={variantType}
     HeaderItemComponent={'h3'}
     className="ArticleTemplate--title"
     itemProp="alternativeHeadline"
   >
     {children}
-  </WifArticleHeaderItem1>
+  </ArticleHeaderItem1>
 );
 
-export const WifTabView = (props) => {
+export const WifArticleHeader = ({ getClassNameList, variantType, mainImage, section, flytitle, title }) => {
+  return (
+    <div
+      className={classnames(
+        getClassNameList(`ArticleTemplate--imagecontainer`)
+      )}
+    >
+      <div
+        className={classnames(
+          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+        )}
+      >
+
+        {mainImage ?
+          <img
+            className={classnames(
+              getClassNameList(`ArticleTemplate--image`)
+            )}
+            src={`${mainImage.src['1.0x']}`}
+            srcSet={getSrcSet(mainImage.src)}
+            alt={mainImage.alt}
+            itemProp="image"
+          />
+        : ''}
+
+        <ArticleHeader variantType={variantType}>
+          {section ? <Section>{section}</Section> : ''}
+          {flytitle ? <FlyTitle>{flytitle}</FlyTitle> : ''}
+          {title ? <Title>{title}</Title> : ''}
+        </ArticleHeader>
+      </div>
+    </div>
+  );
+};
+
+export const Rubric = variantify(variants)(({ getClassNameList, children }) => (
+  <p
+    className={classnames(
+      getClassNameList(`ArticleTemplate--rubric`),
+      'margin-l-1',
+      'gutter-l',
+      'col-10'
+    )}
+    itemProp="description"
+  >
+    {children}
+  </p>
+));
+
+// TODO: Currently we cannot place that in ArticleSubheader as that
+//       already assumes margins, padding, etc.
+export const WifSubheader = ({ variantType, rubric }) => (
+  <Rubric variantType={variantType}>{rubric}</Rubric>
+);
+
+const WifTabView = (props) => {
   const notCurrentArticle = (article) => {
     const currentArticleId = props.id;
     return currentArticleId !== article.id;
   };
 
   const sections = props.sections;
+  const sectionNames = Object.keys(sections);
   const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
   return (
     <TabView
       variantType={props.variantType}
     >
-      {Object.keys(sections).map((title, key) => (
+      {sectionNames.map((title, key) => (
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
           <div
             className={classnames(
@@ -104,14 +160,10 @@ export const WifTabView = (props) => {
       ))}
     </TabView>
   );
-}
+};
 
-export const WifArticleHeader = ({ variantType, section, flytitle, title }) => {
-  return (
-    <ArticleHeader variantType={variantType}>
-      {section ? <WifSection>{section}</WifSection> : ''}
-      {flytitle ? <WifFlyTitle>{flytitle}</WifFlyTitle> : ''}
-      {title ? <WifTitle>{title}</WifTitle> : ''}
-    </ArticleHeader>
-  );
-}
+export const WifFooter = (props) => (
+  <ArticleFooter variantType={props.variantType}>
+    <WifTabView {...props} />
+  </ArticleFooter>
+);

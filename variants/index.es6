@@ -6,5 +6,5 @@ export default {
     'world-in-portrait',
     'world-in-leader',
     'world-in-predictors',
-  ]
+  ],
 };

@@ -3,12 +3,13 @@ import classnames from 'classnames';
 
 import TabView from '@economist/component-tabview';
 
-import { ArticleHeader, ArticleFooter, getSrcSet } from '../..';
+import { getSrcSet, ArticleHeader, ArticleFooter } from '../../template';
+import ArticleBody from '../../body';
 
 import variants from '..';
-import variantify from '../../variantify';
+import { withVariantClassNameList } from '../../variantify';
 
-const ArticleHeaderItem1 = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem1 = withVariantClassNameList(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -21,7 +22,7 @@ const ArticleHeaderItem1 = variantify(variants)(({ getClassNameList, HeaderItemC
     {children}
   </HeaderItemComponent>
 ));
-const ArticleHeaderItem2 = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem2 = withVariantClassNameList(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -64,7 +65,7 @@ const Title = ({ variantType, children }) => (
   </ArticleHeaderItem1>
 );
 
-export const WifArticleHeader = ({ getClassNameList, variantType, mainImage, section, flytitle, title }) => {
+export const WifHeader = ({ getClassNameList, variantType, mainImage, section, flytitle, title }) => {
   return (
     <div
       className={classnames(
@@ -99,7 +100,7 @@ export const WifArticleHeader = ({ getClassNameList, variantType, mainImage, sec
   );
 };
 
-export const Rubric = variantify(variants)(({ getClassNameList, children }) => (
+export const Rubric = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
   <p
     className={classnames(
       getClassNameList(`ArticleTemplate--rubric`),

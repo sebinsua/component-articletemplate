@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { getSrcSet, ArticleHeader, ArticleSubheader, ArticleFooter } from '../..';
+import { getSrcSet, ArticleHeader, ArticleSubheader, ArticleFooter } from '../../template';
 
 import variants from '..';
-import variantify from '../../variantify';
+import { withVariantClassNameList } from '../../variantify';
 
-const ArticleHeaderItem = variantify(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem = withVariantClassNameList(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -48,7 +48,7 @@ const Rubric = ({ variantType, children }) => (
   </ArticleHeaderItem>
 );
 
-export const WinArticleHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
+export const WinHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
   return (
     <div
       className={classnames(
@@ -83,7 +83,7 @@ export const WinArticleHeader = ({ getClassNameList, variantType, mainImage, fly
   );
 };
 
-export const WinPredictorsArticleHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
+export const WinPredictorsHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
   return (
     <div
       className={classnames(
@@ -116,7 +116,7 @@ export const WinPredictorsArticleHeader = ({ getClassNameList, variantType, main
   );
 };
 
-const ArticleSubheaderItem = variantify(variants)(({ getClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
+const ArticleSubheaderItem = withVariantClassNameList(variants)(({ getClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
   <SubheaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -204,7 +204,7 @@ const BylineFooter = ({ getClassNameList }) => (
   </div>
 );
 
-export const WinFooter = ({ variantType, getClassNameList }) => (
+export const WinFooter = ({ getClassNameList, variantType }) => (
   <ArticleFooter variantType={variantType}>
     <BylineFooter getClassNameList={getClassNameList} />
   </ArticleFooter>

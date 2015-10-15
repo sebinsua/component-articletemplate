@@ -8,9 +8,9 @@ import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
 import variants from './variants';
-import variantify from './variantify';
+import { withVariantClassNameList } from './variantify';
 
-@variantify(variants)
+@withVariantClassNameList(variants)
 class ArticleBody extends React.Component {
 
   static get defaultProps() {

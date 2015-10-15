@@ -1,7 +1,22 @@
 import React, { PropTypes } from 'react';
 
-export default function variantify({ variantTypes = [], defaultVariantType = '' }) {
-  return (ComposedComponent) => class VariantComponent extends React.Component {
+export function variantify(variantTypeComponents) {
+  return (ComposedComponent) => class VariedComponent extends React.Component {
+    render() {
+      const variantType = this.props.variantType;
+      return (
+        <ComposedComponent
+          variantType={variantType}
+          components={variantTypeComponents[variantType]}
+          {...this.props}
+        />
+      );
+    }
+  };
+}
+
+export function withVariantClassNameList({ variantTypes = [], defaultVariantType = '' }) {
+  return (ComposedComponent) => class WithVariantClassNameListComponent extends React.Component {
 
     static get propTypes() {
       return {
@@ -15,7 +30,7 @@ export default function variantify({ variantTypes = [], defaultVariantType = '' 
       };
     }
 
-    getSpecifiedClassNamesGetter(variantType) {
+    getVariantClassNameListGetter(variantType) {
       return (specifiedClassName) => {
         const classNameList = [ specifiedClassName ];
         if (variantType) {
@@ -27,7 +42,7 @@ export default function variantify({ variantTypes = [], defaultVariantType = '' 
 
     render() {
       const variantType = this.props.variantType;
-      const getClassNameList = this.getSpecifiedClassNamesGetter(variantType);
+      const getClassNameList = this.getVariantClassNameListGetter(variantType);
       return (
         <ComposedComponent
           variantType={variantType}

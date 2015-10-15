@@ -3,14 +3,15 @@
 
 ## TODO
 
-- [ ] Is there a benefit in using `variantify` in more places?
-      Consider renaming decorator `withVariantClassNameGenerator`.
-      Then variantify would maybe be something else, for handling multiple components.
-- [x] Find a way for the relationship between the HOC and the child to be more
-      explicit.
-- [ ] Do all `<div>`s need to be components for className stuff to be nice?
-- [x] Standard `ArticleTemplate` `render()` is not very clean. Need to lose
-      `if-else` mess and separate into smaller components.
+- [ ] Refactor.
+- [x] `renderHeader()` and other `if-else`ing parts should not exist.
+      Instead we should pick up the correct `Header` from definitions
+      passed into the `ArticleTemplate`.
+- [x] `variantify` could maybe be something else, for handling multiple components.
+- [ ] getClassNameList should not be passed directly into the WifArticleHeader, etc.
+- [ ] Encapsulate some components more.
+- [ ] Decide where variantify is over-complicating logic.
+- [ ] Decide whether the separation between high-level components is correct:
 ```
       What is a ArticleTemplate?
 
@@ -22,10 +23,4 @@
        -> ArticleByline
           ArticleSeeMore
 ```
-- [ ] `renderHeader()` and other `if-else`ing parts should not exist.
-      Instead we should pick up the correct `Header` from a definition that is
-      passed into the `ArticleTemplate`.
-- [ ] Move everything into `template.es6` so that `index.es6` can just pass in
-      Variant key-value definitions (see above).
-- [ ] All of this `Variant` definition stuff should live within `variants/` to
-      begin with.
+- [ ] Work out where we can remove classes, to remove components, and instead using the elements to contain their styling as we are meant to.

@@ -10,7 +10,7 @@ import Gallery from '@economist/component-gallery';
 import variants from './variants';
 import variantify from './variantify';
 
-@variantify('ArticleTemplate--section', variants)
+@variantify(variants)
 class ArticleBody extends React.Component {
 
   static get defaultProps() {
@@ -63,7 +63,7 @@ class ArticleBody extends React.Component {
   render() {
     return (
       <section
-        className={classnames(this.props.classNameList)}
+        className={classnames(this.props.getClassNameList('ArticleTemplate--section'))}
         itemProp="articleBody"
       >
         {

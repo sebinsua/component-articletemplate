@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 
-// TODO: It would be nice to be able to
-//       take a className directly still?
-export default function variantify(className, { variantTypes = [], defaultVariantType = '' }) {
+export default function variantify({ variantTypes = [], defaultVariantType = '' }) {
   return (ComposedComponent) => class VariantComponent extends React.Component {
 
     static get propTypes() {
@@ -17,17 +15,8 @@ export default function variantify(className, { variantTypes = [], defaultVarian
       };
     }
 
-    static get className() {
-      return className;
-    }
-
-    get variantClassName() {
-      const variantType = this.props.variantType;
-      return variantType ? `${variantType}-${className}` : null;
-    }
-
     getSpecifiedClassNamesGetter(variantType) {
-      return (specifiedClassName = className) => {
+      return (specifiedClassName) => {
         const classNameList = [ specifiedClassName ];
         if (variantType) {
           classNameList.unshift(`${variantType}-${specifiedClassName}`);
@@ -39,16 +28,10 @@ export default function variantify(className, { variantTypes = [], defaultVarian
     render() {
       const variantType = this.props.variantType;
       const getClassNameList = this.getSpecifiedClassNamesGetter(variantType);
-      const className = VariantComponent.className;
-      const variantClassName = this.variantClassName;
-      const classNameList = getClassNameList();
       return (
         <ComposedComponent
           variantType={variantType}
           getClassNameList={getClassNameList}
-          className={className}
-          variantClassName={variantClassName}
-          classNameList={classNameList}
           {...this.props}
         />
       );

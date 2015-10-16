@@ -6,18 +6,18 @@ import sections from './test/data/sections';
 
 export default (
   <ArticleTemplate
-    variantType={'world-in-base'}
+    variantType={'world-if'}
     id={article.id}
     slug={article.attributes.slug}
     title={article.attributes.title}
     flytitle={article.attributes.flytitle}
     rubric={article.attributes.rubric}
-    section={article.attributes.section}
     mainImage={{
       src: article.attributes.mainimage,
       alt: article.attributes.imagealt,
     }}
     content={article.attributes.content}
+    sectionName={article.attributes.section}
     sections={sections}
   />
 );

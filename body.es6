@@ -10,8 +10,23 @@ import Gallery from '@economist/component-gallery';
 import variants from './variants';
 import { withVariantClassNameList } from './variantify';
 
-@withVariantClassNameList(variants)
+export const ArticleBodyContainer = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+  <section
+    className={classnames(getClassNameList('ArticleTemplate--section'))}
+    itemProp="articleBody"
+  >
+    {children}
+  </section>
+));
+
 class ArticleBody extends React.Component {
+
+  static get propTypes() {
+    return {
+      variantType: PropTypes.string,
+      content: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
+    };
+  }
 
   static get defaultProps() {
     return {
@@ -27,14 +42,6 @@ class ArticleBody extends React.Component {
       },
     };
   }
-
-  // TODO: This should be removed because:
-  // (1) It introduces global state.
-  // (2) It is no longer accessible once behind a HOC.
-  // (3) Now found within ArticleBody anyway...
-  // static addComponentType(component, name) {
-  //   articleComponent[name || component.name] = component;
-  // }
 
   renderJSONContents(components, contents = [], variantType) {
     return contents.map((contentPiece, key) => {
@@ -61,19 +68,17 @@ class ArticleBody extends React.Component {
   }
 
   render() {
+    const { variantType, content, components } = this.props;
     return (
-      <section
-        className={classnames(this.props.getClassNameList('ArticleTemplate--section'))}
-        itemProp="articleBody"
-      >
+      <ArticleBodyContainer variantType={variantType}>
         {
           this.renderJSONContents(
-            this.props.components,
-            this.props.content,
-            this.props.variantType
+            components,
+            content,
+            variantType
           )
         }
-      </section>
+      </ArticleBodyContainer>
     );
   }
 

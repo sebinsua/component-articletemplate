@@ -3,7 +3,7 @@ import ArticleTemplate from './template';
 import { variantify } from './variantify';
 
 import { WifHeader, WifSubheader, WifFooter } from './variants/world-if';
-import { WinHeader, WinPredictorsHeader, WinSubheader, WinFooter } from './variants/world-in';
+import { WinHeader, WinPredictorsHeader, WinLeaderSubheader, WinSubheader, WinFooter } from './variants/world-in';
 import ArticleBody from './body';
 
 const variantTypeComponents = {
@@ -27,7 +27,7 @@ const variantTypeComponents = {
   },
   'world-in-leader': {
     ArticleHeader: WinHeader,
-    ArticleSubheader: WinSubheader,
+    ArticleSubheader: WinLeaderSubheader,
     ArticleBody: ArticleBody,
     ArticleFooter: WinFooter,
   },
@@ -38,6 +38,7 @@ const variantTypeComponents = {
     ArticleFooter: WinFooter,
   },
 };
-console.log(variantTypeComponents);
 
-export default variantify(variantTypeComponents)(ArticleTemplate);
+
+const varyComponents = variantify(variantTypeComponents);
+export default varyComponents(ArticleTemplate);

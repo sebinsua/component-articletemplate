@@ -48,55 +48,32 @@ const Rubric = ({ variantType, children }) => (
   </ArticleHeaderItem>
 );
 
-export const WinHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
-  return (
-    <div
-      className={classnames(
-        getClassNameList(`ArticleTemplate--imagecontainer`)
-      )}
-    >
+export class WinHeader extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
+      mainImage: PropTypes.object,
+      flytitle: PropTypes.string,
+      title: PropTypes.string,
+      rubric: PropTypes.string,
+    };
+  }
+
+  render() {
+    const { getClassNameList, variantType, mainImage, flytitle, title, rubric } = this.props;
+    return (
       <div
         className={classnames(
-          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+          getClassNameList(`ArticleTemplate--imagecontainer`)
         )}
       >
+        <div
+          className={classnames(
+            getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+          )}
+        >
 
-        {mainImage ?
-          <img
-            className={classnames(
-              getClassNameList(`ArticleTemplate--image`)
-            )}
-            src={`${mainImage.src['1.0x']}`}
-            srcSet={getSrcSet(mainImage.src)}
-            alt={mainImage.alt}
-            itemProp="image"
-          />
-        : ''}
-
-        <ArticleHeader variantType={variantType}>
-          { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
-          { title ? <Title variantType={variantType}>{title}</Title> : '' }
-          { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
-        </ArticleHeader>
-      </div>
-    </div>
-  );
-};
-
-export const WinPredictorsHeader = ({ getClassNameList, variantType, mainImage, flytitle, title, rubric }) => {
-  return (
-    <div
-      className={classnames(
-        getClassNameList(`ArticleTemplate--imagecontainer`)
-      )}
-    >
-      <div
-        className={classnames(
-          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
-        )}
-      >
-        <ArticleHeader variantType={variantType}>
-          { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
           {mainImage ?
             <img
               className={classnames(
@@ -108,13 +85,64 @@ export const WinPredictorsHeader = ({ getClassNameList, variantType, mainImage, 
               itemProp="image"
             />
           : ''}
-          { title ? <Title variantType={variantType}>{title}</Title> : '' }
-          { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
-        </ArticleHeader>
+
+          <ArticleHeader variantType={variantType}>
+            { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
+            { title ? <Title variantType={variantType}>{title}</Title> : '' }
+            { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
+          </ArticleHeader>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export class WinPredictorsHeader extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
+      mainImage: PropTypes.object,
+      flytitle: PropTypes.string,
+      title: PropTypes.string,
+      rubric: PropTypes.rubric,
+    };
+  }
+
+  render() {
+    const { getClassNameList, variantType, mainImage, flytitle, title, rubric } = this.props;
+    return (
+      <div
+        className={classnames(
+          getClassNameList(`ArticleTemplate--imagecontainer`)
+        )}
+      >
+        <div
+          className={classnames(
+            getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+          )}
+        >
+          <ArticleHeader variantType={variantType}>
+            { flytitle ? <FlyTitle variantType={variantType}>{flytitle}</FlyTitle> : '' }
+            {mainImage ?
+              <img
+                className={classnames(
+                  getClassNameList(`ArticleTemplate--image`)
+                )}
+                src={`${mainImage.src['1.0x']}`}
+                srcSet={getSrcSet(mainImage.src)}
+                alt={mainImage.alt}
+                itemProp="image"
+              />
+            : ''}
+            { title ? <Title variantType={variantType}>{title}</Title> : '' }
+            { rubric ? <Rubric variantType={variantType}>{rubric}</Rubric> : '' }
+          </ArticleHeader>
+        </div>
+      </div>
+    );
+  }
+}
 
 const ArticleSubheaderItem = withVariantClassNameList(variants)(({ getClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
   <SubheaderItemComponent
@@ -157,19 +185,44 @@ const Section = ({ variantType, children }) => (
   </ArticleSubheaderItem>
 );
 
-export const WinSubheader = ({ variantType, sectionName }) => (
-  <ArticleSubheader variantType={variantType}>
-    <Byline variantType={variantType}>By-line to follow</Byline>
-    <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
-    <Section variantType={variantType}>{sectionName}</Section>
-  </ArticleSubheader>
-);
-export const WinLeaderSubheader = ({ variantType, sectionName }) => (
-  <ArticleSubheader variantType={variantType}>
-    <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
-    <Section variantType={variantType}>{sectionName}</Section>
-  </ArticleSubheader>
-);
+export class WinSubheader extends React.Component {
+  static get propTypes() {
+    return {
+      variantType: PropTypes.string,
+      sectionName: PropTypes.string,
+    };
+  }
+
+  render() {
+    const { variantType, sectionName } = this.props;
+    return (
+      <ArticleSubheader variantType={variantType}>
+        <Byline variantType={variantType}>By-line to follow</Byline>
+        <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
+        <Section variantType={variantType}>{sectionName}</Section>
+      </ArticleSubheader>
+    );
+  }
+}
+
+export class WinLeaderSubheader extends React.Component {
+  static get propTypes() {
+    return {
+      variantType: PropTypes.string,
+      sectionName: PropTypes.string,
+    };
+  }
+
+  render() {
+    const { variantType, sectionName } = this.props;
+    return (
+      <ArticleSubheader variantType={variantType}>
+        <PublishDate variantType={variantType}>Publish date to follow</PublishDate>
+        <Section variantType={variantType}>{sectionName}</Section>
+      </ArticleSubheader>
+    );
+  }
+}
 
 const BylineFooter = ({ getClassNameList }) => (
   <div
@@ -204,8 +257,20 @@ const BylineFooter = ({ getClassNameList }) => (
   </div>
 );
 
-export const WinFooter = ({ getClassNameList, variantType }) => (
-  <ArticleFooter variantType={variantType}>
-    <BylineFooter getClassNameList={getClassNameList} />
-  </ArticleFooter>
-);
+export class WinFooter extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
+    };
+  }
+
+  render() {
+    const { getClassNameList, variantType } = this.props;
+    return (
+      <ArticleFooter variantType={variantType}>
+        <BylineFooter getClassNameList={getClassNameList} />
+      </ArticleFooter>
+    );
+  }
+}

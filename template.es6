@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-// import ArticleBody from './body';
-// import { WifHeader, WifSubheader, WifFooter } from './variants/world-if';
-// import { WinHeader, WinPredictorsHeader, WinSubheader, WinFooter } from './variants/world-in';
-
 import variants from './variants';
 import { withVariantClassNameList } from './variantify';
+
+import passthroughComponentPropTypesOnly from './passthrough';
 
 export const ArticleHeader = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
   <header className={classnames(getClassNameList('ArticleTemplate--header'))}>
@@ -54,12 +52,12 @@ class ArticleTemplate extends React.Component {
       title: PropTypes.string.isRequired,
       flytitle: PropTypes.string.isRequired,
       rubric: PropTypes.string.isRequired,
-      section: PropTypes.string.isRequired,
       mainImage: PropTypes.shape({
         src: PropTypes.object.isRequired,
         alt: PropTypes.string,
       }).isRequired,
       content: PropTypes.array.isRequired,
+      sectionName: PropTypes.string.isRequired,
       sections: PropTypes.object.isRequired,
     };
   }
@@ -131,18 +129,14 @@ class ArticleTemplate extends React.Component {
   */
 
   render() {
-    const { ArticleHeader: Header, ArticleSubheader: Subheader, ArticleBody: Body, ArticleFooter: Footer } = this.props.components;
-    // TODO: Body can get wiped out by 'components' prop.
-    // TODO: Not all of this.props should pass through.
+    const { variantType, sectionName } = this.props;
+    const { ArticleHeader, ArticleSubheader, ArticleBody, ArticleFooter } = this.props.components;
     return (
-      <ArticleContainer
-        variantType={this.props.variantType}
-        sectionName={this.props.sectionName}
-      >
-        <Header {...this.props} />
-        <Subheader {...this.props} />
-        <Body variantType={this.props.variantType} content={this.props.content} />
-        <Footer {...this.props} />
+      <ArticleContainer variantType={variantType} sectionName={sectionName}>
+        <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
+        <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
+        <ArticleBody {...passthroughComponentPropTypesOnly(ArticleBody, this.props)} />
+        <ArticleFooter {...passthroughComponentPropTypesOnly(ArticleFooter, this.props)} />
       </ArticleContainer>
     );
   }

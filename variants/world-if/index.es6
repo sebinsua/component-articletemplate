@@ -65,40 +65,53 @@ const Title = ({ variantType, children }) => (
   </ArticleHeaderItem1>
 );
 
-export const WifHeader = ({ getClassNameList, variantType, mainImage, section, flytitle, title }) => {
-  return (
-    <div
-      className={classnames(
-        getClassNameList(`ArticleTemplate--imagecontainer`)
-      )}
-    >
+export class WifHeader extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
+      mainImage: PropTypes.object,
+      sectionName: PropTypes.string,
+      flytitle: PropTypes.string,
+      title: PropTypes.string,
+    };
+  }
+
+  render() {
+    const { getClassNameList, variantType, mainImage, sectionName, flytitle, title } = this.props;
+    return (
       <div
         className={classnames(
-          getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+          getClassNameList(`ArticleTemplate--imagecontainer`)
         )}
       >
+        <div
+          className={classnames(
+            getClassNameList(`ArticleTemplate--imagecontainer-inner`)
+          )}
+        >
+          {mainImage ?
+            <img
+              className={classnames(
+                getClassNameList(`ArticleTemplate--image`)
+              )}
+              src={`${mainImage.src['1.0x']}`}
+              srcSet={getSrcSet(mainImage.src)}
+              alt={mainImage.alt}
+              itemProp="image"
+            />
+          : ''}
 
-        {mainImage ?
-          <img
-            className={classnames(
-              getClassNameList(`ArticleTemplate--image`)
-            )}
-            src={`${mainImage.src['1.0x']}`}
-            srcSet={getSrcSet(mainImage.src)}
-            alt={mainImage.alt}
-            itemProp="image"
-          />
-        : ''}
-
-        <ArticleHeader variantType={variantType}>
-          {section ? <Section>{section}</Section> : ''}
-          {flytitle ? <FlyTitle>{flytitle}</FlyTitle> : ''}
-          {title ? <Title>{title}</Title> : ''}
-        </ArticleHeader>
+          <ArticleHeader variantType={variantType}>
+            {sectionName ? <Section>{sectionName}</Section> : ''}
+            {flytitle ? <FlyTitle>{flytitle}</FlyTitle> : ''}
+            {title ? <Title>{title}</Title> : ''}
+          </ArticleHeader>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export const Rubric = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
   <p
@@ -116,35 +129,46 @@ export const Rubric = withVariantClassNameList(variants)(({ getClassNameList, ch
 
 // TODO: Currently we cannot place that in ArticleSubheader as that
 //       already assumes margins, padding, etc.
-export const WifSubheader = ({ variantType, rubric }) => (
-  <Rubric variantType={variantType}>{rubric}</Rubric>
-);
+export class WifSubheader extends React.Component {
+  static get propTypes() {
+    return {
+      variantType: PropTypes.string,
+      rubric: PropTypes.string,
+    };
+  }
 
-const WifTabView = (props) => {
+  render() {
+    const { variantType, rubric } = this.props;
+    return (
+      <Rubric variantType={variantType}>{rubric}</Rubric>
+    );
+  }
+}
+
+const WifTabView = ({ getClassNameList, variantType, id, sections }) => {
   const notCurrentArticle = (article) => {
-    const currentArticleId = props.id;
+    const currentArticleId = id;
     return currentArticleId !== article.id;
   };
 
-  const sections = props.sections;
   const sectionNames = Object.keys(sections);
   const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
   return (
     <TabView
-      variantType={props.variantType}
+      variantType={variantType}
     >
       {sectionNames.map((title, key) => (
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
           <div
             className={classnames(
-              props.getClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
+              getClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
             )}
           ></div>
-          {sections[title].filter(notCurrentArticle).map((article) => (
-            <a href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
+          {sections[title].filter(notCurrentArticle).map((article, articleKey) => (
+            <a key={articleKey} href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
               <figure
                 className={classnames(
-                  props.getClassNameList(`${TabViewDefaultClassName}--View--Content`)
+                  getClassNameList(`${TabViewDefaultClassName}--View--Content`)
                 )}
               >
                 <img
@@ -163,8 +187,21 @@ const WifTabView = (props) => {
   );
 };
 
-export const WifFooter = (props) => (
-  <ArticleFooter variantType={props.variantType}>
-    <WifTabView {...props} />
-  </ArticleFooter>
-);
+export class WifFooter extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
+      sections: PropTypes.object,
+    };
+  }
+
+  render() {
+    const { variantType } = this.props;
+    return (
+      <ArticleFooter variantType={this.props.variantType}>
+        <WifTabView {...this.props} />
+      </ArticleFooter>
+    );
+  }
+}

@@ -6,6 +6,16 @@ import { withVariantClassNameList } from './variantify';
 
 import passthroughComponentPropTypesOnly from './passthrough';
 
+export const ArticleContainer = withVariantClassNameList(variants)(({ getClassNameList, sectionName, children }) => (
+  <article
+    className={classnames(getClassNameList(`ArticleTemplate--container`))}
+    data-section={sectionName}
+    itemScope
+    itemType="http://schema.org/NewsArticle"
+  >
+    {children}
+  </article>
+));
 export const ArticleHeader = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
   <header className={classnames(getClassNameList('ArticleTemplate--header'))}>
     {children}
@@ -27,16 +37,6 @@ export const ArticleFooter = withVariantClassNameList(variants)(({ getClassNameL
   <footer className={classnames(getClassNameList('ArticleTemplate--footer'))}>
     {children}
   </footer>
-));
-export const ArticleContainer = withVariantClassNameList(variants)(({ getClassNameList, sectionName, children }) => (
-  <article
-    className={classnames(getClassNameList(`ArticleTemplate--container`))}
-    data-section={sectionName}
-    itemScope
-    itemType="http://schema.org/NewsArticle"
-  >
-    {children}
-  </article>
 ));
 
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');

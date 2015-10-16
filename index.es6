@@ -1,6 +1,6 @@
 import ArticleTemplate from './template';
 
-import { variantify } from './variantify';
+import { withVariedInnerComponents } from './variantify';
 
 import { WifHeader, WifSubheader, WifFooter } from './variants/world-if';
 import { WinHeader, WinPredictorsHeader, WinLeaderSubheader, WinSubheader, WinFooter } from './variants/world-in';
@@ -39,6 +39,4 @@ const variantTypeComponents = {
   },
 };
 
-
-const varyComponents = variantify(variantTypeComponents);
-export default varyComponents(ArticleTemplate);
+export default withVariedInnerComponents(variantTypeComponents)(ArticleTemplate);

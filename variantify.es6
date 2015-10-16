@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export function variantify(variantTypeComponents) {
+export function withVariedInnerComponents(variantTypeComponents) {
   return (ComposedComponent) => class VariedComponent extends React.Component {
     render() {
       const variantType = this.props.variantType;

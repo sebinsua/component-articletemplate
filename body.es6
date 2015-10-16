@@ -7,23 +7,21 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
-import variants from './variants';
-import { withVariantClassNameList } from './variantify';
-
-export const ArticleBodyContainer = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+export const ArticleBodyContainer = ({ getClassNameList, children }) => (
   <section
     className={classnames(getClassNameList('ArticleTemplate--section'))}
     itemProp="articleBody"
   >
     {children}
   </section>
-));
+);
 
 class ArticleBody extends React.Component {
 
   static get propTypes() {
     return {
       variantType: PropTypes.string,
+      getClassNameList: PropTypes.func,
       content: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
     };
   }
@@ -43,7 +41,7 @@ class ArticleBody extends React.Component {
     };
   }
 
-  renderJSONContents(components, contents = [], variantType) {
+  renderJSONContents(components, contents = [], variantType, getClassNameList) {
     return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
@@ -54,10 +52,11 @@ class ArticleBody extends React.Component {
       if (!Component) {
         throw new Error('Unknown component ' + contentPiece.component);
       }
-      const children = this.renderJSONContents(components, contentPiece.content, variantType);
+      const children = this.renderJSONContents(components, contentPiece.content, variantType, getClassNameList);
       return (
         <Component
           key={key}
+          getClassNameList={getClassNameList}
           variantType={variantType}
           {...contentPiece.props}
         >
@@ -68,14 +67,15 @@ class ArticleBody extends React.Component {
   }
 
   render() {
-    const { variantType, content, components } = this.props;
+    const { variantType, getClassNameList, content, components } = this.props;
     return (
-      <ArticleBodyContainer variantType={variantType}>
+      <ArticleBodyContainer getClassNameList={getClassNameList}>
         {
           this.renderJSONContents(
             components,
             content,
-            variantType
+            variantType,
+            getClassNameList
           )
         }
       </ArticleBodyContainer>

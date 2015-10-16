@@ -6,10 +6,7 @@ import TabView from '@economist/component-tabview';
 import { getSrcSet, ArticleHeader, ArticleFooter } from '../../template';
 import ArticleBody from '../../body';
 
-import variants from '..';
-import { withVariantClassNameList } from '../../variantify';
-
-const ArticleHeaderItem1 = withVariantClassNameList(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem1 = ({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -21,8 +18,8 @@ const ArticleHeaderItem1 = withVariantClassNameList(variants)(({ getClassNameLis
   >
     {children}
   </HeaderItemComponent>
-));
-const ArticleHeaderItem2 = withVariantClassNameList(variants)(({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+);
+const ArticleHeaderItem2 = ({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
       getClassNameList(className),
@@ -33,10 +30,10 @@ const ArticleHeaderItem2 = withVariantClassNameList(variants)(({ getClassNameLis
   >
     {children}
   </HeaderItemComponent>
-));
-const Section = ({ variantType, children }) => (
+);
+const Section = ({ getClassNameList, children }) => (
   <ArticleHeaderItem2
-    variantType={variantType}
+    getClassNameList={getClassNameList}
     HeaderItemComponent={'h2'}
     className="ArticleTemplate--header-section"
     itemProp="articleSection"
@@ -44,9 +41,9 @@ const Section = ({ variantType, children }) => (
     {children}
   </ArticleHeaderItem2>
 );
-const FlyTitle = ({ variantType, children }) => (
+const FlyTitle = ({ getClassNameList, children }) => (
   <ArticleHeaderItem1
-    variantType={variantType}
+    getClassNameList={getClassNameList}
     HeaderItemComponent={'h1'}
     className="ArticleTemplate--flytitle"
     itemProp="headline"
@@ -54,9 +51,9 @@ const FlyTitle = ({ variantType, children }) => (
     {children}
   </ArticleHeaderItem1>
 );
-const Title = ({ variantType, children }) => (
+const Title = ({ getClassNameList, children }) => (
   <ArticleHeaderItem1
-    variantType={variantType}
+    getClassNameList={getClassNameList}
     HeaderItemComponent={'h3'}
     className="ArticleTemplate--title"
     itemProp="alternativeHeadline"
@@ -69,7 +66,6 @@ export class WifHeader extends React.Component {
   static get propTypes() {
     return {
       getClassNameList: PropTypes.func,
-      variantType: PropTypes.string,
       mainImage: PropTypes.object,
       sectionName: PropTypes.string,
       flytitle: PropTypes.string,
@@ -78,7 +74,7 @@ export class WifHeader extends React.Component {
   }
 
   render() {
-    const { getClassNameList, variantType, mainImage, sectionName, flytitle, title } = this.props;
+    const { getClassNameList, mainImage, sectionName, flytitle, title } = this.props;
     return (
       <div
         className={classnames(
@@ -102,7 +98,7 @@ export class WifHeader extends React.Component {
             />
           : ''}
 
-          <ArticleHeader variantType={variantType}>
+          <ArticleHeader getClassNameList={getClassNameList}>
             {sectionName ? <Section>{sectionName}</Section> : ''}
             {flytitle ? <FlyTitle>{flytitle}</FlyTitle> : ''}
             {title ? <Title>{title}</Title> : ''}
@@ -113,7 +109,7 @@ export class WifHeader extends React.Component {
   }
 }
 
-export const Rubric = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+export const Rubric = ({ getClassNameList, children }) => (
   <p
     className={classnames(
       getClassNameList(`ArticleTemplate--rubric`),
@@ -125,27 +121,27 @@ export const Rubric = withVariantClassNameList(variants)(({ getClassNameList, ch
   >
     {children}
   </p>
-));
+);
 
 // TODO: Currently we cannot place that in ArticleSubheader as that
 //       already assumes margins, padding, etc.
 export class WifSubheader extends React.Component {
   static get propTypes() {
     return {
-      variantType: PropTypes.string,
+      getClassNameList: PropTypes.func,
       rubric: PropTypes.string,
     };
   }
 
   render() {
-    const { variantType, rubric } = this.props;
+    const { getClassNameList, rubric } = this.props;
     return (
-      <Rubric variantType={variantType}>{rubric}</Rubric>
+      <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric>
     );
   }
 }
 
-const WifTabView = ({ getClassNameList, variantType, id, sections }) => {
+const WifTabView = ({ getClassNameList, id, sections }) => {
   const notCurrentArticle = (article) => {
     const currentArticleId = id;
     return currentArticleId !== article.id;
@@ -154,9 +150,7 @@ const WifTabView = ({ getClassNameList, variantType, id, sections }) => {
   const sectionNames = Object.keys(sections);
   const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
   return (
-    <TabView
-      variantType={variantType}
-    >
+    <TabView getClassNameList={getClassNameList}>
       {sectionNames.map((title, key) => (
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
           <div
@@ -191,15 +185,14 @@ export class WifFooter extends React.Component {
   static get propTypes() {
     return {
       getClassNameList: PropTypes.func,
-      variantType: PropTypes.string,
       sections: PropTypes.object,
     };
   }
 
   render() {
-    const { variantType } = this.props;
+    const { getClassNameList } = this.props;
     return (
-      <ArticleFooter variantType={this.props.variantType}>
+      <ArticleFooter getClassNameList={getClassNameList}>
         <WifTabView {...this.props} />
       </ArticleFooter>
     );

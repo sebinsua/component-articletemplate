@@ -6,7 +6,7 @@ import { withVariantClassNameList } from './variantify';
 
 import passthroughComponentPropTypesOnly from './passthrough';
 
-export const ArticleContainer = withVariantClassNameList(variants)(({ getClassNameList, sectionName, children }) => (
+export const ArticleContainer = ({ getClassNameList, sectionName, children }) => (
   <article
     className={classnames(getClassNameList(`ArticleTemplate--container`))}
     data-section={sectionName}
@@ -15,13 +15,13 @@ export const ArticleContainer = withVariantClassNameList(variants)(({ getClassNa
   >
     {children}
   </article>
-));
-export const ArticleHeader = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+);
+export const ArticleHeader = ({ getClassNameList, children }) => (
   <header className={classnames(getClassNameList('ArticleTemplate--header'))}>
     {children}
   </header>
-));
-export const ArticleSubheader = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+);
+export const ArticleSubheader = ({ getClassNameList, children }) => (
   <header
     className={classnames(
       getClassNameList('ArticleTemplate--subheader'),
@@ -32,17 +32,15 @@ export const ArticleSubheader = withVariantClassNameList(variants)(({ getClassNa
   >
     {children}
   </header>
-));
-export const ArticleFooter = withVariantClassNameList(variants)(({ getClassNameList, children }) => (
+);
+export const ArticleFooter = ({ getClassNameList, children }) => (
   <footer className={classnames(getClassNameList('ArticleTemplate--footer'))}>
     {children}
   </footer>
-));
+);
 
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
-// TODO: Next line can be removed once inner components exist.
-@withVariantClassNameList(variants)
 class ArticleTemplate extends React.Component {
 
   static get propTypes() {
@@ -129,10 +127,10 @@ class ArticleTemplate extends React.Component {
   */
 
   render() {
-    const { variantType, sectionName } = this.props;
+    const { getClassNameList, sectionName } = this.props;
     const { ArticleHeader, ArticleSubheader, ArticleBody, ArticleFooter } = this.props.components;
     return (
-      <ArticleContainer variantType={variantType} sectionName={sectionName}>
+      <ArticleContainer getClassNameList={getClassNameList} sectionName={sectionName}>
         <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
         <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
         <ArticleBody {...passthroughComponentPropTypesOnly(ArticleBody, this.props)} />

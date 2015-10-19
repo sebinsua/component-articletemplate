@@ -6,7 +6,7 @@ import article from './test/data/article';
 import sections from './test/data/sections';
 
 export default (
-  <ArticleTemplate
+  <WorldInArticle
     variantType={'world-in-portrait'}
     id={article.id}
     slug={article.attributes.slug}

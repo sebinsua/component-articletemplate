@@ -1,0 +1,54 @@
+import React, { PropTypes } from 'react';
+import classnames from 'classnames';
+
+import { ArticleFooterContainer } from '../../footer';
+
+const BylineFooter = ({ getClassNameList }) => (
+  <div
+    className={classnames(
+      getClassNameList(`ArticleTemplate--byline-footer`),
+      'margin-l-1',
+      'gutter-l',
+      'col-10'
+    )}
+  >
+    <h3
+      className={classnames(
+        getClassNameList(`ArticleTemplate--byline`),
+        'margin-l-1',
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="byline"
+    >
+      Zanny Minton Beddoes
+    </h3>
+    <span
+      className={classnames(
+        getClassNameList(`ArticleTemplate--byline-details`),
+        'gutter-l',
+        'col-10'
+      )}
+      itemProp="bylinedetails"
+    >
+    business affairs editor, The Economist
+    </span>
+  </div>
+);
+
+export class WinFooter extends React.Component {
+  static get propTypes() {
+    return {
+      getClassNameList: PropTypes.func,
+    };
+  }
+
+  render() {
+    const { getClassNameList } = this.props;
+    return (
+      <ArticleFooterContainer getClassNameList={getClassNameList}>
+        <BylineFooter getClassNameList={getClassNameList} />
+      </ArticleFooterContainer>
+    );
+  }
+}

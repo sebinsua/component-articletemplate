@@ -1,4 +1,6 @@
-export default function passthroughComponentPropTypesOnly(Component, props) {
+export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
+
+export function passthroughComponentPropTypesOnly(Component, props) {
   const propTypeKeys = Object.keys(Component.propTypes || {});
   let newProps = {};
   for (const propKey in props) {

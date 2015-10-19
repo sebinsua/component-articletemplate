@@ -7,6 +7,31 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
+function renderJSONContents(components, contents = [], variantType, getClassNameList) {
+  return contents.map((contentPiece, key) => {
+    if (typeof contentPiece === 'string') {
+      return (
+        <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
+      );
+    }
+    const Component = components[contentPiece.component];
+    if (!Component) {
+      throw new Error('Unknown component ' + contentPiece.component);
+    }
+    const children = renderJSONContents(components, contentPiece.content, variantType, getClassNameList);
+    return (
+      <Component
+        key={key}
+        getClassNameList={getClassNameList}
+        variantType={variantType}
+        {...contentPiece.props}
+      >
+        {children}
+      </Component>
+    );
+  });
+}
+
 export const ArticleBodyContainer = ({ getClassNameList, children }) => (
   <section
     className={classnames(getClassNameList('ArticleTemplate--section'))}
@@ -16,7 +41,7 @@ export const ArticleBodyContainer = ({ getClassNameList, children }) => (
   </section>
 );
 
-class ArticleBody extends React.Component {
+class ArticleBodyTemplate extends React.Component {
 
   static get propTypes() {
     return {
@@ -41,37 +66,12 @@ class ArticleBody extends React.Component {
     };
   }
 
-  renderJSONContents(components, contents = [], variantType, getClassNameList) {
-    return contents.map((contentPiece, key) => {
-      if (typeof contentPiece === 'string') {
-        return (
-          <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
-        );
-      }
-      const Component = components[contentPiece.component];
-      if (!Component) {
-        throw new Error('Unknown component ' + contentPiece.component);
-      }
-      const children = this.renderJSONContents(components, contentPiece.content, variantType, getClassNameList);
-      return (
-        <Component
-          key={key}
-          getClassNameList={getClassNameList}
-          variantType={variantType}
-          {...contentPiece.props}
-        >
-          {children}
-        </Component>
-      );
-    });
-  }
-
   render() {
     const { variantType, getClassNameList, content, components } = this.props;
     return (
       <ArticleBodyContainer getClassNameList={getClassNameList}>
         {
-          this.renderJSONContents(
+          renderJSONContents(
             components,
             content,
             variantType,
@@ -84,4 +84,4 @@ class ArticleBody extends React.Component {
 
 }
 
-export default ArticleBody;
+export default ArticleBodyTemplate;

@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import variants from './variants';
-import { withVariantClassNameList } from './variantify';
+import { getSrcSet, passthroughComponentPropTypesOnly } from './utils';
 
-import passthroughComponentPropTypesOnly from './passthrough';
+import {
+  WifHeader as DefaultArticleHeader,
+  WifSubheader as DefaultArticleSubheader,
+  WifFooter as DefaultArticleFooter
+} from './variants/world-if';
+import DefaultArticleBody from './body';
+
+const defaultVariantType = '';
+const defaultGetClassNameList = (defaultClassName) => [defaultClassName];
 
 export const ArticleContainer = ({ getClassNameList, sectionName, children }) => (
   <article
@@ -16,35 +23,12 @@ export const ArticleContainer = ({ getClassNameList, sectionName, children }) =>
     {children}
   </article>
 );
-export const ArticleHeader = ({ getClassNameList, children }) => (
-  <header className={classnames(getClassNameList('ArticleTemplate--header'))}>
-    {children}
-  </header>
-);
-export const ArticleSubheader = ({ getClassNameList, children }) => (
-  <header
-    className={classnames(
-      getClassNameList('ArticleTemplate--subheader'),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-  >
-    {children}
-  </header>
-);
-export const ArticleFooter = ({ getClassNameList, children }) => (
-  <footer className={classnames(getClassNameList('ArticleTemplate--footer'))}>
-    {children}
-  </footer>
-);
-
-export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
 class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
+      components: PropTypes.object,
       id: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
@@ -57,6 +41,19 @@ class ArticleTemplate extends React.Component {
       content: PropTypes.array.isRequired,
       sectionName: PropTypes.string.isRequired,
       sections: PropTypes.object.isRequired,
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      variantType: defaultVariantType,
+      getClassNameList: defaultGetClassNameList,
+      components: {
+        ArticleHeader: DefaultArticleHeader,
+        ArticleSubheader: DefaultArticleSubheader,
+        ArticleBody: DefaultArticleBody,
+        ArticleFooter: DefaultArticleBody,
+      }
     };
   }
 

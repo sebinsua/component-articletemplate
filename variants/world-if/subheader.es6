@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-const Rubric = ({ getClassNameList, children }) => (
+import { defaultGenerateClassNameList } from '../../utils';
+
+const Rubric = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <p
     className={classnames(
-      getClassNameList(`ArticleTemplate--rubric`),
+      generateClassNameList(`ArticleTemplate--rubric`),
       'margin-l-1',
       'gutter-l',
       'col-10'
@@ -15,20 +17,25 @@ const Rubric = ({ getClassNameList, children }) => (
   </p>
 );
 
-// TODO: Currently we cannot place that in ArticleSubheader as that
-//       already assumes margins, padding, etc.
 export class WifSubheader extends React.Component {
+
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       rubric: PropTypes.string,
     };
   }
 
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
+
   render() {
-    const { getClassNameList, rubric } = this.props;
+    const { generateClassNameList, rubric } = this.props;
     return (
-      <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric>
+      <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric>
     );
   }
 }

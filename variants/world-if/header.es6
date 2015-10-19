@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { getSrcSet } from '../../utils';
+import { ArticleHeaderContainer, ImageContainer } from '../../header';
+import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
 
-import { ArticleHeaderContainer } from '../../header';
-
-const ArticleHeaderItem1 = ({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem1 = ({ generateClassNameList = defaultGenerateClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
-      getClassNameList(className),
+      generateClassNameList(className),
       'margin-l-1',
       'gutter-l',
       'col-10'
@@ -18,10 +17,10 @@ const ArticleHeaderItem1 = ({ getClassNameList, HeaderItemComponent = 'h1', clas
     {children}
   </HeaderItemComponent>
 );
-const ArticleHeaderItem2 = ({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem2 = ({ generateClassNameList = defaultGenerateClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
-      getClassNameList(className),
+      generateClassNameList(className),
       'margin-l-1',
       'gutter-l'
     )}
@@ -30,9 +29,9 @@ const ArticleHeaderItem2 = ({ getClassNameList, HeaderItemComponent = 'h1', clas
     {children}
   </HeaderItemComponent>
 );
-const Section = ({ getClassNameList, children }) => (
+const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleHeaderItem2
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h2'}
     className="ArticleTemplate--header-section"
     itemProp="articleSection"
@@ -40,9 +39,9 @@ const Section = ({ getClassNameList, children }) => (
     {children}
   </ArticleHeaderItem2>
 );
-const FlyTitle = ({ getClassNameList, children }) => (
+const FlyTitle = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleHeaderItem1
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h1'}
     className="ArticleTemplate--flytitle"
     itemProp="headline"
@@ -50,9 +49,9 @@ const FlyTitle = ({ getClassNameList, children }) => (
     {children}
   </ArticleHeaderItem1>
 );
-const Title = ({ getClassNameList, children }) => (
+const Title = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleHeaderItem1
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h3'}
     className="ArticleTemplate--title"
     itemProp="alternativeHeadline"
@@ -62,9 +61,10 @@ const Title = ({ getClassNameList, children }) => (
 );
 
 export class WifHeader extends React.Component {
+
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       mainImage: PropTypes.object,
       sectionName: PropTypes.string,
       flytitle: PropTypes.string,
@@ -72,38 +72,34 @@ export class WifHeader extends React.Component {
     };
   }
 
-  render() {
-    const { getClassNameList, mainImage, sectionName, flytitle, title } = this.props;
-    return (
-      <div
-        className={classnames(
-          getClassNameList(`ArticleTemplate--imagecontainer`)
-        )}
-      >
-        <div
-          className={classnames(
-            getClassNameList(`ArticleTemplate--imagecontainer-inner`)
-          )}
-        >
-          {mainImage ?
-            <img
-              className={classnames(
-                getClassNameList(`ArticleTemplate--image`)
-              )}
-              src={`${mainImage.src['1.0x']}`}
-              srcSet={getSrcSet(mainImage.src)}
-              alt={mainImage.alt}
-              itemProp="image"
-            />
-          : ''}
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
 
-          <ArticleHeaderContainer getClassNameList={getClassNameList}>
-            {sectionName ? <Section getClassNameList={getClassNameList}>{sectionName}</Section> : ''}
-            {flytitle ? <FlyTitle getClassNameList={getClassNameList}>{flytitle}</FlyTitle> : ''}
-            {title ? <Title getClassNameList={getClassNameList}>{title}</Title> : ''}
-          </ArticleHeaderContainer>
-        </div>
-      </div>
+  render() {
+    const { generateClassNameList, mainImage, sectionName, flytitle, title } = this.props;
+    return (
+      <ImageContainer generateClassNameList={generateClassNameList}>
+        {mainImage ?
+          <img
+            className={classnames(
+              generateClassNameList(`ArticleTemplate--image`)
+            )}
+            src={`${mainImage.src['1.0x']}`}
+            srcSet={getSrcSet(mainImage.src)}
+            alt={mainImage.alt}
+            itemProp="image"
+          />
+        : ''}
+
+        <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
+          {sectionName ? <Section generateClassNameList={generateClassNameList}>{sectionName}</Section> : ''}
+          {flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : ''}
+          {title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : ''}
+        </ArticleHeaderContainer>
+      </ImageContainer>
     );
   }
 }

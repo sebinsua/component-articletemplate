@@ -1,8 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const ArticleFooterContainer = ({ getClassNameList, children }) => (
-  <footer className={classnames(getClassNameList('ArticleTemplate--footer'))}>
+import { defaultGenerateClassNameList } from './utils';
+
+export const ArticleFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+  <footer className={classnames(generateClassNameList('ArticleTemplate--footer'))}>
     {children}
   </footer>
 );

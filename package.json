@@ -1,7 +1,7 @@
 {
   "name": "@economist/component-articletemplate",
   "version": "6.3.2",
-  "description": "An article template",
+  "description": "A template with which to render articles",
   "author": "The Economist (http://economist.com)",
   "license": "ISC",
   "repository": {

@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleSubheaderContainer } from '../../subheader';
+import { defaultGenerateClassNameList } from '../../utils';
 
-const ArticleSubheaderItem = ({ getClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
+const ArticleSubheaderItem = ({ generateClassNameList = defaultGenerateClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
   <SubheaderItemComponent
     className={classnames(
-      getClassNameList(className),
+      generateClassNameList(className),
       'margin-l-1',
       'gutter-l',
       'col-10'
@@ -16,27 +17,27 @@ const ArticleSubheaderItem = ({ getClassNameList, SubheaderItemComponent = 'h2',
     {children}
   </SubheaderItemComponent>
 );
-const Byline = ({ getClassNameList, children }) => (
+const Byline = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
     className="ArticleTemplate--byline"
     itemProp="byline">
     {children}
   </ArticleSubheaderItem>
 );
-const PublishDate = ({ getClassNameList, children }) => (
+const PublishDate = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
     className="ArticleTemplate--pubdate"
     itemProp="publishdate">
     {children}
   </ArticleSubheaderItem>
 );
-const Section = ({ getClassNameList, children }) => (
+const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
     className="ArticleTemplate--section-section"
     itemProp="section">
@@ -45,39 +46,53 @@ const Section = ({ getClassNameList, children }) => (
 );
 
 export class WinSubheader extends React.Component {
+
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       sectionName: PropTypes.string,
     };
   }
 
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
+
   render() {
-    const { getClassNameList, sectionName } = this.props;
+    const { generateClassNameList, sectionName } = this.props;
     return (
-      <ArticleSubheaderContainer getClassNameList={getClassNameList}>
-        <Byline getClassNameList={getClassNameList}>By-line to follow</Byline>
-        <PublishDate getClassNameList={getClassNameList}>Publish date to follow</PublishDate>
-        <Section getClassNameList={getClassNameList}>{sectionName}</Section>
+      <ArticleSubheaderContainer generateClassNameList={generateClassNameList}>
+        <Byline generateClassNameList={generateClassNameList}>TODO: Put byline in the data</Byline>
+        <PublishDate generateClassNameList={generateClassNameList}>TODO: Put publish date in the data</PublishDate>
+        <Section generateClassNameList={generateClassNameList}>{sectionName}</Section>
       </ArticleSubheaderContainer>
     );
   }
 }
 
 export class WinLeaderSubheader extends React.Component {
+
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       sectionName: PropTypes.string,
     };
   }
 
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
+
   render() {
-    const { getClassNameList, sectionName } = this.props;
+    const { generateClassNameList, sectionName } = this.props;
     return (
-      <ArticleSubheaderContainer getClassNameList={getClassNameList}>
-        <PublishDate getClassNameList={getClassNameList}>Publish date to follow</PublishDate>
-        <Section getClassNameList={getClassNameList}>{sectionName}</Section>
+      <ArticleSubheaderContainer generateClassNameList={generateClassNameList}>
+        <PublishDate generateClassNameList={generateClassNameList}>TODO: Put publish date in the data</PublishDate>
+        <Section generateClassNameList={generateClassNameList}>{sectionName}</Section>
       </ArticleSubheaderContainer>
     );
   }

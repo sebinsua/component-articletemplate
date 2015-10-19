@@ -43,4 +43,6 @@ export const variantInnerComponents = {
   },
 };
 
-export default withVariantClassNameList(defaults)(withVariedInnerComponents(variantInnerComponents)(ArticleTemplate));
+export default withVariantClassNameList(defaults)(
+  withVariedInnerComponents(variantInnerComponents)(ArticleTemplate)
+);

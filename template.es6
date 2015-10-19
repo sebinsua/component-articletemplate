@@ -11,11 +11,11 @@ import {
 import DefaultArticleBody from './body';
 
 const defaultVariantType = '';
-const defaultGetClassNameList = (defaultClassName) => [defaultClassName];
+const defaultGenerateClassNameList = (defaultClassName) => [defaultClassName];
 
-export const ArticleContainer = ({ getClassNameList, sectionName, children }) => (
+export const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
-    className={classnames(getClassNameList(`ArticleTemplate--container`))}
+    className={classnames(generateClassNameList(`ArticleTemplate--container`))}
     data-section={sectionName}
     itemScope
     itemType="http://schema.org/NewsArticle"
@@ -47,7 +47,7 @@ class ArticleTemplate extends React.Component {
   static get defaultProps() {
     return {
       variantType: defaultVariantType,
-      getClassNameList: defaultGetClassNameList,
+      generateClassNameList: defaultGenerateClassNameList,
       components: {
         ArticleHeader: DefaultArticleHeader,
         ArticleSubheader: DefaultArticleSubheader,
@@ -62,7 +62,7 @@ class ArticleTemplate extends React.Component {
     if (this.props.variantType === 'world-if') {
       return (
         <WifHeader
-          getClassNameList={this.props.getClassNameList}
+          generateClassNameList={this.props.generateClassNameList}
           variantType={this.props.variantType}
           mainImage={this.props.mainImage}
           section={this.props.section}
@@ -73,7 +73,7 @@ class ArticleTemplate extends React.Component {
     } else if (this.props.variantType === 'world-in-predictors') {
       return (
         <WinPredictorsHeader
-          getClassNameList={this.props.getClassNameList}
+          generateClassNameList={this.props.generateClassNameList}
           variantType={this.props.variantType}
           mainImage={this.props.mainImage}
           flytitle={this.props.flytitle}
@@ -84,7 +84,7 @@ class ArticleTemplate extends React.Component {
     } else {
       return (
         <WinHeader
-          getClassNameList={this.props.getClassNameList}
+          generateClassNameList={this.props.generateClassNameList}
           variantType={this.props.variantType}
           mainImage={this.props.mainImage}
           flytitle={this.props.flytitle}
@@ -124,10 +124,10 @@ class ArticleTemplate extends React.Component {
   */
 
   render() {
-    const { getClassNameList, sectionName } = this.props;
+    const { generateClassNameList, sectionName } = this.props;
     const { ArticleHeader, ArticleSubheader, ArticleBody, ArticleFooter } = this.props.components;
     return (
-      <ArticleContainer getClassNameList={getClassNameList} sectionName={sectionName}>
+      <ArticleContainer generateClassNameList={generateClassNameList} sectionName={sectionName}>
         <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
         <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
         <ArticleBody {...passthroughComponentPropTypesOnly(ArticleBody, this.props)} />

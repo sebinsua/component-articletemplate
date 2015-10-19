@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const ArticleHeaderContainer = ({ getClassNameList, children }) => (
-  <header className={classnames(getClassNameList('ArticleTemplate--header'))}>
+export const ArticleHeaderContainer = ({ generateClassNameList, children }) => (
+  <header className={classnames(generateClassNameList('ArticleTemplate--header'))}>
     {children}
   </header>
 );

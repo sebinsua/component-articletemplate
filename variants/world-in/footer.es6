@@ -3,10 +3,10 @@ import classnames from 'classnames';
 
 import { ArticleFooterContainer } from '../../footer';
 
-const BylineFooter = ({ getClassNameList }) => (
+const BylineFooter = ({ generateClassNameList }) => (
   <div
     className={classnames(
-      getClassNameList(`ArticleTemplate--byline-footer`),
+      generateClassNameList(`ArticleTemplate--byline-footer`),
       'margin-l-1',
       'gutter-l',
       'col-10'
@@ -14,7 +14,7 @@ const BylineFooter = ({ getClassNameList }) => (
   >
     <h3
       className={classnames(
-        getClassNameList(`ArticleTemplate--byline`),
+        generateClassNameList(`ArticleTemplate--byline`),
         'margin-l-1',
         'gutter-l',
         'col-10'
@@ -25,7 +25,7 @@ const BylineFooter = ({ getClassNameList }) => (
     </h3>
     <span
       className={classnames(
-        getClassNameList(`ArticleTemplate--byline-details`),
+        generateClassNameList(`ArticleTemplate--byline-details`),
         'gutter-l',
         'col-10'
       )}
@@ -39,15 +39,15 @@ const BylineFooter = ({ getClassNameList }) => (
 export class WinFooter extends React.Component {
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
     };
   }
 
   render() {
-    const { getClassNameList } = this.props;
+    const { generateClassNameList } = this.props;
     return (
-      <ArticleFooterContainer getClassNameList={getClassNameList}>
-        <BylineFooter getClassNameList={getClassNameList} />
+      <ArticleFooterContainer generateClassNameList={generateClassNameList}>
+        <BylineFooter generateClassNameList={generateClassNameList} />
       </ArticleFooterContainer>
     );
   }

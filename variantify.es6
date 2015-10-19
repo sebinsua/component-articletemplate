@@ -43,11 +43,11 @@ export function withVariantClassNameList({ variantTypes = [], defaultVariantType
 
     render() {
       const { variantType, ...remainingProps } = this.props;
-      const getClassNameList = this.getVariantClassNameListGetter(variantType);
+      const generateClassNameList = this.getVariantClassNameListGetter(variantType);
       return (
         <ComposedComponent
           variantType={variantType}
-          getClassNameList={getClassNameList}
+          generateClassNameList={generateClassNameList}
           {...remainingProps}
         />
       );

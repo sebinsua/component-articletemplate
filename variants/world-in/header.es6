@@ -4,10 +4,10 @@ import classnames from 'classnames';
 import { getSrcSet } from '../../utils';
 import { ArticleHeaderContainer } from '../../header';
 
-const ArticleHeaderItem = ({ getClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
+const ArticleHeaderItem = ({ generateClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
   <HeaderItemComponent
     className={classnames(
-      getClassNameList(className),
+      generateClassNameList(className),
       'gutter-l',
       'col-10'
     )}
@@ -16,9 +16,9 @@ const ArticleHeaderItem = ({ getClassNameList, HeaderItemComponent = 'h1', class
     {children}
   </HeaderItemComponent>
 );
-const FlyTitle = ({ getClassNameList, children }) => (
+const FlyTitle = ({ generateClassNameList, children }) => (
   <ArticleHeaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h1'}
     className="ArticleTemplate--flytitle"
     itemProp="headline"
@@ -26,9 +26,9 @@ const FlyTitle = ({ getClassNameList, children }) => (
     {children}
   </ArticleHeaderItem>
 );
-const Title = ({ getClassNameList, children }) => (
+const Title = ({ generateClassNameList, children }) => (
   <ArticleHeaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h1'}
     className="ArticleTemplate--title"
     itemProp="alternativeHeadline"
@@ -36,9 +36,9 @@ const Title = ({ getClassNameList, children }) => (
     {children}
   </ArticleHeaderItem>
 );
-const Rubric = ({ getClassNameList, children }) => (
+const Rubric = ({ generateClassNameList, children }) => (
   <ArticleHeaderItem
-    getClassNameList={getClassNameList}
+    generateClassNameList={generateClassNameList}
     HeaderItemComponent={'h3'}
     className="ArticleTemplate--rubric"
     itemProp="rubric">
@@ -49,7 +49,7 @@ const Rubric = ({ getClassNameList, children }) => (
 export class WinHeader extends React.Component {
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       mainImage: PropTypes.object,
       flytitle: PropTypes.string,
       title: PropTypes.string,
@@ -58,14 +58,14 @@ export class WinHeader extends React.Component {
   }
 
   render() {
-    const { getClassNameList, mainImage, flytitle, title, rubric } = this.props;
+    const { generateClassNameList, mainImage, flytitle, title, rubric } = this.props;
     return (
-      <div className={classnames(getClassNameList(`ArticleTemplate--imagecontainer`))}>
-        <div className={classnames(getClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
+      <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
+        <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
           {mainImage ?
             <img
               className={classnames(
-                getClassNameList(`ArticleTemplate--image`)
+                generateClassNameList(`ArticleTemplate--image`)
               )}
               src={`${mainImage.src['1.0x']}`}
               srcSet={getSrcSet(mainImage.src)}
@@ -74,10 +74,10 @@ export class WinHeader extends React.Component {
             />
           : ''}
 
-          <ArticleHeaderContainer getClassNameList={getClassNameList}>
-            { flytitle ? <FlyTitle getClassNameList={getClassNameList}>{flytitle}</FlyTitle> : '' }
-            { title ? <Title getClassNameList={getClassNameList}>{title}</Title> : '' }
-            { rubric ? <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric> : '' }
+          <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
+            { flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : '' }
+            { title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : '' }
+            { rubric ? <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric> : '' }
           </ArticleHeaderContainer>
         </div>
       </div>
@@ -88,7 +88,7 @@ export class WinHeader extends React.Component {
 export class WinPredictorsHeader extends React.Component {
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       mainImage: PropTypes.object,
       flytitle: PropTypes.string,
       title: PropTypes.string,
@@ -97,23 +97,23 @@ export class WinPredictorsHeader extends React.Component {
   }
 
   render() {
-    const { getClassNameList, mainImage, flytitle, title, rubric } = this.props;
+    const { generateClassNameList, mainImage, flytitle, title, rubric } = this.props;
     return (
-      <div className={classnames(getClassNameList(`ArticleTemplate--imagecontainer`))}>
-        <div className={classnames(getClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
-          <ArticleHeaderContainer getClassNameList={getClassNameList}>
-            { flytitle ? <FlyTitle getClassNameList={getClassNameList}>{flytitle}</FlyTitle> : '' }
+      <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
+        <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
+          <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
+            { flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : '' }
             {mainImage ?
               <img
-                className={classnames(getClassNameList(`ArticleTemplate--image`))}
+                className={classnames(generateClassNameList(`ArticleTemplate--image`))}
                 src={`${mainImage.src['1.0x']}`}
                 srcSet={getSrcSet(mainImage.src)}
                 alt={mainImage.alt}
                 itemProp="image"
               />
             : ''}
-            { title ? <Title getClassNameList={getClassNameList}>{title}</Title> : '' }
-            { rubric ? <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric> : '' }
+            { title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : '' }
+            { rubric ? <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric> : '' }
           </ArticleHeaderContainer>
         </div>
       </div>

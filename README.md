@@ -14,7 +14,6 @@
 - [ ] `ArticleBodyTemplate` can use `withVariedInnerComponents`.
 - [ ] `renderJSONContents` from within the `body.es6` should be moved into its own file. It could even be a component (though I do not know whether stateless components can recurse or not).
 - [ ] `body.es6#L27` should have the content PropType defined in utils to be used earlier on within the template, too.
-- [ ] `getClassNameList` should be renamed to `generateClassNameList`.
 - [ ] `generateClassNameList` should have a sensible default in `utils.es6` for components that have not had it set correctly.
 - [ ] Remove the commented out code from `ArticleTemplate` after checking that the `propTypes` exist in their correct variant components.
 - [ ] Document what `passthroughComponentPropTypesOnly` does.

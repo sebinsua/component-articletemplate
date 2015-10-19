@@ -7,7 +7,7 @@ import { getSrcSet } from '../../utils';
 
 import { ArticleFooterContainer } from '../../footer';
 
-const WifTabView = ({ getClassNameList, id, sections }) => {
+const WifTabView = ({ generateClassNameList, id, sections }) => {
   const notCurrentArticle = (article) => {
     const currentArticleId = id;
     return currentArticleId !== article.id;
@@ -16,19 +16,19 @@ const WifTabView = ({ getClassNameList, id, sections }) => {
   const sectionNames = Object.keys(sections);
   const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
   return (
-    <TabView getClassNameList={getClassNameList}>
+    <TabView generateClassNameList={generateClassNameList}>
       {sectionNames.map((title, key) => (
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
           <div
             className={classnames(
-              getClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
+              generateClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
             )}
           ></div>
           {sections[title].filter(notCurrentArticle).map((article, articleKey) => (
             <a key={articleKey} href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
               <figure
                 className={classnames(
-                  getClassNameList(`${TabViewDefaultClassName}--View--Content`)
+                  generateClassNameList(`${TabViewDefaultClassName}--View--Content`)
                 )}
               >
                 <img
@@ -50,15 +50,15 @@ const WifTabView = ({ getClassNameList, id, sections }) => {
 export class WifFooter extends React.Component {
   static get propTypes() {
     return {
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       sections: PropTypes.object,
     };
   }
 
   render() {
-    const { getClassNameList } = this.props;
+    const { generateClassNameList } = this.props;
     return (
-      <ArticleFooterContainer getClassNameList={getClassNameList}>
+      <ArticleFooterContainer generateClassNameList={generateClassNameList}>
         <WifTabView {...this.props} />
       </ArticleFooterContainer>
     );

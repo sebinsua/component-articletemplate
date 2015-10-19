@@ -7,7 +7,7 @@ import ImageCaption from '@economist/component-imagecaption';
 import Video from '@economist/component-video';
 import Gallery from '@economist/component-gallery';
 
-function renderJSONContents(components, contents = [], variantType, getClassNameList) {
+function renderJSONContents(components, contents = [], variantType, generateClassNameList) {
   return contents.map((contentPiece, key) => {
     if (typeof contentPiece === 'string') {
       return (
@@ -18,11 +18,11 @@ function renderJSONContents(components, contents = [], variantType, getClassName
     if (!Component) {
       throw new Error('Unknown component ' + contentPiece.component);
     }
-    const children = renderJSONContents(components, contentPiece.content, variantType, getClassNameList);
+    const children = renderJSONContents(components, contentPiece.content, variantType, generateClassNameList);
     return (
       <Component
         key={key}
-        getClassNameList={getClassNameList}
+        generateClassNameList={generateClassNameList}
         variantType={variantType}
         {...contentPiece.props}
       >
@@ -32,9 +32,9 @@ function renderJSONContents(components, contents = [], variantType, getClassName
   });
 }
 
-export const ArticleBodyContainer = ({ getClassNameList, children }) => (
+export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
   <section
-    className={classnames(getClassNameList('ArticleTemplate--section'))}
+    className={classnames(generateClassNameList('ArticleTemplate--section'))}
     itemProp="articleBody"
   >
     {children}
@@ -46,7 +46,7 @@ class ArticleBodyTemplate extends React.Component {
   static get propTypes() {
     return {
       variantType: PropTypes.string,
-      getClassNameList: PropTypes.func,
+      generateClassNameList: PropTypes.func,
       content: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
     };
   }
@@ -67,15 +67,15 @@ class ArticleBodyTemplate extends React.Component {
   }
 
   render() {
-    const { variantType, getClassNameList, content, components } = this.props;
+    const { variantType, generateClassNameList, content, components } = this.props;
     return (
-      <ArticleBodyContainer getClassNameList={getClassNameList}>
+      <ArticleBodyContainer generateClassNameList={generateClassNameList}>
         {
           renderJSONContents(
             components,
             content,
             variantType,
-            getClassNameList
+            generateClassNameList
           )
         }
       </ArticleBodyContainer>

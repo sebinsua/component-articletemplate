@@ -1,25 +1,24 @@
 # component-articletemplate
-> An article template.
-
-- [ ] Come up with a better one-liner description.
-- [ ] Describe what it does.
-- [ ] Describe the components architecture in two or three sentences.
+> A template with which to render articles.
 
 ## Goals
 
-- [ ] Write the goals here as a checklist with some emojis thrown in for good measure.
+- [x] Stateless.
+- [x] Supports different types of article content.
+- [x] Allows article variants with radically-different HTML to co-exist.
+- [x] Separation of styling concerns using variant-specific classes.  
+- [x] Easy switching between variants using a property.
 
-## Refactor
+## Design
 
-- [ ] Encapsulate some of the variants components more.
-- [ ] Refactor the generic items and wrappers by removing the grid styling which was applied to them.
-- [ ] `example.es6` should:
-      (1.) Load the standard ArticleTemplate from `index.es6`
-      (2.) Load the standard WorldIf variant from `variants/world-if/index.es6`
-      (3.) Load the standard WorldIn variant from `variants/world-in/index.es6`
+An `ArticleTemplate` is a description of how an `ArticleHeader`,
+`ArticleSubheader`, `ArticleBody` and `ArticleFooter` should render a page.
 
-## Further thoughts
+By default it will render a simple article page, however the use of the
+higher-order component `withVariedInnerComponents` allows the developer to
+declaratively specify the different article variants. Both `ArticleTemplate`
+and `ArticleBodyTemplate` can be wrapped to this effect.
 
-- [ ] `ArticleBodyTemplate` can also be wrapped with `withVariedInnerComponents`.
-- [ ] `renderJSONContents` from within the `body.es6` could be a component (though I do not know whether stateless components can recurse or not).
-- [ ] Take some of the inner modules inside and create new repos for them.
+All inner components receive a `generateClassNameList` which can have a
+class name passed into it so they generate additional variant classes.
+This function is created from the usage of the higher-order component `withVariantClassNameList`.

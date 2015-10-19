@@ -4,7 +4,9 @@ export function withVariedInnerComponents(variantTypeComponents = {}) {
   return (ComposedComponent) => class VariedComponent extends React.Component {
     render() {
       const { variantType, ...remainingProps } = this.props;
-      const components = variantTypeComponents[variantType] || {};
+      // If variant-specific omponents were found then passthrough,
+      // otherwise just pass the remainingProps and variantType.
+      const components = variantTypeComponents[variantType];
       return (
         <ComposedComponent
           variantType={variantType}
@@ -21,7 +23,7 @@ export function withVariantClassNameList({ variantTypes = [], defaultVariantType
 
     static get propTypes() {
       return {
-        variantType: variantTypes.length ? PropTypes.oneOf(variantTypes) : PropTypes.string,
+        variantType: PropTypes.oneOf(variantTypes),
       };
     }
 

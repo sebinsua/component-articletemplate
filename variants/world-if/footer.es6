@@ -3,18 +3,17 @@ import classnames from 'classnames';
 
 import TabView from '@economist/component-tabview';
 
-import { getSrcSet } from '../../utils';
-
 import { ArticleFooterContainer } from '../../footer';
+import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
 
-const WifTabView = ({ generateClassNameList, id, sections }) => {
+const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, sections }) => {
   const notCurrentArticle = (article) => {
     const currentArticleId = id;
     return currentArticleId !== article.id;
   };
 
   const sectionNames = Object.keys(sections);
-  const TabViewDefaultClassName = TabView.defaultClassName || 'TabView';
+  const TabViewDefaultClassName = 'TabView';
   return (
     <TabView generateClassNameList={generateClassNameList}>
       {sectionNames.map((title, key) => (
@@ -48,10 +47,17 @@ const WifTabView = ({ generateClassNameList, id, sections }) => {
 };
 
 export class WifFooter extends React.Component {
+
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
       sections: PropTypes.object,
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
     };
   }
 

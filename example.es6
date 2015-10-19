@@ -1,11 +1,12 @@
 import React from 'react';
-import ArticleTemplate from './variants/world-in';
+import { WorldInArticle, WorldIfArticle } from './index.es6';
+import ArticleTemplate from './index.es6';
 
 import article from './test/data/article';
 import sections from './test/data/sections';
 
 export default (
-  <ArticleTemplate
+  <WorldInArticle
     variantType={'world-in-base'}
     id={article.id}
     slug={article.attributes.slug}

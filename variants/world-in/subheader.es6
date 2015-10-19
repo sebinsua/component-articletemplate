@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleSubheaderContainer } from '../../subheader';
+import { defaultGenerateClassNameList } from '../../utils';
 
-const ArticleSubheaderItem = ({ generateClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
+const ArticleSubheaderItem = ({ generateClassNameList = defaultGenerateClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
   <SubheaderItemComponent
     className={classnames(
       generateClassNameList(className),
@@ -16,7 +17,7 @@ const ArticleSubheaderItem = ({ generateClassNameList, SubheaderItemComponent = 
     {children}
   </SubheaderItemComponent>
 );
-const Byline = ({ generateClassNameList, children }) => (
+const Byline = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
     generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
@@ -25,7 +26,7 @@ const Byline = ({ generateClassNameList, children }) => (
     {children}
   </ArticleSubheaderItem>
 );
-const PublishDate = ({ generateClassNameList, children }) => (
+const PublishDate = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
     generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
@@ -34,7 +35,7 @@ const PublishDate = ({ generateClassNameList, children }) => (
     {children}
   </ArticleSubheaderItem>
 );
-const Section = ({ generateClassNameList, children }) => (
+const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <ArticleSubheaderItem
     generateClassNameList={generateClassNameList}
     SubheaderItemComponent={'h2'}
@@ -45,6 +46,7 @@ const Section = ({ generateClassNameList, children }) => (
 );
 
 export class WinSubheader extends React.Component {
+
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
@@ -52,12 +54,18 @@ export class WinSubheader extends React.Component {
     };
   }
 
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
+
   render() {
     const { generateClassNameList, sectionName } = this.props;
     return (
       <ArticleSubheaderContainer generateClassNameList={generateClassNameList}>
-        <Byline generateClassNameList={generateClassNameList}>By-line to follow</Byline>
-        <PublishDate generateClassNameList={generateClassNameList}>Publish date to follow</PublishDate>
+        <Byline generateClassNameList={generateClassNameList}>TODO: Put byline in the data</Byline>
+        <PublishDate generateClassNameList={generateClassNameList}>TODO: Put publish date in the data</PublishDate>
         <Section generateClassNameList={generateClassNameList}>{sectionName}</Section>
       </ArticleSubheaderContainer>
     );
@@ -65,6 +73,7 @@ export class WinSubheader extends React.Component {
 }
 
 export class WinLeaderSubheader extends React.Component {
+
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
@@ -72,11 +81,17 @@ export class WinLeaderSubheader extends React.Component {
     };
   }
 
+  static get defaultProps() {
+    return {
+      generateClassNameList: defaultGenerateClassNameList,
+    };
+  }
+
   render() {
     const { generateClassNameList, sectionName } = this.props;
     return (
       <ArticleSubheaderContainer generateClassNameList={generateClassNameList}>
-        <PublishDate generateClassNameList={generateClassNameList}>Publish date to follow</PublishDate>
+        <PublishDate generateClassNameList={generateClassNameList}>TODO: Put publish date in the data</PublishDate>
         <Section generateClassNameList={generateClassNameList}>{sectionName}</Section>
       </ArticleSubheaderContainer>
     );

@@ -1,7 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const ArticleSubheaderContainer = ({ generateClassNameList, children }) => (
+import { defaultGenerateClassNameList } from './utils';
+
+export const ArticleSubheaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <header
     className={classnames(
       generateClassNameList('ArticleTemplate--subheader'),

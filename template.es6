@@ -1,16 +1,12 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { getSrcSet, passthroughComponentPropTypesOnly } from './utils';
-
-import {
-  WifHeader as DefaultArticleHeader,
-  WifSubheader as DefaultArticleSubheader,
-  WifFooter as DefaultArticleFooter
-} from './variants/world-if';
+import { WifHeader as DefaultArticleHeader } from './variants/world-if/header';
+import { WifSubheader as DefaultArticleSubheader } from './variants/world-if/subheader';
+import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
-import { defaultGenerateClassNameList } from './utils';
+import { getSrcSet, passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
 const defaultVariantType = '';
 
 export const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
@@ -64,7 +60,11 @@ class ArticleTemplate extends React.Component {
       <ArticleContainer generateClassNameList={generateClassNameList} sectionName={sectionName}>
         <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
         <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
-        <ArticleBody {...passthroughComponentPropTypesOnly(ArticleBody, this.props)} />
+        <ArticleBody
+          variantType={this.props.variantType}
+          generateClassNameList={this.props.generateClassNameList}
+          content={this.props.content}
+        />
         <ArticleFooter {...passthroughComponentPropTypesOnly(ArticleFooter, this.props)} />
       </ArticleContainer>
     );

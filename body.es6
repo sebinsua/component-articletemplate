@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import AnimatedPanel from '@economist/component-animatedpanel';
-import Gobbet from '@economist/component-wifgobbet';
-import ImageCaption from '@economist/component-imagecaption';
-import Video from '@economist/component-video';
-import Gallery from '@economist/component-gallery';
+import DefaultAnimatedPanel from '@economist/component-animatedpanel';
+import DefaultGobbet from '@economist/component-wifgobbet';
+import DefaultImageCaption from '@economist/component-imagecaption';
+import DefaultVideo from '@economist/component-video';
+import DefaultGallery from '@economist/component-gallery';
+
+import { defaultGenerateClassNameList } from './utils';
 
 function renderJSONContents(components, contents = [], variantType, generateClassNameList) {
   return contents.map((contentPiece, key) => {
@@ -22,8 +24,8 @@ function renderJSONContents(components, contents = [], variantType, generateClas
     return (
       <Component
         key={key}
-        generateClassNameList={generateClassNameList}
         variantType={variantType}
+        generateClassNameList={generateClassNameList}
         {...contentPiece.props}
       >
         {children}
@@ -53,15 +55,16 @@ class ArticleBodyTemplate extends React.Component {
 
   static get defaultProps() {
     return {
+      generateClassNameList: defaultGenerateClassNameList,
       components: {
         Image: 'img',
         Pullquote: 'blockquote',
         ArticleSubHead: 'h3',
-        Gobbet,
-        ImageCaption,
-        Video,
-        AnimatedPanel,
-        Gallery,
+        Gobbet: DefaultGobbet,
+        ImageCaption: DefaultImageCaption,
+        Video: DefaultVideo,
+        AnimatedPanel: DefaultAnimatedPanel,
+        Gallery: DefaultGallery,
       },
     };
   }

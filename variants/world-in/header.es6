@@ -103,6 +103,8 @@ export class WinPredictorsHeader extends React.Component {
         <div className={classnames(getClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
           <ArticleHeaderContainer getClassNameList={getClassNameList}>
             { flytitle ? <FlyTitle getClassNameList={getClassNameList}>{flytitle}</FlyTitle> : '' }
+            { title ? <Title getClassNameList={getClassNameList}>{title}</Title> : '' }
+            { rubric ? <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric> : '' }
             {mainImage ?
               <img
                 className={classnames(getClassNameList(`ArticleTemplate--image`))}
@@ -112,8 +114,6 @@ export class WinPredictorsHeader extends React.Component {
                 itemProp="image"
               />
             : ''}
-            { title ? <Title getClassNameList={getClassNameList}>{title}</Title> : '' }
-            { rubric ? <Rubric getClassNameList={getClassNameList}>{rubric}</Rubric> : '' }
           </ArticleHeaderContainer>
         </div>
       </div>

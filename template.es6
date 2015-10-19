@@ -10,8 +10,8 @@ import {
 } from './variants/world-if';
 import DefaultArticleBody from './body';
 
+import { defaultGenerateClassNameList } from './utils';
 const defaultVariantType = '';
-const defaultGenerateClassNameList = (defaultClassName) => [defaultClassName];
 
 export const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
@@ -56,72 +56,6 @@ class ArticleTemplate extends React.Component {
       }
     };
   }
-
-  /*
-  renderHeader = () => {
-    if (this.props.variantType === 'world-if') {
-      return (
-        <WifHeader
-          generateClassNameList={this.props.generateClassNameList}
-          variantType={this.props.variantType}
-          mainImage={this.props.mainImage}
-          section={this.props.section}
-          flytitle={this.props.flytitle}
-          title={this.props.title}
-        />
-      );
-    } else if (this.props.variantType === 'world-in-predictors') {
-      return (
-        <WinPredictorsHeader
-          generateClassNameList={this.props.generateClassNameList}
-          variantType={this.props.variantType}
-          mainImage={this.props.mainImage}
-          flytitle={this.props.flytitle}
-          title={this.props.title}
-          rubric={this.props.rubric}
-        />
-      );
-    } else {
-      return (
-        <WinHeader
-          generateClassNameList={this.props.generateClassNameList}
-          variantType={this.props.variantType}
-          mainImage={this.props.mainImage}
-          flytitle={this.props.flytitle}
-          title={this.props.title}
-          rubric={this.props.rubric}
-        />
-      );
-    }
-  }
-
-  renderSubheader = () => {
-    if (this.props.variantType === 'world-if') {
-      return <WifSubheader {...this.props} />;
-    } else if (this.props.variantType === 'world-in-leader') {
-      return <WinLeaderSubheader {...this.props} />;
-    } else {
-      return <WinSubheader {...this.props} />;
-    }
-  }
-
-  renderBody = () => {
-    return (
-      <ArticleBody
-        variantType={this.props.variantType}
-        content={this.props.content}
-      />
-    );
-  }
-
-  renderFooter = () => {
-    if (this.props.variantType === 'world-if') {
-      return <WifFooter {...this.props} />
-    } else {
-      return <WinFooter {...this.props} />;
-    }
-  }
-  */
 
   render() {
     const { generateClassNameList, sectionName } = this.props;

@@ -1,8 +1,6 @@
-@import "./base";
 @import "./portrait";
 @import "./leader";
 @import "./predictors";
-
 
 /* need to add the following fonts as a component possibly? */
 
@@ -38,10 +36,6 @@
   --color-mid-blue: #367FB6;
   --color-dark-blue: #253A43;
 };
-
-
-.foo {
-}
 
 .ArticleTemplate--imagecontainer {
   min-height: 250px;
@@ -316,7 +310,7 @@
 
   .ArticleTemplate--section-section {
     padding: 0 0 0 3%;
-}
+  }
 
   .ArticleTemplate--imagecontainer {
     min-height: auto;

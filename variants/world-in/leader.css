@@ -1,9 +1,8 @@
-/* leader only styles */
-
 .world-in-leader-ArticleTemplate--header {
   background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
-.world-in-leader-ArticleTemplate--title, .world-in-leader-ArticleTemplate--rubric {
-  color: var(--color-worldin-bodycopy-black) !important;
+.world-in-leader-ArticleTemplate--title,
+.world-in-leader-ArticleTemplate--rubric {
+  color: var(--color-dark-grey) !important;
 }

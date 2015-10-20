@@ -7,7 +7,7 @@ import { withVariantClassNameList, withVariedInnerComponents } from '../../varia
 import ArticleTemplate from '../../template';
 
 export const defaults = {
-  defaultVariantType: 'world-in-base',
+  defaultVariantType: 'world-in-predictors',
   variantTypes: [
     'world-in-base',
     'world-in-portrait',

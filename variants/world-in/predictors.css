@@ -7,13 +7,12 @@
 
 .world-in-predictors-ArticleTemplate--title,
 .world-in-predictors-ArticleTemplate--rubric {
-  color: var(--color-predictors-blue) !important;
+  color: var(--color-dark-blue) !important;
   background-color: transparent;
-    width: 50% !important;
+  width: 64% !important;
 }
 
 .world-in-predictors-ArticleTemplate--rubric {
-  font-size: 30px !important;
   float: left;
   border-left: 1px solid #F00;
   padding-bottom: 13px;
@@ -21,14 +20,17 @@
 
 .world-in-predictors-ArticleTemplate--imagecontainer {
   min-height: inherit !important;
+  width: 100%;
+  display: inline-block;
+  border-left: 1px solid #808080;
+  position: initial !important;
 }
 
 .world-in-predictors-ArticleTemplate--image {
-  /* width and height for dummy layout purpose will need to be 100% in prod */
   width: 250px !important;
-  height: 380px !important;
+  height: auto !important;
   position: absolute;
-  top: 25px;
+  top: 0;
   right: 0;
 }
 
@@ -36,6 +38,8 @@
   background-color: transparent !important;
   position: relative !important;
   border: 0 !important;
+  margin-bottom: -18px;
+  min-height: 50px !important;
 }
 
 .world-in-predictors-ArticleTemplate--header:after {
@@ -44,7 +48,7 @@
 
 .world-in-predictors-ArticleTemplate--flytitle {
   display: block !important;
-  color: var(--color-econ-red);
+  color: var(--color-red);
   font-family: "Officina_bold";
   font-size: 21px !important;
   font-weight: normal;
@@ -66,17 +70,26 @@
   padding-top: 15px !important;
 }
 
-.world-in-predictors-ArticleTemplate--byline-footer .world-in-predictors-ArticleTemplate--byline,
+/*.world-in-predictors-ArticleTemplate--byline-footer .world-in-predictors-ArticleTemplate--byline,
 .world-in-predictors-ArticleTemplate--section-section,
 .ArticleTemplate--crossheads p {
   color: var(--color-predictors-blue) !important;
-}
+}*/
 
 
 
 @media screen and (max-width: 860px) {
-  .world-in-predictors-ArticleTemplate--title {
-    width: 50%;
+  .world-in-predictors-ArticleTemplate--title,
+  .world-in-predictors-ArticleTemplate--rubric {
+    width: 50% !important;
+  }
+  .world-in-predictors-ArticleTemplate--rubric {
+    padding-bottom: 0 !important;
+  }
+
+  .world-in-predictors-ArticleTemplate--header {
+    position: relative;
+    margin-top: 0 !important;
   }
 }
 
@@ -85,9 +98,8 @@
   .world-in-predictors-ArticleTemplate--image {
     float: right;
     position: initial;
-    border-left: 1px solid #F00;
-    width: 99.7% !important;
-    height: 100% !important;
+    width: 60% !important;
+    height: auto !important;
   }
 
   .world-in-predictors-ArticleTemplate--rubric {

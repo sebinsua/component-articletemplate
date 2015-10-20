@@ -111,22 +111,22 @@ export class WinPredictorsHeader extends React.Component {
   render() {
     const { generateClassNameList, mainImage, flytitle, title, rubric } = this.props;
     return (
-      <ImageContainer generateClassNameList={generateClassNameList}>
-        <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
-          { flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : '' }
-          { title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : '' }
-          { rubric ? <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric> : '' }
-          {mainImage ?
+      <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
+        { flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : '' }
+        { title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : '' }
+        { rubric ? <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric> : '' }
+        {mainImage ?
+          <ImageContainer generateClassNameList={generateClassNameList}>
             <img
               className={classnames(generateClassNameList(`ArticleTemplate--image`))}
               src={`${mainImage.src['1.0x']}`}
               srcSet={getSrcSet(mainImage.src)}
               alt={mainImage.alt}
               itemProp="image"
-            />
-          : ''}
-        </ArticleHeaderContainer>
-      </ImageContainer>
+              />
+          </ImageContainer>
+        : ''}
+      </ArticleHeaderContainer>
     );
   }
 }

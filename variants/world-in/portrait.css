@@ -1,4 +1,6 @@
-/* portrait only styles*/
+.world-in-portrait-ArticleTemplate--container {
+  background-color: #E7EBEB !important;
+}
 
 .world-in-portrait-ArticleTemplate--header {
   height: auto;
@@ -12,22 +14,26 @@
 .world-in-portrait-ArticleTemplate--header:after {
     background-color: #E7EBEB !important;
     bottom: -3px !important;
+    content: none !important;
 }
 
 .world-in-portrait-ArticleTemplate--rubric {
+  font-style: italic;
   color: var(--color-white);
   border-left: 1px solid grey;
   background-color: #748C94 !important;
-  width: 96.8%;
+  width: 96.9%;
   margin: 0 !important;
   padding: 15px 0 3% 3% !important;
 }
 
 .world-in-portrait-ArticleTemplate--title {
   padding: 25px 0 25px 3%;
-  color: var(--color-worldin-bodycopy-black) !important;
+  color: var(--color-dark-grey) !important;
   width: 100%;
   background-color: transparent;
+  line-height: 0 !important;
+  padding: 16px 3% 40px 3% !important;
 }
 
 .world-in-portrait-ArticleTemplate--byline {
@@ -35,22 +41,37 @@
 }
 
 .world-in-portrait-ArticleTemplate--container {
-    background-color: #E7EBEB;
+    background-color: #E7EBEB !important;
+}
+
+.world-in-portrait-ArticleTemplate--image {
+    position: relative;
+    top: -40px;
+}
+
+@media screen and (max-width: 860px) {
+  .world-in-portrait-ArticleTemplate--header {
+    position: relative !important;
+    margin-top: -130px !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .world-in-portrait-ArticleTemplate--header {
-    margin-top: -50% !important;
+    margin-top: -40% !important;
     position: relative;
   }
   .world-in-portrait-ArticleTemplate--title {
-    min-height: 240px;
+    margin-bottom: 30% !important;
     padding-top: 0;
-    line-height: 0px !important;
+    width: 80%;
+    line-height: 34px !important;
   }
 
-  .ArticleTemplate--image {
+.world-in-portrait-ArticleTemplate--image {
     position: relative;
-    top: 100px;
+    top: 58px;
+    transform: scale(1.4);
+    left: -58px;
   }
 }

@@ -6,7 +6,10 @@ export function withVariedInnerComponents(variantTypeComponents = {}, defaultVar
       const { variantType, ...remainingProps } = this.props;
       // If variant-specific omponents were found then passthrough,
       // otherwise just pass the remainingProps and variantType.
-      const components = variantTypeComponents[variantType] || variantTypeComponents[defaultVariantType];
+      const components = Object.assign(
+        (ComposedComponent.defaultProps || {}).components || {},
+        variantTypeComponents[variantType] || variantTypeComponents[defaultVariantType]
+      );
       return (
         <ComposedComponent
           variantType={variantType}

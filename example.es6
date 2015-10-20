@@ -7,7 +7,7 @@ import sections from './test/data/sections';
 
 export default (
   <WorldInArticle
-    variantType={'world-in-portrait'}
+    variantType={'world-in-base'}
     id={article.id}
     slug={article.attributes.slug}
     title={article.attributes.title}

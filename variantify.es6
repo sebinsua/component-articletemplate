@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-export function withVariedInnerComponents(variantTypeComponents = {}) {
+export function withVariedInnerComponents(variantTypeComponents = {}, defaultVariantType) {
   return (ComposedComponent) => class VariedComponent extends React.Component {
     render() {
       const { variantType, ...remainingProps } = this.props;
       // If variant-specific omponents were found then passthrough,
       // otherwise just pass the remainingProps and variantType.
-      const components = variantTypeComponents[variantType];
+      const components = variantTypeComponents[variantType] || variantTypeComponents[defaultVariantType];
       return (
         <ComposedComponent
           variantType={variantType}
@@ -18,7 +18,7 @@ export function withVariedInnerComponents(variantTypeComponents = {}) {
   };
 }
 
-export function withVariantClassNameList({ variantTypes = [], defaultVariantType = '' }) {
+export function withVariantClassNameList({ variantTypes = [], defaultVariantType }) {
   return (ComposedComponent) => class WithVariantClassNameListComponent extends React.Component {
 
     static get propTypes() {

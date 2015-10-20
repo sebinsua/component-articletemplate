@@ -1,7 +1,5 @@
-/* predictor only styles*/
-
 .world-in-predictors-ArticleTemplate--container {
-  background-color: #E7EBEB !important;
+  background-color: #e7f0f5 !important;
   padding-top: 40px;
 }
 
@@ -70,14 +68,6 @@
   padding-top: 15px !important;
 }
 
-/*.world-in-predictors-ArticleTemplate--byline-footer .world-in-predictors-ArticleTemplate--byline,
-.world-in-predictors-ArticleTemplate--section-section,
-.ArticleTemplate--crossheads p {
-  color: var(--color-predictors-blue) !important;
-}*/
-
-
-
 @media screen and (max-width: 860px) {
   .world-in-predictors-ArticleTemplate--title,
   .world-in-predictors-ArticleTemplate--rubric {
@@ -92,7 +82,6 @@
     margin-top: 0 !important;
   }
 }
-
 
 @media screen and (max-width: 700px) {
   .world-in-predictors-ArticleTemplate--image {
@@ -112,11 +101,9 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .world-in-predictors-ArticleTemplate--container {
     padding-top: 20px;
   }
-
 
   .world-in-predictors-ArticleTemplate--header {
     margin-top: 0 !important;

@@ -1,4 +1,4 @@
-# component-articletemplate
+# [component-win-navigation](http://economist-components.github.io/component-library/#@economist/component-articletemplate)
 > A template with which to render articles.
 
 ## Goals
@@ -22,3 +22,19 @@ and `ArticleBodyTemplate` can be wrapped to this effect.
 All inner components receive a `generateClassNameList` which can have a
 class name passed into it so they generate additional variant classes.
 This function is created from the usage of the higher-order component `withVariantClassNameList`.
+
+## Usage
+
+[See `example.es6` for usage instructions.](./example.es6)
+
+## Install
+
+```
+npm install --save @economist/component-articletemplate;
+```
+
+## Run tests
+
+```
+npm test;
+```

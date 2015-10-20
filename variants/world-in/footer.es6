@@ -4,44 +4,19 @@ import classnames from 'classnames';
 import { ArticleFooterContainer } from '../../footer';
 import { defaultGenerateClassNameList } from '../../utils';
 
-const Byline = ({ generateClassNameList = defaultGenerateClassNameList }) => (
-  <h3
-    className={classnames(
-      generateClassNameList(`ArticleTemplate--byline`),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-    itemProp="byline"
-  >
-    Zanny Minton Beddoes (TODO: Put byline in the data)
-  </h3>
-);
+const extendedFooterBylineClasses = [
+  'margin-l-1',
+  'gutter-l',
+  'col-10',
+];
+const extendedFooterBylineDetailsClasses = [
+  'gutter-l',
+  'col-10',
+];
 
-const BylineDetails = ({ generateClassNameList = defaultGenerateClassNameList }) => (
-  <span
-    className={classnames(
-      generateClassNameList(`ArticleTemplate--byline-details`),
-      'gutter-l',
-      'col-10'
-    )}
-    itemProp="bylinedetails"
-  >
-  business affairs editor, The Economist (TODO: Put byline details in the data)
-  </span>
-);
-
-const BylineFooter = ({ generateClassNameList = defaultGenerateClassNameList }) => (
-  <div
-    className={classnames(
-      generateClassNameList(`ArticleTemplate--byline-footer`),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-  >
-    <Byline generateClassNameList={generateClassNameList} />
-    <BylineDetails generateClassNameList={generateClassNameList} />
+const BylineFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+  <div className={classnames(generateClassNameList(`ArticleTemplate--byline-footer`), ...extendedFooterBylineClasses)}>
+    {children}
   </div>
 );
 
@@ -63,7 +38,14 @@ export class WinFooter extends React.Component {
     const { generateClassNameList } = this.props;
     return (
       <ArticleFooterContainer generateClassNameList={generateClassNameList}>
-        <BylineFooter generateClassNameList={generateClassNameList} />
+        <BylineFooterContainer generateClassNameList={generateClassNameList}>
+          <h3 itemProp="byline" className={classnames(generateClassNameList(`ArticleTemplate--byline`), ...extendedFooterBylineClasses)}>
+            Zanny Minton Beddoes (TODO: Put byline in the data)
+          </h3>
+          <span itemProp="bylinedetails" className={classnames(generateClassNameList(`ArticleTemplate--byline-details`), ...extendedFooterBylineDetailsClasses)}>
+            business affairs editor, The Economist (TODO: Put byline details in the data)
+          </span>
+        </BylineFooterContainer>
       </ArticleFooterContainer>
     );
   }

@@ -18,18 +18,11 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
     <TabView generateClassNameList={generateClassNameList}>
       {sectionNames.map((title, key) => (
         <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
-          <div
-            className={classnames(
-              generateClassNameList(`${TabViewDefaultClassName}--Views--Tint`)
-            )}
-          ></div>
+          <div className={classnames(generateClassNameList(`${TabViewDefaultClassName}--Views--Tint`))}>
+          </div>
           {sections[title].filter(notCurrentArticle).map((article, articleKey) => (
             <a key={articleKey} href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
-              <figure
-                className={classnames(
-                  generateClassNameList(`${TabViewDefaultClassName}--View--Content`)
-                )}
-              >
+              <figure className={classnames(generateClassNameList(`${TabViewDefaultClassName}--View--Content`))}>
                 <img
                   src={`${article.attributes.tileimage['1.0x']}`}
                   srcSet={getSrcSet(article.attributes.tileimage)}

@@ -3,19 +3,11 @@ import classnames from 'classnames';
 
 import { defaultGenerateClassNameList } from '../../utils';
 
-const Rubric = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <p
-    className={classnames(
-      generateClassNameList(`ArticleTemplate--rubric`),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-    itemProp="description"
-  >
-    {children}
-  </p>
-);
+const extendedSubheaderItemClasses = [
+  'margin-l-1',
+  'gutter-l',
+  'col-10',
+];
 
 export class WifSubheader extends React.Component {
 
@@ -35,7 +27,9 @@ export class WifSubheader extends React.Component {
   render() {
     const { generateClassNameList, rubric } = this.props;
     return (
-      <Rubric generateClassNameList={generateClassNameList}>{rubric}</Rubric>
+      <p itemProp="description" className={classnames(generateClassNameList(`ArticleTemplate--rubric`), ...extendedSubheaderItemClasses)}>
+        {rubric}
+      </p>
     );
   }
 }

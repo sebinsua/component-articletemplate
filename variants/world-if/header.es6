@@ -4,61 +4,15 @@ import classnames from 'classnames';
 import { ArticleHeaderContainer, ImageContainer } from '../../header';
 import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
 
-const ArticleHeaderItem1 = ({ generateClassNameList = defaultGenerateClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
-  <HeaderItemComponent
-    className={classnames(
-      generateClassNameList(className),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-    itemProp={itemProp}
-  >
-    {children}
-  </HeaderItemComponent>
-);
-const ArticleHeaderItem2 = ({ generateClassNameList = defaultGenerateClassNameList, HeaderItemComponent = 'h1', className, itemProp, children }) => (
-  <HeaderItemComponent
-    className={classnames(
-      generateClassNameList(className),
-      'margin-l-1',
-      'gutter-l'
-    )}
-    itemProp={itemProp}
-  >
-    {children}
-  </HeaderItemComponent>
-);
-const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleHeaderItem2
-    generateClassNameList={generateClassNameList}
-    HeaderItemComponent={'h2'}
-    className="ArticleTemplate--header-section"
-    itemProp="articleSection"
-  >
-    {children}
-  </ArticleHeaderItem2>
-);
-const FlyTitle = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleHeaderItem1
-    generateClassNameList={generateClassNameList}
-    HeaderItemComponent={'h1'}
-    className="ArticleTemplate--flytitle"
-    itemProp="headline"
-  >
-    {children}
-  </ArticleHeaderItem1>
-);
-const Title = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleHeaderItem1
-    generateClassNameList={generateClassNameList}
-    HeaderItemComponent={'h3'}
-    className="ArticleTemplate--title"
-    itemProp="alternativeHeadline"
-  >
-    {children}
-  </ArticleHeaderItem1>
-);
+const extendedSectionHeaderItemClasses = [
+  'margin-l-1',
+  'gutter-l'
+];
+const extendedHeaderItemClasses = [
+  'margin-l-1',
+  'gutter-l',
+  'col-10'
+];
 
 export class WifHeader extends React.Component {
 
@@ -80,24 +34,40 @@ export class WifHeader extends React.Component {
 
   render() {
     const { generateClassNameList, mainImage, sectionName, flytitle, title } = this.props;
+
+    let mainImageEl, sectionEl, flytitleEl, titleEl;
+    if (mainImage) {
+      mainImageEl = <img
+        className={classnames(generateClassNameList(`ArticleTemplate--image`))}
+        src={`${mainImage.src['1.0x']}`}
+        srcSet={getSrcSet(mainImage.src)}
+        alt={mainImage.alt}
+        itemProp="image"
+      />
+    }
+    if (sectionName) {
+      sectionEl = <h2 itemProp="articleSection" className={classnames(generateClassNameList("ArticleTemplate--header-section"), ...extendedSectionHeaderItemClasses)}>
+        {sectionName}
+      </h2>
+    }
+    if (flytitle) {
+      flytitleEl = <h1 itemProp="headline" className={classnames(generateClassNameList("ArticleTemplate--flytitle"), ...extendedHeaderItemClasses)}>
+        {flytitle}
+      </h1>
+    }
+    if (title) {
+      titleEl = <h3 itemProp="alternativeHeadline" className={classnames(generateClassNameList("ArticleTemplate--title"), ...extendedHeaderItemClasses)}>
+        {title}
+      </h3>
+    }
+
     return (
       <ImageContainer generateClassNameList={generateClassNameList}>
-        {mainImage ?
-          <img
-            className={classnames(
-              generateClassNameList(`ArticleTemplate--image`)
-            )}
-            src={`${mainImage.src['1.0x']}`}
-            srcSet={getSrcSet(mainImage.src)}
-            alt={mainImage.alt}
-            itemProp="image"
-          />
-        : ''}
-
+        {mainImageEl}
         <ArticleHeaderContainer generateClassNameList={generateClassNameList}>
-          {sectionName ? <Section generateClassNameList={generateClassNameList}>{sectionName}</Section> : ''}
-          {flytitle ? <FlyTitle generateClassNameList={generateClassNameList}>{flytitle}</FlyTitle> : ''}
-          {title ? <Title generateClassNameList={generateClassNameList}>{title}</Title> : ''}
+          {sectionEl}
+          {flytitleEl}
+          {titleEl}
         </ArticleHeaderContainer>
       </ImageContainer>
     );

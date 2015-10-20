@@ -4,45 +4,26 @@ import classnames from 'classnames';
 import { ArticleSubheaderContainer } from '../../subheader';
 import { defaultGenerateClassNameList } from '../../utils';
 
-const ArticleSubheaderItem = ({ generateClassNameList = defaultGenerateClassNameList, SubheaderItemComponent = 'h2', className, itemProp, children }) => (
-  <SubheaderItemComponent
-    className={classnames(
-      generateClassNameList(className),
-      'margin-l-1',
-      'gutter-l',
-      'col-10'
-    )}
-    itemProp={itemProp}
-  >
-    {children}
-  </SubheaderItemComponent>
-);
+const extendedSubheaderItemClasses = [
+  'margin-l-1',
+  'gutter-l',
+  'col-10',
+];
+
 const Byline = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleSubheaderItem
-    generateClassNameList={generateClassNameList}
-    SubheaderItemComponent={'h2'}
-    className="ArticleTemplate--byline"
-    itemProp="byline">
+  <h2 itemProp="byline" className={classnames(generateClassNameList("ArticleTemplate--byline"), ...extendedSubheaderItemClasses)}>
     {children}
-  </ArticleSubheaderItem>
+  </h2>
 );
 const PublishDate = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleSubheaderItem
-    generateClassNameList={generateClassNameList}
-    SubheaderItemComponent={'h2'}
-    className="ArticleTemplate--pubdate"
-    itemProp="publishdate">
+  <h2 itemProp="publishdate" className={classnames(generateClassNameList("ArticleTemplate--pubdate"), ...extendedSubheaderItemClasses)}>
     {children}
-  </ArticleSubheaderItem>
+  </h2>
 );
 const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <ArticleSubheaderItem
-    generateClassNameList={generateClassNameList}
-    SubheaderItemComponent={'h2'}
-    className="ArticleTemplate--section-section"
-    itemProp="section">
+  <h2 itemProp="section" className={classnames(generateClassNameList("ArticleTemplate--section-section"), ...extendedSubheaderItemClasses)}>
     {children}
-  </ArticleSubheaderItem>
+  </h2>
 );
 
 export class WinSubheader extends React.Component {

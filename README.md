@@ -1,4 +1,4 @@
-# [component-win-navigation](http://economist-components.github.io/component-library/#@economist/component-articletemplate)
+# [component-articletemplate](http://economist-components.github.io/component-library/#@economist/component-articletemplate)
 > A template with which to render articles.
 
 ## Goals

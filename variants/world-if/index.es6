@@ -4,18 +4,17 @@ import { WifSubheader } from './subheader';
 import ArticleBody from '../../body';
 import { WifFooter } from './footer';
 
-import compose from 'lodash.compose';
-import { withVariantClassNameList, withVariedInnerComponents } from '../../variantify';
-import ArticleTemplate from '../../template';
+import variantify from '../../variantify';
+import ArticleTemplate from '../../article';
 
-export const defaults = {
+const defaults = {
   defaultVariantType: 'world-if',
   variantTypes: [
     'world-if',
   ],
 };
 
-export const variantInnerComponents = {
+const variantInnerComponents = {
   'world-if': {
     ArticleHeader: WifHeader,
     ArticleSubheader: WifSubheader,
@@ -24,8 +23,5 @@ export const variantInnerComponents = {
   },
 };
 
-const vary = compose(
-  withVariantClassNameList(defaults),
-  withVariedInnerComponents(variantInnerComponents, defaults.defaultVariantType)
-);
+const vary = variantify(defaults, variantInnerComponents);
 export default vary(ArticleTemplate);

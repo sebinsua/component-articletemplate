@@ -1,4 +1,4 @@
-import ArticleTemplate from './template';
+import ArticleTemplate from './article';
 
 import WorldIfArticle from './variants/world-if';
 import WorldInArticle from './variants/world-in';

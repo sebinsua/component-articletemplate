@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import compose from 'lodash.compose';
 
 export function withVariedInnerComponents(variantTypeComponents = {}, defaultVariantType) {
   return (ComposedComponent) => class VariedComponent extends React.Component {
@@ -58,4 +59,11 @@ export function withVariantClassNameList({ variantTypes = [], defaultVariantType
       );
     }
   };
+}
+
+export default function variantify(defaults = {}, variantTypeComponents = {}) {
+  return compose(
+    withVariantClassNameList(defaults),
+    withVariedInnerComponents(variantTypeComponents, defaults.defaultVariantType)
+  );
 }

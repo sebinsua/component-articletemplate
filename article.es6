@@ -8,7 +8,8 @@ import DefaultArticleBody from './body';
 
 import { passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
 const defaultVariantType = '';
-export const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
+
+const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
     className={classnames(generateClassNameList(`ArticleTemplate--container`))}
     data-section={sectionName}
@@ -18,7 +19,6 @@ export const ArticleContainer = ({ generateClassNameList, sectionName, children 
     {children}
   </article>
 );
-
 class ArticleTemplate extends React.Component {
 
   static get propTypes() {
@@ -56,16 +56,16 @@ class ArticleTemplate extends React.Component {
   }
 
   render() {
-    const { generateClassNameList, sectionName } = this.props;
+    const { variantType, generateClassNameList, sectionName, content } = this.props;
     const { ArticleHeader, ArticleSubheader, ArticleBody, ArticleFooter } = this.props.components;
     return (
       <ArticleContainer generateClassNameList={generateClassNameList} sectionName={sectionName}>
         <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
         <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
         <ArticleBody
-          variantType={this.props.variantType}
-          generateClassNameList={this.props.generateClassNameList}
-          content={this.props.content}
+          variantType={variantType}
+          generateClassNameList={generateClassNameList}
+          content={content}
         />
         <ArticleFooter {...passthroughComponentPropTypesOnly(ArticleFooter, this.props)} />
       </ArticleContainer>

@@ -34,21 +34,30 @@ export class WinHeader extends React.Component {
     let flytitleEl, titleEl, rubricEl, mainImageEl;
     if (flytitle) {
       flytitleEl = (
-        <h1 itemProp="headline" className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}>
+        <h1
+          itemProp="headline"
+          className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}
+        >
           {flytitle}
         </h1>
       );
     }
     if (title) {
       titleEl = (
-        <h1 itemProp="alternativeHeadline" className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}>
+        <h1
+          itemProp="alternativeHeadline"
+          className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}
+        >
           {title}
         </h1>
       );
     }
     if (rubric) {
       rubricEl = (
-        <h3 itemProp="rubric" className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedHeaderItemClasses)}>
+        <h3
+          itemProp="rubric"
+          className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedHeaderItemClasses)}
+        >
           {rubric}
         </h3>
       );
@@ -103,21 +112,30 @@ export class WinPredictorsHeader extends React.Component {
     let flytitleEl, titleEl, rubricEl, mainImageEl;
     if (flytitle) {
       flytitleEl = (
-        <h1 itemProp="headline" className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}>
+        <h1
+          itemProp="headline"
+          className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}
+        >
           {flytitle}
         </h1>
       );
     }
     if (title) {
       titleEl = (
-        <h1 itemProp="alternativeHeadline" className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}>
+        <h1
+          itemProp="alternativeHeadline"
+          className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}
+        >
           {title}
         </h1>
       );
     }
     if (rubric) {
       rubricEl = (
-        <h3 itemProp="rubric" className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedHeaderItemClasses)}>
+        <h3
+          itemProp="rubric"
+          className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedHeaderItemClasses)}
+        >
           {rubric}
         </h3>
       );

@@ -26,7 +26,10 @@ export class WifSubheader extends React.Component {
   render() {
     const { generateClassNameList, rubric } = this.props;
     return (
-      <p itemProp="description" className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedSubheaderItemClasses)}>
+      <p
+        itemProp="description"
+        className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedSubheaderItemClasses)}
+      >
         {rubric}
       </p>
     );

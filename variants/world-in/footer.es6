@@ -37,10 +37,17 @@ export class WinFooter extends React.Component {
     return (
       <ArticleFooterContainer generateClassNameList={generateClassNameList}>
         <BylineFooterContainer generateClassNameList={generateClassNameList}>
-          <h3 itemProp="byline" className={classnames(generateClassNameList(`ArticleTemplate--byline`), ...extendedFooterBylineClasses)}>
+          <h3
+            itemProp="byline"
+            className={classnames(generateClassNameList(`ArticleTemplate--byline`), ...extendedFooterBylineClasses)}
+          >
             Zanny Minton Beddoes (TODO: Put byline in the data)
           </h3>
-          <span itemProp="bylinedetails" className={classnames(generateClassNameList(`ArticleTemplate--byline-details`), ...extendedFooterBylineDetailsClasses)}>
+          <span
+            itemProp="bylinedetails"
+            className={classnames(generateClassNameList(`ArticleTemplate--byline-details`),
+                                  ...extendedFooterBylineDetailsClasses)}
+          >
             business affairs editor, The Economist (TODO: Put byline details in the data)
           </span>
         </BylineFooterContainer>

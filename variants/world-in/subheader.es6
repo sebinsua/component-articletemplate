@@ -11,17 +11,26 @@ const extendedSubheaderItemClasses = [
   'col-10',
 ];
 const Byline = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="byline" className={classnames(generateClassNameList('ArticleTemplate--byline'), ...extendedSubheaderItemClasses)}>
+  <h2
+    itemProp="byline"
+    className={classnames(generateClassNameList('ArticleTemplate--byline'), ...extendedSubheaderItemClasses)}
+  >
     {children}
   </h2>
 );
 const PublishDate = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="publishdate" className={classnames(generateClassNameList('ArticleTemplate--pubdate'), ...extendedSubheaderItemClasses)}>
+  <h2
+    itemProp="publishdate"
+    className={classnames(generateClassNameList('ArticleTemplate--pubdate'), ...extendedSubheaderItemClasses)}
+  >
     {children}
   </h2>
 );
 const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="section" className={classnames(generateClassNameList('ArticleTemplate--section-section'), ...extendedSubheaderItemClasses)}>
+  <h2
+    itemProp="section"
+    className={classnames(generateClassNameList('ArticleTemplate--section-section'), ...extendedSubheaderItemClasses)}
+  >
     {children}
   </h2>
 );

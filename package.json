@@ -31,6 +31,14 @@
     "compact": false
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
+    "rules": {
+      "func-style": 0,
+      "init-declarations": 0,
+      "id-length": 0,
+      "max-len": 1,
+      "react/jsx-closing-bracket-location": 1
+    },
     "extends": [
       "strict",
       "strict-react"

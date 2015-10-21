@@ -49,21 +49,31 @@ export class WifHeader extends React.Component {
     }
     if (sectionName) {
       sectionEl = (
-        <h2 itemProp="articleSection" className={classnames(generateClassNameList('ArticleTemplate--header-section'), ...extendedSectionHeaderItemClasses)}>
+        <h2
+          itemProp="articleSection"
+          className={classnames(generateClassNameList('ArticleTemplate--header-section'),
+                                ...extendedSectionHeaderItemClasses)}
+        >
           {sectionName}
         </h2>
       );
     }
     if (flytitle) {
       flytitleEl = (
-        <h1 itemProp="headline" className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}>
+        <h1
+          itemProp="headline"
+          className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}
+        >
           {flytitle}
         </h1>
       );
     }
     if (title) {
       titleEl = (
-        <h3 itemProp="alternativeHeadline" className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}>
+        <h3
+          itemProp="alternativeHeadline"
+          className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}
+        >
           {title}
         </h3>
       );

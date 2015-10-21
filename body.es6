@@ -1,4 +1,4 @@
-/* eslint react/no-danger: 0 */
+/* eslint react/no-danger: 0, id-match: 0 */
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
@@ -10,31 +10,6 @@ import DefaultGallery from '@economist/component-gallery';
 
 import { defaultGenerateClassNameList } from './utils';
 
-function renderJSONContents(components, contents = [], variantType, generateClassNameList) {
-  return contents.map((contentPiece, key) => {
-    if (typeof contentPiece === 'string') {
-      return (
-        <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
-      );
-    }
-    const Component = components[contentPiece.component];
-    if (!Component) {
-      throw new Error(`Unknown component ${contentPiece.component}`);
-    }
-    const children = renderJSONContents(components, contentPiece.content, variantType, generateClassNameList);
-    return (
-      <Component
-        key={key}
-        variantType={variantType}
-        generateClassNameList={generateClassNameList}
-        {...contentPiece.props}
-      >
-        {children}
-      </Component>
-    );
-  });
-}
-
 export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
   <section
     className={classnames(generateClassNameList('ArticleTemplate--section'))}
@@ -43,7 +18,6 @@ export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
     {children}
   </section>
 );
-
 class ArticleBodyTemplate extends React.Component {
 
   static get propTypes() {
@@ -71,18 +45,37 @@ class ArticleBodyTemplate extends React.Component {
     };
   }
 
+  renderContents = (generateClassNameList, variantType, components, contents = []) => {
+    return contents.map((contentPiece, key) => {
+      if (typeof contentPiece === 'string') {
+        return (
+          <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
+        );
+      }
+      const Component = components[contentPiece.component];
+      if (!Component) {
+        throw new Error(`Unknown component ${contentPiece.component}`);
+      }
+      /* eslint no-invalid-this: 0 */
+      const children = this.renderContents(generateClassNameList, variantType, components, contentPiece.content);
+      return (
+        <Component
+          key={key}
+          variantType={variantType}
+          generateClassNameList={generateClassNameList}
+          {...contentPiece.props}
+        >
+          {children}
+        </Component>
+      );
+    });
+  }
+
   render() {
     const { variantType, generateClassNameList, content, components } = this.props;
     return (
       <ArticleBodyContainer generateClassNameList={generateClassNameList}>
-        {
-          renderJSONContents(
-            components,
-            content,
-            variantType,
-            generateClassNameList
-          )
-        }
+        {this.renderContents(generateClassNameList, variantType, components, content)}
       </ArticleBodyContainer>
     );
   }

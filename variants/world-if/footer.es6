@@ -17,7 +17,10 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
   return (
     <TabView generateClassNameList={generateClassNameList}>
       {sectionNames.map((title, key) => (
-        <div title={title} key={key} itemScope itemType="http://schema.org/itemList">
+        <div
+          title={title} key={key}
+          itemScope itemType="http://schema.org/itemList"
+        >
           <div className={classnames(generateClassNameList(`${TabViewDefaultClassName}--Views--Tint`))}>
           </div>
           {sections[title].filter(notCurrentArticle).map((article, articleKey) => (
@@ -38,7 +41,6 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
     </TabView>
   );
 };
-
 export class WifFooter extends React.Component {
 
   static get propTypes() {

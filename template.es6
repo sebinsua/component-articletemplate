@@ -6,9 +6,8 @@ import { WifSubheader as DefaultArticleSubheader } from './variants/world-if/sub
 import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
-import { getSrcSet, passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
+import { passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
 const defaultVariantType = '';
-
 export const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
     className={classnames(generateClassNameList(`ArticleTemplate--container`))}
@@ -24,7 +23,10 @@ class ArticleTemplate extends React.Component {
 
   static get propTypes() {
     return {
+      generateClassNameList: PropTypes.func,
+      variantType: PropTypes.string,
       components: PropTypes.object,
+
       id: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
@@ -48,8 +50,8 @@ class ArticleTemplate extends React.Component {
         ArticleHeader: DefaultArticleHeader,
         ArticleSubheader: DefaultArticleSubheader,
         ArticleBody: DefaultArticleBody,
-        ArticleFooter: DefaultArticleBody,
-      }
+        ArticleFooter: DefaultArticleFooter,
+      },
     };
   }
 

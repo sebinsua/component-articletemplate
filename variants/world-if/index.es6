@@ -1,5 +1,6 @@
+/* eslint object-shorthand: 0 */
 import { WifHeader } from './header';
-import { WifSubheader } from './subheader'
+import { WifSubheader } from './subheader';
 import ArticleBody from '../../body';
 import { WifFooter } from './footer';
 

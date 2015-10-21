@@ -1,4 +1,5 @@
-import { WinHeader, WinPredictorsHeader} from './header';
+/* eslint object-shorthand: 0 */
+import { WinHeader, WinPredictorsHeader } from './header';
 import { WinSubheader, WinLeaderSubheader } from './subheader';
 import ArticleBody from '../../body';
 import { WinFooter } from './footer';

@@ -8,7 +8,6 @@ const extendedSubheaderItemClasses = [
   'gutter-l',
   'col-10',
 ];
-
 export class WifSubheader extends React.Component {
 
   static get propTypes() {
@@ -27,7 +26,7 @@ export class WifSubheader extends React.Component {
   render() {
     const { generateClassNameList, rubric } = this.props;
     return (
-      <p itemProp="description" className={classnames(generateClassNameList(`ArticleTemplate--rubric`), ...extendedSubheaderItemClasses)}>
+      <p itemProp="description" className={classnames(generateClassNameList('ArticleTemplate--rubric'), ...extendedSubheaderItemClasses)}>
         {rubric}
       </p>
     );

@@ -1,7 +1,5 @@
 import React from 'react';
-import { WorldInArticle, WorldIfArticle } from './index.es6';
-import ArticleTemplate from './index.es6';
-
+import { WorldInArticle } from './index.es6';
 import article from './test/data/article';
 import sections from './test/data/sections';
 

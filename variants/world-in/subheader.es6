@@ -1,3 +1,4 @@
+/* eslint react/no-multi-comp: 0 */
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
@@ -9,23 +10,21 @@ const extendedSubheaderItemClasses = [
   'gutter-l',
   'col-10',
 ];
-
 const Byline = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="byline" className={classnames(generateClassNameList("ArticleTemplate--byline"), ...extendedSubheaderItemClasses)}>
+  <h2 itemProp="byline" className={classnames(generateClassNameList('ArticleTemplate--byline'), ...extendedSubheaderItemClasses)}>
     {children}
   </h2>
 );
 const PublishDate = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="publishdate" className={classnames(generateClassNameList("ArticleTemplate--pubdate"), ...extendedSubheaderItemClasses)}>
+  <h2 itemProp="publishdate" className={classnames(generateClassNameList('ArticleTemplate--pubdate'), ...extendedSubheaderItemClasses)}>
     {children}
   </h2>
 );
 const Section = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <h2 itemProp="section" className={classnames(generateClassNameList("ArticleTemplate--section-section"), ...extendedSubheaderItemClasses)}>
+  <h2 itemProp="section" className={classnames(generateClassNameList('ArticleTemplate--section-section'), ...extendedSubheaderItemClasses)}>
     {children}
   </h2>
 );
-
 export class WinSubheader extends React.Component {
 
   static get propTypes() {
@@ -52,7 +51,6 @@ export class WinSubheader extends React.Component {
     );
   }
 }
-
 export class WinLeaderSubheader extends React.Component {
 
   static get propTypes() {

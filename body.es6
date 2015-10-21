@@ -1,3 +1,4 @@
+/* eslint react/no-danger: 0 */
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
@@ -18,7 +19,7 @@ function renderJSONContents(components, contents = [], variantType, generateClas
     }
     const Component = components[contentPiece.component];
     if (!Component) {
-      throw new Error('Unknown component ' + contentPiece.component);
+      throw new Error(`Unknown component ${contentPiece.component}`);
     }
     const children = renderJSONContents(components, contentPiece.content, variantType, generateClassNameList);
     return (
@@ -49,7 +50,8 @@ class ArticleBodyTemplate extends React.Component {
     return {
       variantType: PropTypes.string,
       generateClassNameList: PropTypes.func,
-      content: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
+      components: PropTypes.object,
+      content: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.object ])),
     };
   }
 

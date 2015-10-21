@@ -6,14 +6,13 @@ import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
 
 const extendedSectionHeaderItemClasses = [
   'margin-l-1',
-  'gutter-l'
+  'gutter-l',
 ];
 const extendedHeaderItemClasses = [
   'margin-l-1',
   'gutter-l',
-  'col-10'
+  'col-10',
 ];
-
 export class WifHeader extends React.Component {
 
   static get propTypes() {
@@ -35,30 +34,39 @@ export class WifHeader extends React.Component {
   render() {
     const { generateClassNameList, mainImage, sectionName, flytitle, title } = this.props;
 
+    /* eslint one-var: 0 */
     let mainImageEl, sectionEl, flytitleEl, titleEl;
     if (mainImage) {
-      mainImageEl = <img
-        className={classnames(generateClassNameList(`ArticleTemplate--image`))}
-        src={`${mainImage.src['1.0x']}`}
-        srcSet={getSrcSet(mainImage.src)}
-        alt={mainImage.alt}
-        itemProp="image"
-      />
+      mainImageEl = (
+        <img
+          className={classnames(generateClassNameList(`ArticleTemplate--image`))}
+          src={`${mainImage.src['1.0x']}`}
+          srcSet={getSrcSet(mainImage.src)}
+          alt={mainImage.alt}
+          itemProp="image"
+        />
+      );
     }
     if (sectionName) {
-      sectionEl = <h2 itemProp="articleSection" className={classnames(generateClassNameList("ArticleTemplate--header-section"), ...extendedSectionHeaderItemClasses)}>
-        {sectionName}
-      </h2>
+      sectionEl = (
+        <h2 itemProp="articleSection" className={classnames(generateClassNameList('ArticleTemplate--header-section'), ...extendedSectionHeaderItemClasses)}>
+          {sectionName}
+        </h2>
+      );
     }
     if (flytitle) {
-      flytitleEl = <h1 itemProp="headline" className={classnames(generateClassNameList("ArticleTemplate--flytitle"), ...extendedHeaderItemClasses)}>
-        {flytitle}
-      </h1>
+      flytitleEl = (
+        <h1 itemProp="headline" className={classnames(generateClassNameList('ArticleTemplate--flytitle'), ...extendedHeaderItemClasses)}>
+          {flytitle}
+        </h1>
+      );
     }
     if (title) {
-      titleEl = <h3 itemProp="alternativeHeadline" className={classnames(generateClassNameList("ArticleTemplate--title"), ...extendedHeaderItemClasses)}>
-        {title}
-      </h3>
+      titleEl = (
+        <h3 itemProp="alternativeHeadline" className={classnames(generateClassNameList('ArticleTemplate--title'), ...extendedHeaderItemClasses)}>
+          {title}
+        </h3>
+      );
     }
 
     return (

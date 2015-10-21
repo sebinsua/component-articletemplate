@@ -13,13 +13,11 @@ const extendedFooterBylineDetailsClasses = [
   'gutter-l',
   'col-10',
 ];
-
 const BylineFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <div className={classnames(generateClassNameList(`ArticleTemplate--byline-footer`), ...extendedFooterBylineClasses)}>
     {children}
   </div>
 );
-
 export class WinFooter extends React.Component {
 
   static get propTypes() {

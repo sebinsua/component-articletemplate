@@ -1,4 +1,4 @@
-export const defaultGenerateClassNameList = (defaultClassName) => [defaultClassName];
+export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
 
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
@@ -11,7 +11,7 @@ export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key
  */
 export function passthroughComponentPropTypesOnly(Component, props) {
   const propTypeKeys = Object.keys(Component.propTypes || {});
-  let newProps = {};
+  const newProps = {};
   for (const propKey in props) {
     if (propTypeKeys.indexOf(propKey) !== -1) {
       newProps[propKey] = props[propKey];

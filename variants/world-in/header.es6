@@ -96,7 +96,7 @@ export class WinPredictorsHeader extends React.Component {
       mainImage: PropTypes.object,
       flytitle: PropTypes.string,
       title: PropTypes.string,
-      rubric: PropTypes.rubric,
+      rubric: PropTypes.string,
     };
   }
 

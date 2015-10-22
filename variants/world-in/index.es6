@@ -8,7 +8,7 @@ import variantify from '../../variantify';
 import ArticleTemplate from '../../article';
 
 const defaults = {
-  defaultVariantType: 'world-in-predictors',
+  defaultVariantType: 'world-in-main',
   variantTypes: [
     'world-in-main',
     'world-in-portrait',

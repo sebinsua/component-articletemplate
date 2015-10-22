@@ -10,7 +10,7 @@ import ArticleTemplate from '../../article';
 const defaults = {
   defaultVariantType: 'world-in-predictors',
   variantTypes: [
-    'world-in-base',
+    'world-in-main',
     'world-in-portrait',
     'world-in-leader',
     'world-in-predictors',
@@ -18,7 +18,7 @@ const defaults = {
 };
 
 const variantInnerComponents = {
-  'world-in-base': {
+  'world-in-main': {
     ArticleHeader: WinHeader,
     ArticleSubheader: WinSubheader,
     ArticleBody: ArticleBody,

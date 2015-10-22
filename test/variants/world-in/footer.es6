@@ -1,4 +1,3 @@
-/* eslint init-declarations: 0 */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 

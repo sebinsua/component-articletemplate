@@ -1,3 +1,4 @@
+/* eslint one-var: 0 */
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
@@ -34,7 +35,6 @@ export class WifHeader extends React.Component {
   render() {
     const { generateClassNameList, mainImage, sectionName, flytitle, title } = this.props;
 
-    /* eslint one-var: 0 */
     let mainImageEl, sectionEl, flytitleEl, titleEl;
     if (mainImage) {
       mainImageEl = (

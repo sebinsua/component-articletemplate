@@ -56,8 +56,9 @@ class ArticleBodyTemplate extends React.Component {
       if (!Component) {
         throw new Error(`Unknown component ${contentPiece.component}`);
       }
-      /* eslint no-invalid-this: 0 */
+      /* eslint-disable no-invalid-this */
       const children = this.renderContents(generateClassNameList, variantType, components, contentPiece.content);
+      /* eslint-enable no-invalid-this */
       return (
         <Component
           key={key}

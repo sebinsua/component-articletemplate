@@ -1,4 +1,4 @@
-/* eslint react/no-multi-comp: 0 */
+/* eslint react/no-multi-comp: 0, one-var: 0 */
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
@@ -30,7 +30,6 @@ export class WinHeader extends React.Component {
   render() {
     const { generateClassNameList, mainImage, flytitle, title, rubric } = this.props;
 
-    /* eslint one-var: 0 */
     let flytitleEl, titleEl, rubricEl, mainImageEl;
     if (flytitle) {
       flytitleEl = (

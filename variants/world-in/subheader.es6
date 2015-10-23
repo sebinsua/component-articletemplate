@@ -37,13 +37,15 @@ export class WinSubheader extends Component {
         </h2>
         <h2
           itemProp="publishdate"
-          className={classnames(generateClassNameList('ArticleTemplate--pubdate'), ...extendedSubheaderItemClasses)}
+          className={classnames(generateClassNameList('ArticleTemplate--pubdate'),
+                                ...extendedSubheaderItemClasses)}
         >
           TODO: Put publish date in the data
         </h2>
         <h2
           itemProp="section"
-          className={classnames(generateClassNameList('ArticleTemplate--section-section'), ...extendedSubheaderItemClasses)}
+          className={classnames(generateClassNameList('ArticleTemplate--section-section'),
+                                ...extendedSubheaderItemClasses)}
         >
           {sectionName}
         </h2>
@@ -72,13 +74,15 @@ export class WinLeaderSubheader extends Component {
       <ArticleSubheaderContainer generateClassNameList={generateClassNameList}>
         <h2
           itemProp="publishdate"
-          className={classnames(generateClassNameList('ArticleTemplate--pubdate'), ...extendedSubheaderItemClasses)}
+          className={classnames(generateClassNameList('ArticleTemplate--pubdate'),
+                                ...extendedSubheaderItemClasses)}
         >
           TODO: Put publish date in the data
         </h2>
         <h2
           itemProp="section"
-          className={classnames(generateClassNameList('ArticleTemplate--section-section'), ...extendedSubheaderItemClasses)}
+          className={classnames(generateClassNameList('ArticleTemplate--section-section'),
+                                ...extendedSubheaderItemClasses)}
         >
           {sectionName}
         </h2>

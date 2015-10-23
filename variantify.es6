@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import compose from 'lodash.compose';
 
-export function withVariedInnerComponents(variantNameComponents = {}, defaultVariantName) {
+export function withVariedInnerComponents(variantNameComponents = {}, defaultVariant) {
   return (ComposedComponent) => class WithVariedInnerComponents extends Component {
     render() {
       const { variantName, ...remainingProps } = this.props;
@@ -9,7 +9,7 @@ export function withVariedInnerComponents(variantNameComponents = {}, defaultVar
       // otherwise just pass the remainingProps and variantName.
       const components = Object.assign(
         (ComposedComponent.defaultProps || {}).components || {},
-        variantNameComponents[variantName] || variantNameComponents[defaultVariantName]
+        variantNameComponents[variantName] || variantNameComponents[defaultVariant]
       );
       return (
         <ComposedComponent
@@ -22,18 +22,18 @@ export function withVariedInnerComponents(variantNameComponents = {}, defaultVar
   };
 }
 
-export function withVariantClassNameList({ variantNames = [], defaultVariantName }) {
+export function withVariantClassNameList({ variants = [], defaultVariant }) {
   return (ComposedComponent) => class WithVariantClassNameListComponent extends Component {
 
     static get propTypes() {
       return {
-        variantName: PropTypes.oneOf(variantNames),
+        variantName: PropTypes.oneOf(variants),
       };
     }
 
     static get defaultProps() {
       return {
-        variantName: defaultVariantName,
+        variantName: defaultVariant,
       };
     }
 
@@ -63,7 +63,7 @@ export function withVariantClassNameList({ variantNames = [], defaultVariantName
 
 export default function variantify(defaults = {}, variantNameComponents = {}) {
   return compose(
-    withVariedInnerComponents(variantNameComponents, defaults.defaultVariantName),
+    withVariedInnerComponents(variantNameComponents, defaults.defaultVariant),
     withVariantClassNameList(defaults)
   );
 }

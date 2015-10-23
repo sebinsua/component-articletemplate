@@ -7,7 +7,7 @@ import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
 import { passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
-const defaultVariantName = '';
+const defaultVariant = '';
 
 const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
@@ -44,7 +44,7 @@ class ArticleTemplate extends Component {
 
   static get defaultProps() {
     return {
-      variantName: defaultVariantName,
+      variantName: defaultVariant,
       generateClassNameList: defaultGenerateClassNameList,
       components: {
         ArticleHeader: DefaultArticleHeader,

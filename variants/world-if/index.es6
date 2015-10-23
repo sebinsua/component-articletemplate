@@ -8,8 +8,8 @@ import variantify from '../../variantify';
 import ArticleTemplate from '../../article';
 
 const defaults = {
-  defaultVariantName: 'world-if',
-  variantNames: [
+  defaultVariant: 'world-if',
+  variants: [
     'world-if',
   ],
 };

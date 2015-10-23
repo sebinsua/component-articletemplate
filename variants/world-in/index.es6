@@ -8,8 +8,8 @@ import variantify from '../../variantify';
 import ArticleTemplate from '../../article';
 
 const defaults = {
-  defaultVariantType: 'world-in-main',
-  variantTypes: [
+  defaultVariantName: 'world-in-main',
+  variantNames: [
     'world-in-main',
     'world-in-portrait',
     'world-in-leader',

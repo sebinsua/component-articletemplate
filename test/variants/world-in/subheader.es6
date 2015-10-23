@@ -15,7 +15,7 @@ describe('variants/world-in/subheader', () => {
     should.exist(WinLeaderSubheader);
   });
 
-  xdescribe('WinSubheader', () => {
+  describe('WinSubheader', () => {
 
     it('is compatible with React.Component', () => {
       WinSubheader.should.be.a('function').and.respondTo('render');
@@ -25,7 +25,7 @@ describe('variants/world-in/subheader', () => {
       React.isValidElement(<WinSubheader />).should.equal(true);
     });
 
-    describe('Rendering', () => {
+    xdescribe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {
@@ -44,7 +44,7 @@ describe('variants/world-in/subheader', () => {
 
   });
 
-  xdescribe('WinLeaderSubheader', () => {
+  describe('WinLeaderSubheader', () => {
 
     it('is compatible with React.Component', () => {
       WinLeaderSubheader.should.be.a('function').and.respondTo('render');
@@ -54,7 +54,7 @@ describe('variants/world-in/subheader', () => {
       React.isValidElement(<WinLeaderSubheader />).should.equal(true);
     });
 
-    describe('Rendering', () => {
+    xdescribe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {

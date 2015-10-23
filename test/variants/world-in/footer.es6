@@ -11,7 +11,7 @@ describe('variants/world-in/footer', () => {
     should.exist(WinFooter);
   });
 
-  xdescribe('WinFooter', () => {
+  describe('WinFooter', () => {
 
     it('is compatible with React.Component', () => {
       WinFooter.should.be.a('function').and.respondTo('render');
@@ -21,7 +21,7 @@ describe('variants/world-in/footer', () => {
       React.isValidElement(<WinFooter />).should.equal(true);
     });
 
-    describe('Rendering', () => {
+    xdescribe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {

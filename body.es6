@@ -22,7 +22,7 @@ class ArticleBodyTemplate extends Component {
 
   static get propTypes() {
     return {
-      variantType: PropTypes.string,
+      variantName: PropTypes.string,
       generateClassNameList: PropTypes.func,
       components: PropTypes.object,
       content: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.object ])).isRequired,
@@ -46,7 +46,7 @@ class ArticleBodyTemplate extends Component {
     };
   }
 
-  renderContents = (generateClassNameList, variantType, components, contents = []) => {
+  renderContents = (generateClassNameList, variantName, components, contents = []) => {
     return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         return (
@@ -58,12 +58,12 @@ class ArticleBodyTemplate extends Component {
         throw new Error(`Unknown component ${contentPiece.component}`);
       }
       /* eslint-disable no-invalid-this */
-      const children = this.renderContents(generateClassNameList, variantType, components, contentPiece.content);
+      const children = this.renderContents(generateClassNameList, variantName, components, contentPiece.content);
       /* eslint-enable no-invalid-this */
       return (
         <SpecifiedComponent
           key={key}
-          variantType={variantType}
+          variantName={variantName}
           generateClassNameList={generateClassNameList}
           {...contentPiece.props}
         >
@@ -74,10 +74,10 @@ class ArticleBodyTemplate extends Component {
   }
 
   render() {
-    const { variantType, generateClassNameList, content, components } = this.props;
+    const { variantName, generateClassNameList, content, components } = this.props;
     return (
       <ArticleBodyContainer generateClassNameList={generateClassNameList}>
-        {this.renderContents(generateClassNameList, variantType, components, content)}
+        {this.renderContents(generateClassNameList, variantName, components, content)}
       </ArticleBodyContainer>
     );
   }

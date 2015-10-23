@@ -15,7 +15,7 @@ describe('variants/world-in/header', () => {
     should.exist(WinPredictorsHeader);
   });
 
-  xdescribe('WinHeader', () => {
+  describe('WinHeader', () => {
 
     it('is compatible with React.Component', () => {
       WinHeader.should.be.a('function').and.respondTo('render');
@@ -25,7 +25,7 @@ describe('variants/world-in/header', () => {
       React.isValidElement(<WinHeader />).should.equal(true);
     });
 
-    describe('Rendering', () => {
+    xdescribe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {
@@ -44,7 +44,7 @@ describe('variants/world-in/header', () => {
 
   });
 
-  xdescribe('WinPredictorsHeader', () => {
+  describe('WinPredictorsHeader', () => {
 
     it('is compatible with React.Component', () => {
       WinPredictorsHeader.should.be.a('function').and.respondTo('render');
@@ -54,7 +54,7 @@ describe('variants/world-in/header', () => {
       React.isValidElement(<WinPredictorsHeader />).should.equal(true);
     });
 
-    describe('Rendering', () => {
+    xdescribe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {

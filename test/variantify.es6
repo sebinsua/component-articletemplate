@@ -21,7 +21,7 @@ describe('variantify', () => {
         renderer = createRenderer();
       });
 
-      describe('with no components in composed component\'s defaultProps and no matching variantTypeComponents', () => {
+      describe('with no components in composed component\'s defaultProps and no matching variantNameComponents', () => {
 
         it('should pass in an empty object', () => {
           class ComposedComponent extends React.Component {
@@ -30,17 +30,17 @@ describe('variantify', () => {
             }
           }
 
-          const variantTypeComponents = {
+          const variantNameComponents = {
             'variant-not-matched': {
               'ArticleHeader': 'component-goes-here',
             },
           };
-          const defaultVariantType = 'default-variant';
+          const defaultVariantName = 'default-variant';
           const VariantComponent = withVariedInnerComponents(
-            variantTypeComponents,
-            defaultVariantType
+            variantNameComponents,
+            defaultVariantName
           )(ComposedComponent);
-          renderer.render(<VariantComponent variantType="default-variant" />);
+          renderer.render(<VariantComponent variantName="default-variant" />);
           const renderOutput = renderer.getRenderOutput();
           renderOutput.type.should.equal(ComposedComponent);
           renderOutput.props.components.should.deep.equal({});
@@ -48,7 +48,7 @@ describe('variantify', () => {
 
       });
 
-      describe('with components in composed component\'s defaultProps and no matching variantType or default', () => {
+      describe('with components in composed component\'s defaultProps and no matching variantName or default', () => {
 
         it('should pass in the defaultProps components', () => {
           class ComposedComponent extends React.Component {
@@ -67,17 +67,17 @@ describe('variantify', () => {
             }
           }
 
-          const variantTypeComponents = {
+          const variantNameComponents = {
             'variant-not-matched': {
               'ArticleHeader': 'component-goes-here',
             },
           };
-          const defaultVariantType = 'default-variant';
+          const defaultVariantName = 'default-variant';
           const VariantComponent = withVariedInnerComponents(
-            variantTypeComponents,
-            defaultVariantType
+            variantNameComponents,
+            defaultVariantName
           )(ComposedComponent);
-          renderer.render(<VariantComponent variantType="default-variant" />);
+          renderer.render(<VariantComponent variantName="default-variant" />);
           const renderOutput = renderer.getRenderOutput();
           renderOutput.type.should.equal(ComposedComponent);
           renderOutput.props.components.should.deep.equal(ComposedComponent.defaultProps.components);
@@ -85,16 +85,16 @@ describe('variantify', () => {
 
       });
 
-      describe('with no components in composed component\'s defaultProps and matching variantType', () => {
+      describe('with no components in composed component\'s defaultProps and matching variantName', () => {
 
-        it('should pass in the matching variantTypeComponents object', () => {
+        it('should pass in the matching variantNameComponents object', () => {
           class ComposedComponent extends React.Component {
             render() {
               return <div>Hello there <span>fellow developer</span>.</div>;
             }
           }
 
-          const variantTypeComponents = {
+          const variantNameComponents = {
             'default-variant': {
               'ArticleHeader': 'component-goes-here',
             },
@@ -102,43 +102,43 @@ describe('variantify', () => {
               'ArticleHeader': 'picked-component',
             },
           };
-          const defaultVariantType = 'default-variant';
-          const variantType = 'picked-variant';
+          const defaultVariantName = 'default-variant';
+          const variantName = 'picked-variant';
           const VariantComponent = withVariedInnerComponents(
-            variantTypeComponents,
-            defaultVariantType
+            variantNameComponents,
+            defaultVariantName
           )(ComposedComponent);
-          renderer.render(<VariantComponent variantType={variantType} />);
+          renderer.render(<VariantComponent variantName={variantName} />);
           const renderOutput = renderer.getRenderOutput();
           renderOutput.type.should.equal(ComposedComponent);
-          renderOutput.props.components.should.deep.equal(variantTypeComponents[variantType]);
+          renderOutput.props.components.should.deep.equal(variantNameComponents[variantName]);
         });
 
       });
 
       describe('with no components in composed component\'s defaultProps and matching default', () => {
 
-        it('should pass in the default variantTypeComponents object', () => {
+        it('should pass in the default variantNameComponents object', () => {
           class ComposedComponent extends React.Component {
             render() {
               return <div>Hello there <span>fellow developer</span>.</div>;
             }
           }
 
-          const variantTypeComponents = {
+          const variantNameComponents = {
             'default-variant': {
               'ArticleHeader': 'component-goes-here',
             },
           };
-          const defaultVariantType = 'default-variant';
+          const defaultVariantName = 'default-variant';
           const VariantComponent = withVariedInnerComponents(
-            variantTypeComponents,
-            defaultVariantType
+            variantNameComponents,
+            defaultVariantName
           )(ComposedComponent);
-          renderer.render(<VariantComponent variantType="does-not-match" />);
+          renderer.render(<VariantComponent variantName="does-not-match" />);
           const renderOutput = renderer.getRenderOutput();
           renderOutput.type.should.equal(ComposedComponent);
-          renderOutput.props.components.should.deep.equal(variantTypeComponents[defaultVariantType]);
+          renderOutput.props.components.should.deep.equal(variantNameComponents[defaultVariantName]);
         });
 
       });
@@ -164,10 +164,10 @@ describe('variantify', () => {
         }
 
         const VariantComponent = withVariantClassNameList({
-          variantTypes: [ 'variant-a', 'variant-b', 'variant-c' ],
-          defaultVariantType: 'variant-a',
+          variantNames: [ 'variant-a', 'variant-b', 'variant-c' ],
+          defaultVariantName: 'variant-a',
         })(ComposedComponent);
-        renderer.render(<VariantComponent variantType="variant-a" />);
+        renderer.render(<VariantComponent variantName="variant-a" />);
         const renderOutput = renderer.getRenderOutput();
         renderOutput.type.should.equal(ComposedComponent);
         renderOutput.props.generateClassNameList.should.be.a('function');
@@ -183,16 +183,16 @@ describe('variantify', () => {
           }
 
           const VariantComponent = withVariantClassNameList({
-            variantTypes: [ 'variant-a', 'variant-b', 'variant-c' ],
-            defaultVariantType: 'variant-a',
+            variantNames: [ 'variant-a', 'variant-b', 'variant-c' ],
+            defaultVariantName: 'variant-a',
           })(ComposedComponent);
-          renderer.render(<VariantComponent variantType="variant-a" />);
+          renderer.render(<VariantComponent variantName="variant-a" />);
           const renderOutput = renderer.getRenderOutput();
           const generateClassNameList = renderOutput.props.generateClassNameList;
           generateClassNameList('ClassName').should.include('ClassName');
         });
 
-        it('a variant-specific class from the class that is passed in; iff variantType', () => {
+        it('a variant-specific class from the class that is passed in; iff variantName', () => {
           class ComposedComponent extends React.Component {
             render() {
               return <div>Hello there <span>fellow developer</span>.</div>;
@@ -200,16 +200,16 @@ describe('variantify', () => {
           }
 
           const VariantComponent = withVariantClassNameList({
-            variantTypes: [ 'variant-a', 'variant-b', 'variant-c' ],
-            defaultVariantType: 'variant-a',
+            variantNames: [ 'variant-a', 'variant-b', 'variant-c' ],
+            defaultVariantName: 'variant-a',
           })(ComposedComponent);
-          renderer.render(<VariantComponent variantType="variant-a" />);
+          renderer.render(<VariantComponent variantName="variant-a" />);
           const renderOutput = renderer.getRenderOutput();
           const generateClassNameList = renderOutput.props.generateClassNameList;
           generateClassNameList('ClassName').should.include('variant-a-ClassName');
         });
 
-        it('no variant-specific class from the class that is passed in; iff no variantType', () => {
+        it('no variant-specific class from the class that is passed in; iff no variantName', () => {
           class ComposedComponent extends React.Component {
             render() {
               return <div>Hello there <span>fellow developer</span>.</div>;
@@ -217,8 +217,8 @@ describe('variantify', () => {
           }
 
           const VariantComponent = withVariantClassNameList({
-            variantTypes: [ 'variant-a', 'variant-b', 'variant-c' ],
-            defaultVariantType: null,
+            variantNames: [ 'variant-a', 'variant-b', 'variant-c' ],
+            defaultVariantName: null,
           })(ComposedComponent);
           renderer.render(<VariantComponent />);
           const renderOutput = renderer.getRenderOutput();

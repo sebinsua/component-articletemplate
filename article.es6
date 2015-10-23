@@ -7,7 +7,7 @@ import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
 import { passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
-const defaultVariantType = '';
+const defaultVariantName = '';
 
 const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
   <article
@@ -24,7 +24,7 @@ class ArticleTemplate extends Component {
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
-      variantType: PropTypes.string,
+      variantName: PropTypes.string,
       components: PropTypes.object,
 
       id: PropTypes.string.isRequired,
@@ -44,7 +44,7 @@ class ArticleTemplate extends Component {
 
   static get defaultProps() {
     return {
-      variantType: defaultVariantType,
+      variantName: defaultVariantName,
       generateClassNameList: defaultGenerateClassNameList,
       components: {
         ArticleHeader: DefaultArticleHeader,
@@ -56,14 +56,14 @@ class ArticleTemplate extends Component {
   }
 
   render() {
-    const { variantType, generateClassNameList, sectionName, content } = this.props;
+    const { variantName, generateClassNameList, sectionName, content } = this.props;
     const { ArticleHeader, ArticleSubheader, ArticleBody, ArticleFooter } = this.props.components;
     return (
       <ArticleContainer generateClassNameList={generateClassNameList} sectionName={sectionName}>
         <ArticleHeader {...passthroughComponentPropTypesOnly(ArticleHeader, this.props)} />
         <ArticleSubheader {...passthroughComponentPropTypesOnly(ArticleSubheader, this.props)} />
         <ArticleBody
-          variantType={variantType}
+          variantName={variantName}
           generateClassNameList={generateClassNameList}
           content={content}
         />

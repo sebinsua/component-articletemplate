@@ -52,8 +52,8 @@ import { VariantHeader, VariantSubheader, VariantBody, VariantFooter } from './v
 import { OtherVariantHeader, OtherVariantSubheader, OtherVariantBody, OtherVariantFooter } from './other-variant-items';
 
 const defaults = {
-  defaultVariantType: 'variant-name',
-  variantTypes: [
+  defaultVariantName: 'variant-name',
+  variantNames: [
     'variant-name',
     'other-variant-name',
   ],

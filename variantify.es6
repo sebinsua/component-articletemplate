@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import compose from 'lodash.compose';
 
-export function withVariedInnerComponents(variantTypeComponents = {}, defaultVariantType) {
+export function withVariedInnerComponents(variantNameComponents = {}, defaultVariantName) {
   return (ComposedComponent) => class WithVariedInnerComponents extends Component {
     render() {
-      const { variantType, ...remainingProps } = this.props;
+      const { variantName, ...remainingProps } = this.props;
       // If variant-specific omponents were found then passthrough,
-      // otherwise just pass the remainingProps and variantType.
+      // otherwise just pass the remainingProps and variantName.
       const components = Object.assign(
         (ComposedComponent.defaultProps || {}).components || {},
-        variantTypeComponents[variantType] || variantTypeComponents[defaultVariantType]
+        variantNameComponents[variantName] || variantNameComponents[defaultVariantName]
       );
       return (
         <ComposedComponent
-          variantType={variantType}
+          variantName={variantName}
           components={components}
           {...remainingProps}
         />
@@ -22,37 +22,37 @@ export function withVariedInnerComponents(variantTypeComponents = {}, defaultVar
   };
 }
 
-export function withVariantClassNameList({ variantTypes = [], defaultVariantType }) {
+export function withVariantClassNameList({ variantNames = [], defaultVariantName }) {
   return (ComposedComponent) => class WithVariantClassNameListComponent extends Component {
 
     static get propTypes() {
       return {
-        variantType: PropTypes.oneOf(variantTypes),
+        variantName: PropTypes.oneOf(variantNames),
       };
     }
 
     static get defaultProps() {
       return {
-        variantType: defaultVariantType,
+        variantName: defaultVariantName,
       };
     }
 
-    getVariantClassNameListGetter(variantType) {
+    getVariantClassNameListGetter(variantName) {
       return (specifiedClassName) => {
         const classNameList = [ specifiedClassName ];
-        if (variantType) {
-          classNameList.unshift(`${variantType}-${specifiedClassName}`);
+        if (variantName) {
+          classNameList.unshift(`${variantName}-${specifiedClassName}`);
         }
         return classNameList;
       };
     }
 
     render() {
-      const { variantType, ...remainingProps } = this.props;
-      const generateClassNameList = this.getVariantClassNameListGetter(variantType);
+      const { variantName, ...remainingProps } = this.props;
+      const generateClassNameList = this.getVariantClassNameListGetter(variantName);
       return (
         <ComposedComponent
-          variantType={variantType}
+          variantName={variantName}
           generateClassNameList={generateClassNameList}
           {...remainingProps}
         />
@@ -61,9 +61,9 @@ export function withVariantClassNameList({ variantTypes = [], defaultVariantType
   };
 }
 
-export default function variantify(defaults = {}, variantTypeComponents = {}) {
+export default function variantify(defaults = {}, variantNameComponents = {}) {
   return compose(
-    withVariantClassNameList(defaults),
-    withVariedInnerComponents(variantTypeComponents, defaults.defaultVariantType)
+    withVariedInnerComponents(variantNameComponents, defaults.defaultVariantName),
+    withVariantClassNameList(defaults)
   );
 }

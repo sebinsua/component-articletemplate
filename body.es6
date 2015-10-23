@@ -25,7 +25,7 @@ class ArticleBodyTemplate extends Component {
       variantType: PropTypes.string,
       generateClassNameList: PropTypes.func,
       components: PropTypes.object,
-      content: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.object ])),
+      content: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.object ])).isRequired,
     };
   }
 
@@ -42,6 +42,7 @@ class ArticleBodyTemplate extends Component {
         AnimatedPanel: DefaultAnimatedPanel,
         Gallery: DefaultGallery,
       },
+      content: [],
     };
   }
 
@@ -52,22 +53,22 @@ class ArticleBodyTemplate extends Component {
           <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
         );
       }
-      const Component = components[contentPiece.component];
-      if (!Component) {
+      const SpecifiedComponent = components[contentPiece.component];
+      if (!SpecifiedComponent) {
         throw new Error(`Unknown component ${contentPiece.component}`);
       }
       /* eslint-disable no-invalid-this */
       const children = this.renderContents(generateClassNameList, variantType, components, contentPiece.content);
       /* eslint-enable no-invalid-this */
       return (
-        <Component
+        <SpecifiedComponent
           key={key}
           variantType={variantType}
           generateClassNameList={generateClassNameList}
           {...contentPiece.props}
         >
           {children}
-        </Component>
+        </SpecifiedComponent>
       );
     });
   }

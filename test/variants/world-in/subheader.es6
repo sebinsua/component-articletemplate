@@ -1,8 +1,10 @@
+/* eslint id-match: 0, id-length: 0 */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
 import { WinSubheader, WinLeaderSubheader } from '../../../variants/world-in/subheader';
 
+import $ from 'teaspoon';
 import chai from 'chai';
 const should = chai.should();
 describe('variants/world-in/subheader', () => {
@@ -25,7 +27,7 @@ describe('variants/world-in/subheader', () => {
       React.isValidElement(<WinSubheader />).should.equal(true);
     });
 
-    xdescribe('Rendering', () => {
+    describe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {
@@ -33,11 +35,14 @@ describe('variants/world-in/subheader', () => {
       });
 
       it('should contain the data passed in within its HTML structure', () => {
-        renderer.render(<WinSubheader />, {});
-        const renderOutput = renderer.getRenderOutput();
-        renderOutput.should.deep.equal(
-          <div></div>
-        );
+        renderer.render(
+          <WinSubheader
+            sectionName={'The section name'}
+          />, {});
+        const out = $(renderer.getRenderOutput());
+        out.first('.ArticleTemplate--byline').text().should.equal('TODO: Put byline in the data');
+        out.first('.ArticleTemplate--pubdate').text().should.equal('TODO: Put publish date in the data');
+        out.first('.ArticleTemplate--section-section').text().should.equal('The section name');
       });
 
     });
@@ -54,7 +59,7 @@ describe('variants/world-in/subheader', () => {
       React.isValidElement(<WinLeaderSubheader />).should.equal(true);
     });
 
-    xdescribe('Rendering', () => {
+    describe('Rendering', () => {
 
       let renderer;
       beforeEach(() => {
@@ -62,11 +67,13 @@ describe('variants/world-in/subheader', () => {
       });
 
       it('should contain the data passed in within its HTML structure', () => {
-        renderer.render(<WinLeaderSubheader />, {});
-        const renderOutput = renderer.getRenderOutput();
-        renderOutput.should.deep.equal(
-          <div></div>
-        );
+        renderer.render(
+          <WinLeaderSubheader
+            sectionName={'The section name'}
+          />, {});
+        const out = $(renderer.getRenderOutput());
+        out.first('.ArticleTemplate--pubdate').text().should.equal('TODO: Put publish date in the data');
+        out.first('.ArticleTemplate--section-section').text().should.equal('The section name');
       });
 
     });

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { WifHeader as DefaultArticleHeader } from './variants/world-if/header';
@@ -19,7 +19,7 @@ const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
     {children}
   </article>
 );
-class ArticleTemplate extends React.Component {
+class ArticleTemplate extends Component {
 
   static get propTypes() {
     return {

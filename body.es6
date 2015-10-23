@@ -1,5 +1,5 @@
 /* eslint react/no-danger: 0, id-match: 0 */
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import DefaultAnimatedPanel from '@economist/component-animatedpanel';
@@ -18,7 +18,7 @@ export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
     {children}
   </section>
 );
-class ArticleBodyTemplate extends React.Component {
+class ArticleBodyTemplate extends Component {
 
   static get propTypes() {
     return {

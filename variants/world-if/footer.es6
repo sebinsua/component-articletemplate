@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import TabView from '@economist/component-tabview';
@@ -41,7 +41,7 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
     </TabView>
   );
 };
-export class WifFooter extends React.Component {
+export class WifFooter extends Component {
 
   static get propTypes() {
     return {

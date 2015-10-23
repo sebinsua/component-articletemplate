@@ -1,5 +1,5 @@
 /* eslint react/no-multi-comp: 0 */
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleSubheaderContainer } from '../../subheader';
@@ -34,7 +34,7 @@ const Section = ({ generateClassNameList = defaultGenerateClassNameList, childre
     {children}
   </h2>
 );
-export class WinSubheader extends React.Component {
+export class WinSubheader extends Component {
 
   static get propTypes() {
     return {
@@ -60,7 +60,7 @@ export class WinSubheader extends React.Component {
     );
   }
 }
-export class WinLeaderSubheader extends React.Component {
+export class WinLeaderSubheader extends Component {
 
   static get propTypes() {
     return {

@@ -1,5 +1,5 @@
 /* eslint react/no-multi-comp: 0, one-var: 0 */
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleHeaderContainer, ImageContainer } from '../../header';
@@ -9,7 +9,7 @@ const extendedHeaderItemClasses = [
   'gutter-l',
   'col-10',
 ];
-export class WinHeader extends React.Component {
+export class WinHeader extends Component {
 
   static get propTypes() {
     return {
@@ -87,7 +87,7 @@ export class WinHeader extends React.Component {
   }
 }
 
-export class WinPredictorsHeader extends React.Component {
+export class WinPredictorsHeader extends Component {
 
   static get propTypes() {
     return {

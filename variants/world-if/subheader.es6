@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { defaultGenerateClassNameList } from '../../utils';
@@ -8,7 +8,7 @@ const extendedSubheaderItemClasses = [
   'gutter-l',
   'col-10',
 ];
-export class WifSubheader extends React.Component {
+export class WifSubheader extends Component {
 
   static get propTypes() {
     return {

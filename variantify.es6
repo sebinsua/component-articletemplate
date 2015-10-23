@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import compose from 'lodash.compose';
 
 export function withVariedInnerComponents(variantTypeComponents = {}, defaultVariantType) {
-  return (ComposedComponent) => class VariedComponent extends React.Component {
+  return (ComposedComponent) => class WithVariedInnerComponents extends Component {
     render() {
       const { variantType, ...remainingProps } = this.props;
       // If variant-specific omponents were found then passthrough,
@@ -23,7 +23,7 @@ export function withVariedInnerComponents(variantTypeComponents = {}, defaultVar
 }
 
 export function withVariantClassNameList({ variantTypes = [], defaultVariantType }) {
-  return (ComposedComponent) => class WithVariantClassNameListComponent extends React.Component {
+  return (ComposedComponent) => class WithVariantClassNameListComponent extends Component {
 
     static get propTypes() {
       return {

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleFooterContainer } from '../../footer';
@@ -18,7 +18,7 @@ const BylineFooterContainer = ({ generateClassNameList = defaultGenerateClassNam
     {children}
   </div>
 );
-export class WinFooter extends React.Component {
+export class WinFooter extends Component {
 
   static get propTypes() {
     return {

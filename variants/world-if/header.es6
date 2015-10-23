@@ -1,5 +1,5 @@
 /* eslint one-var: 0 */
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleHeaderContainer, ImageContainer } from '../../header';
@@ -14,7 +14,7 @@ const extendedHeaderItemClasses = [
   'gutter-l',
   'col-10',
 ];
-export class WifHeader extends React.Component {
+export class WifHeader extends Component {
 
   static get propTypes() {
     return {

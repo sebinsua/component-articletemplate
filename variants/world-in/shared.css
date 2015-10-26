@@ -16,7 +16,7 @@
 }
 
 .ArticleTemplate--title {
-  font-family: "Officina-bBold";
+  font-family: "Officina-Bold";
   font-size: 44px;
   font-weight: normal;
   margin-top: 0;
@@ -89,7 +89,7 @@
 
 .ArticleTemplate--byline {
   font-size: 20px;
-  font-family: "Officina-bBold";
+  font-family: "Officina-Bold";
   font-weight: normal;
   color: var(--color-dark-blue);
   padding: 30px 0 0 3%;
@@ -161,7 +161,7 @@
 }
 
 .ArticleTemplate--crossheads {
-  font-family: "Officina-bBold";
+  font-family: "Officina-Bold";
   font-size: 22px;
   margin: 0;
   padding-top: 30px;

@@ -57,5 +57,6 @@
 
   .world-in-leader-ArticleTemplate--header {
     margin-top: -50px;
+    position: relative;
   }
 }

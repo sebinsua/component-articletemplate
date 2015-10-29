@@ -57,6 +57,9 @@ class ArticleBodyTemplate extends Component {
   renderContents = (generateClassNameList, variantName, components, contents = []) => {
     return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
+        // `dangerouslySetInnerHTML` is used here to support `<a>`, `<em>`
+        // `<strong>`, etc, tags within the paragraph strings.
+        // See: https://github.com/economist-components/component-articletemplate/pull/11#discussion_r43002610
         return (
           <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
         );

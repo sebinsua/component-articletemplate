@@ -6,7 +6,12 @@ import { WifSubheader as DefaultArticleSubheader } from './variants/world-if/sub
 import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
-import { passthroughComponentPropTypesOnly, defaultGenerateClassNameList } from './utils';
+import {
+  passthroughComponentPropTypesOnly,
+  defaultGenerateClassNameList,
+  isComponent,
+  isChildren,
+} from './utils';
 const defaultVariant = '';
 
 const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
@@ -19,7 +24,12 @@ const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
     {children}
   </article>
 );
-const isComponent = PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]);
+ArticleContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  sectionName: PropTypes.string,
+  children: isChildren,
+};
+
 class ArticleTemplate extends Component {
 
   static get propTypes() {

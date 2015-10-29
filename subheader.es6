@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './utils';
+import {
+  defaultGenerateClassNameList,
+  isChildren,
+} from './utils';
 
-export const ArticleSubheaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+const ArticleSubheaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <header
     className={classnames(
       generateClassNameList('ArticleTemplate--subheader'),
@@ -15,3 +18,9 @@ export const ArticleSubheaderContainer = ({ generateClassNameList = defaultGener
     {children}
   </header>
 );
+ArticleSubheaderContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  children: isChildren,
+};
+
+export { ArticleSubheaderContainer };

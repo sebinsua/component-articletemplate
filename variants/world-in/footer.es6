@@ -2,7 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleFooterContainer } from '../../footer';
-import { defaultGenerateClassNameList } from '../../utils';
+import {
+  defaultGenerateClassNameList,
+  isChildren,
+} from '../../utils';
 
 const extendedFooterBylineClasses = [
   'margin-l-1',
@@ -18,6 +21,11 @@ const BylineFooterContainer = ({ generateClassNameList = defaultGenerateClassNam
     {children}
   </div>
 );
+BylineFooterContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  children: isChildren,
+};
+
 export class WinFooter extends Component {
 
   static get propTypes() {

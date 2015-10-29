@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './utils';
+import {
+  defaultGenerateClassNameList,
+  isChildren,
+} from './utils';
 
-export const ArticleHeaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+const ArticleHeaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <header className={classnames(generateClassNameList('ArticleTemplate--header'))}>
     {children}
   </header>
 );
+ArticleHeaderContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  children: isChildren,
+};
 
-export const ImageContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+const ImageContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
     <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
       {children}
     </div>
   </div>
 );
+ImageContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  children: isChildren,
+};
+
+export { ArticleHeaderContainer, ImageContainer };

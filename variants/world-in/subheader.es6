@@ -53,6 +53,7 @@ export class WinSubheader extends Component {
     );
   }
 }
+
 export class WinLeaderSubheader extends Component {
 
   static get propTypes() {

@@ -1,4 +1,12 @@
+import { PropTypes } from 'react';
+
 import pick from 'lodash.pick';
+
+export const isComponent = PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]);
+export const isChildren = PropTypes.oneOfType([
+  PropTypes.element,
+  PropTypes.arrayOf(PropTypes.element),
+]);
 
 export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
 

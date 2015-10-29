@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './utils';
+import {
+  defaultGenerateClassNameList,
+  isChildren,
+} from './utils';
 
-export const ArticleFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
+const ArticleFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <footer className={classnames(generateClassNameList('ArticleTemplate--footer'))}>
     {children}
   </footer>
 );
+ArticleFooterContainer.propTypes = {
+  generateClassNameList: PropTypes.func,
+  children: isChildren,
+};
+
+export { ArticleFooterContainer };

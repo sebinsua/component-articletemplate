@@ -41,6 +41,12 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
     </TabView>
   );
 };
+WifTabView.propTypes = {
+  generateClassNameList: PropTypes.func,
+  id: PropTypes.number,
+  sections: PropTypes.object,
+};
+
 export class WifFooter extends Component {
 
   static get propTypes() {

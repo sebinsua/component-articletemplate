@@ -1,3 +1,5 @@
+import pick from 'lodash.pick';
+
 export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
 
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
@@ -9,13 +11,6 @@ export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key
  * It should be used whether you would normally use `...this.props` and
  * don't wish to accidentally send unexpected data through.
  */
-export function passthroughComponentPropTypesOnly(Component, props) {
-  const propTypeKeys = Object.keys(Component.propTypes || {});
-  const newProps = {};
-  for (const propKey in props) {
-    if (propTypeKeys.indexOf(propKey) !== -1) {
-      newProps[propKey] = props[propKey];
-    }
-  }
-  return newProps;
+export function passthroughComponentPropTypesOnly({ propTypes = {} }, props) {
+  return pick(props, Object.keys(propTypes));
 }

@@ -19,13 +19,19 @@ const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
     {children}
   </article>
 );
+const isComponent = PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]);
 class ArticleTemplate extends Component {
 
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
       variantName: PropTypes.string,
-      components: PropTypes.object,
+      components: PropTypes.shape({
+        ArticleHeader: isComponent,
+        ArticleSubheader: isComponent,
+        ArticleBody: isComponent,
+        ArticleFooter: isComponent,
+      }),
 
       id: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,

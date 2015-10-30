@@ -10,7 +10,6 @@ import {
   passthroughComponentPropTypesOnly,
   defaultGenerateClassNameList,
   isComponent,
-  isChildren,
 } from './utils';
 const defaultVariant = '';
 
@@ -27,7 +26,7 @@ const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
 ArticleContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   sectionName: PropTypes.string,
-  children: isChildren,
+  children: PropTypes.node,
 };
 
 class ArticleTemplate extends Component {

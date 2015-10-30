@@ -8,10 +8,7 @@ import DefaultImageCaption from '@economist/component-imagecaption';
 import DefaultVideo from '@economist/component-video';
 import DefaultGallery from '@economist/component-gallery';
 
-import {
-  defaultGenerateClassNameList,
-  isChildren,
-} from './utils';
+import { defaultGenerateClassNameList } from './utils';
 
 export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
   <section
@@ -23,7 +20,7 @@ export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
 );
 ArticleBodyContainer.propTypes = {
   generateClassNameList: PropTypes.func,
-  children: isChildren,
+  children: PropTypes.node,
 };
 
 class ArticleBodyTemplate extends Component {

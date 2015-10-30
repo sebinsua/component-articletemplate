@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import {
-  defaultGenerateClassNameList,
-  isChildren,
-} from './utils';
+import { defaultGenerateClassNameList } from './utils';
 
 const ArticleSubheaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
   <header
@@ -20,7 +17,7 @@ const ArticleSubheaderContainer = ({ generateClassNameList = defaultGenerateClas
 );
 ArticleSubheaderContainer.propTypes = {
   generateClassNameList: PropTypes.func,
-  children: isChildren,
+  children: PropTypes.node,
 };
 
 export { ArticleSubheaderContainer };

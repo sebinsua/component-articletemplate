@@ -6,29 +6,29 @@ import { WifSubheader as DefaultArticleSubheader } from './variants/world-if/sub
 import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
 import DefaultArticleBody from './body';
 
-import {
-  passthroughComponentPropTypesOnly,
-  defaultGenerateClassNameList,
-  isComponent,
-} from './utils';
-const defaultVariant = '';
+import { passthroughComponentPropTypesOnly } from './utils';
+import { defaultGenerateClassNameList } from './variantify';
+import { isComponent, isImage, isSectionArticles } from './proptypes';
 
-const ArticleContainer = ({ generateClassNameList, sectionName, children }) => (
-  <article
-    className={classnames(generateClassNameList(`ArticleTemplate--container`))}
-    data-section={sectionName}
-    itemScope
-    itemType="http://schema.org/NewsArticle"
-  >
-    {children}
-  </article>
-);
+function ArticleContainer({ generateClassNameList, sectionName, children }) {
+  return (
+    <article
+      className={classnames(generateClassNameList(`ArticleTemplate--container`))}
+      data-section={sectionName}
+      itemScope
+      itemType="http://schema.org/NewsArticle"
+    >
+      {children}
+    </article>
+  );
+}
 ArticleContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   sectionName: PropTypes.string,
   children: PropTypes.node,
 };
 
+const defaultVariant = '';
 class ArticleTemplate extends Component {
 
   static get propTypes() {
@@ -47,13 +47,10 @@ class ArticleTemplate extends Component {
       title: PropTypes.string.isRequired,
       flytitle: PropTypes.string.isRequired,
       rubric: PropTypes.string.isRequired,
-      mainImage: PropTypes.shape({
-        src: PropTypes.object.isRequired,
-        alt: PropTypes.string,
-      }).isRequired,
+      mainImage: isImage.isRequired,
       content: PropTypes.array.isRequired,
       sectionName: PropTypes.string.isRequired,
-      sections: PropTypes.object.isRequired,
+      sections: isSectionArticles,
     };
   }
 
@@ -67,6 +64,7 @@ class ArticleTemplate extends Component {
         ArticleBody: DefaultArticleBody,
         ArticleFooter: DefaultArticleFooter,
       },
+      sections: [],
     };
   }
 

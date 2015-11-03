@@ -1,14 +1,10 @@
 /* eslint react/no-multi-comp: 0 */
 import React, { Component, PropTypes } from 'react';
-import { defaultGenerateClassNameList, getSrcSet, passthroughComponentPropTypesOnly } from '../utils';
+import { getSrcSet, passthroughComponentPropTypesOnly } from '../utils';
 
 import chai from 'chai';
 const should = chai.should();
 describe('utils', () => {
-
-  it('has defaultGenerateClassNameList exposed', () => {
-    should.exist(defaultGenerateClassNameList);
-  });
 
   it('has getSrcSet exposed', () => {
     should.exist(getSrcSet);
@@ -16,15 +12,6 @@ describe('utils', () => {
 
   it('has passthroughComponentPropTypesOnly exposed', () => {
     should.exist(passthroughComponentPropTypesOnly);
-  });
-
-  describe('defaultGenerateClassNameList', () => {
-
-    it('should return an array containing the element passed in', () => {
-      const element = 'ClassName';
-      defaultGenerateClassNameList(element).should.deep.equal([ element ]);
-    });
-
   });
 
   describe('getSrcSet', () => {

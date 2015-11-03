@@ -1,10 +1,4 @@
-import { PropTypes } from 'react';
-
 import pick from 'lodash.pick';
-
-export const isComponent = PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]);
-
-export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
 
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 

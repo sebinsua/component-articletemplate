@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleFooterContainer } from '../../footer';
-import { defaultGenerateClassNameList } from '../../utils';
+import { defaultGenerateClassNameList } from '../../variantify';
 
 const extendedFooterBylineClasses = [
   'margin-l-1',
@@ -13,11 +13,16 @@ const extendedFooterBylineDetailsClasses = [
   'gutter-l',
   'col-10',
 ];
-const BylineFooterContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <div className={classnames(generateClassNameList(`ArticleTemplate--byline-footer`), ...extendedFooterBylineClasses)}>
-    {children}
-  </div>
-);
+function BylineFooterContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
+  return (
+    <div className={classnames(
+        generateClassNameList(`ArticleTemplate--byline-footer`), ...extendedFooterBylineClasses
+      )}
+    >
+      {children}
+    </div>
+  );
+}
 BylineFooterContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   children: PropTypes.node,

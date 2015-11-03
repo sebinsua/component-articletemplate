@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import compose from 'lodash.compose';
 
+export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
+
 export function withVariedInnerComponents(variantNameComponents = {}, defaultVariant) {
   return (ComposedComponent) => class WithVariedInnerComponents extends Component {
     render() {

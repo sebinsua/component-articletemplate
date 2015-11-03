@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from '../../utils';
+import { defaultGenerateClassNameList } from '../../variantify';
 
 const extendedSubheaderItemClasses = [
   'margin-l-1',

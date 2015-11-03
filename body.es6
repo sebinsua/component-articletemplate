@@ -8,16 +8,18 @@ import DefaultImageCaption from '@economist/component-imagecaption';
 import DefaultVideo from '@economist/component-video';
 import DefaultGallery from '@economist/component-gallery';
 
-import { defaultGenerateClassNameList } from './utils';
+import { defaultGenerateClassNameList } from './variantify';
 
-export const ArticleBodyContainer = ({ generateClassNameList, children }) => (
-  <section
-    className={classnames(generateClassNameList('ArticleTemplate--section'))}
-    itemProp="articleBody"
-  >
-    {children}
-  </section>
-);
+export function ArticleBodyContainer({ generateClassNameList, children }) {
+  return (
+    <section
+      className={classnames(generateClassNameList('ArticleTemplate--section'))}
+      itemProp="articleBody"
+    >
+      {children}
+    </section>
+  );
+}
 ArticleBodyContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   children: PropTypes.node,

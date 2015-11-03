@@ -4,35 +4,37 @@ import classnames from 'classnames';
 import TabView from '@economist/component-tabview';
 
 import { ArticleFooterContainer } from '../../footer';
-import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
+import { defaultGenerateClassNameList } from '../../variantify';
+import { getSrcSet } from '../../utils';
+import { isSectionArticles } from '../../proptypes';
 
-const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, sections }) => {
-  const notCurrentArticle = (article) => {
-    const currentArticleId = id;
-    return currentArticleId !== article.id;
-  };
-
-  const sectionNames = Object.keys(sections);
-  const TabViewDefaultClassName = 'TabView';
+function WifTabView({ generateClassNameList = defaultGenerateClassNameList, currentArticleId, sections }) {
   return (
     <TabView generateClassNameList={generateClassNameList}>
-      {sectionNames.map((title, key) => (
+      {sections.map((section, key) => (
         <div
-          title={title} key={key}
-          itemScope itemType="http://schema.org/itemList"
+          key={key}
+          title={section.title}
+          itemScope
+          itemType="http://schema.org/itemList"
         >
-          <div className={classnames(generateClassNameList(`${TabViewDefaultClassName}--Views--Tint`))}>
-          </div>
-          {sections[title].filter(notCurrentArticle).map((article, articleKey) => (
-            <a key={articleKey} href={`/article/${article.id}/${article.attributes.slug}`} itemProp="url">
-              <figure className={classnames(generateClassNameList(`${TabViewDefaultClassName}--View--Content`))}>
+          <div className={classnames(generateClassNameList(`TabView--Views--Tint`))}></div>
+          {(section.articles || [])
+            .filter((article) => currentArticleId !== article.id)
+            .map((article, articleKey) => (
+            <a
+              key={articleKey}
+              href={`/article/${article.id}/${article.slug}`}
+              itemProp="url"
+            >
+              <figure className={classnames(generateClassNameList(`TabView--View--Content`))}>
                 <img
-                  src={`${article.attributes.tileimage['1.0x']}`}
-                  srcSet={getSrcSet(article.attributes.tileimage)}
-                  alt={article.attributes.imagealt}
+                  src={`${article.tileImage.src['1.0x']}`}
+                  srcSet={getSrcSet(article.tileImage.src)}
+                  alt={article.tileImage.alt}
                   itemProp="image"
                 />
-                <figcaption itemProp="caption">{article.attributes.toc}</figcaption>
+                <figcaption itemProp="caption">{article.toc}</figcaption>
               </figure>
             </a>
           ))}
@@ -40,11 +42,11 @@ const WifTabView = ({ generateClassNameList = defaultGenerateClassNameList, id, 
       ))}
     </TabView>
   );
-};
+}
 WifTabView.propTypes = {
   generateClassNameList: PropTypes.func,
   id: PropTypes.number,
-  sections: PropTypes.object,
+  sections: isSectionArticles.isRequired,
 };
 
 export class WifFooter extends Component {
@@ -52,7 +54,7 @@ export class WifFooter extends Component {
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
-      sections: PropTypes.object,
+      sections: isSectionArticles.isRequired,
     };
   }
 

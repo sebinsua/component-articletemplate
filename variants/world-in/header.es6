@@ -3,7 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleHeaderContainer, ImageContainer } from '../../header';
-import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
+import { defaultGenerateClassNameList } from '../../variantify';
+import { getSrcSet } from '../../utils';
+import { isImage } from '../../proptypes';
 
 const extendedHeaderItemClasses = [
   'gutter-l',
@@ -14,7 +16,7 @@ export class WinHeader extends Component {
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
-      mainImage: PropTypes.object,
+      mainImage: isImage,
       flytitle: PropTypes.string,
       title: PropTypes.string,
       rubric: PropTypes.string,
@@ -92,7 +94,7 @@ export class WinPredictorsHeader extends Component {
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
-      mainImage: PropTypes.object,
+      mainImage: isImage,
       flytitle: PropTypes.string,
       title: PropTypes.string,
       rubric: PropTypes.string,

@@ -1,25 +1,29 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './utils';
+import { defaultGenerateClassNameList } from './variantify';
 
-const ArticleHeaderContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <header className={classnames(generateClassNameList('ArticleTemplate--header'))}>
-    {children}
-  </header>
-);
+function ArticleHeaderContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
+  return (
+    <header className={classnames(generateClassNameList('ArticleTemplate--header'))}>
+      {children}
+    </header>
+  );
+}
 ArticleHeaderContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   children: PropTypes.node,
 };
 
-const ImageContainer = ({ generateClassNameList = defaultGenerateClassNameList, children }) => (
-  <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
-    <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
-      {children}
+function ImageContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
+  return (
+    <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
+      <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
+        {children}
+      </div>
     </div>
-  </div>
-);
+  );
+}
 ImageContainer.propTypes = {
   generateClassNameList: PropTypes.func,
   children: PropTypes.node,

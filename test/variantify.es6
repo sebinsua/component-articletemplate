@@ -2,7 +2,12 @@
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
-import variantify, { withVariedInnerComponents, withVariantClassNameList } from '../variantify';
+import variantify from '../variantify';
+import {
+  withVariedInnerComponents,
+  withVariantClassNameList,
+  defaultGenerateClassNameList,
+} from '../variantify';
 
 import chai from 'chai';
 const should = chai.should();
@@ -10,6 +15,19 @@ describe('variantify', () => {
 
   it('the composition of the HOCs should be exposed as default', () => {
     should.exist(variantify);
+  });
+
+  it('has defaultGenerateClassNameList exposed', () => {
+    should.exist(defaultGenerateClassNameList);
+  });
+
+  describe('defaultGenerateClassNameList', () => {
+
+    it('should return an array containing the element passed in', () => {
+      const element = 'ClassName';
+      defaultGenerateClassNameList(element).should.deep.equal([ element ]);
+    });
+
   });
 
   describe('withVariedInnerComponents', () => {

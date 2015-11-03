@@ -3,7 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { ArticleHeaderContainer, ImageContainer } from '../../header';
-import { defaultGenerateClassNameList, getSrcSet } from '../../utils';
+import { defaultGenerateClassNameList } from '../../variantify';
+import { getSrcSet } from '../../utils';
+import { isImage } from '../../proptypes';
 
 const extendedSectionHeaderItemClasses = [
   'margin-l-1',
@@ -19,7 +21,7 @@ export class WifHeader extends Component {
   static get propTypes() {
     return {
       generateClassNameList: PropTypes.func,
-      mainImage: PropTypes.object,
+      mainImage: isImage,
       sectionName: PropTypes.string,
       flytitle: PropTypes.string,
       title: PropTypes.string,

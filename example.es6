@@ -5,8 +5,8 @@ import sections from './test/data/sections';
 
 export default (
   <WorldInArticle
-    variantName={'world-in-main'}
     id={article.id}
+    variantName="world-in-main"
     slug={article.attributes.slug}
     title={article.attributes.title}
     flytitle={article.attributes.flytitle}

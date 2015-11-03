@@ -1,3 +1,5 @@
+@import '@economist/component-tabview';
+
 .world-if-ArticleTemplate--loading {
   border: 10px solid red;
   font: bold 100px sans-serif;

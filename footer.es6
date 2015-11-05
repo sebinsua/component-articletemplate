@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList } from './utils';
 
 function ArticleFooterContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
   return (

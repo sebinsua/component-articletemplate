@@ -3,8 +3,7 @@ import classnames from 'classnames';
 
 import ArticleBodyTemplate from './body';
 
-import { passthroughComponentPropTypesOnly } from './utils';
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList, passthroughComponentPropTypesOnly } from './utils';
 import { isComponent, isImage, isSectionArticles } from './proptypes';
 
 const DefaultArticleHeader = 'div';

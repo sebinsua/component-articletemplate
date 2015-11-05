@@ -1,5 +1,7 @@
 import pick from 'lodash.pick';
 
+export const defaultGenerateClassNameList = (defaultClassName) => [ defaultClassName ];
+
 export const getSrcSet = (image) => Object.keys(image).map((key) => `${image[key]} ${key}`).join(',');
 
 /**

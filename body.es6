@@ -8,7 +8,7 @@ import DefaultImageCaption from '@economist/component-imagecaption';
 import DefaultVideo from '@economist/component-video';
 import DefaultGallery from '@economist/component-gallery';
 
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList } from './utils';
 
 export function ArticleBodyContainer({ generateClassNameList, children }) {
   return (

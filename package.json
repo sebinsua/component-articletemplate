@@ -147,9 +147,8 @@
     "@economist/component-video": "^1.0.0",
     "@economist/component-wifgobbet": "^1.3.4",
     "classnames": "^2.1.5",
-    "lodash.compose": "^2.4.1",
     "lodash.pick": "^3.1.0",
-    "react": "^0.14.1"
+    "react": "^0.14.2"
   },
   "devDependencies": {
     "@economist/component-devpack": "^3.4.3",
@@ -179,8 +178,8 @@
     "npm-watch": "0.0.1",
     "parallelshell": "^2.0.0",
     "pre-commit": "^1.0.10",
-    "react-addons-test-utils": "^0.14.1",
-    "react-dom": "^0.14.1",
+    "react-addons-test-utils": "^0.14.2",
+    "react-dom": "^0.14.2",
     "teaspoon": "^5.0.0",
     "watchify": "^3.4.0"
   },

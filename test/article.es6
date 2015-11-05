@@ -89,10 +89,10 @@ describe('article', () => {
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const childrenContained = renderOutput.props.children;
-          childrenContained[0].type.name.should.equal('WifHeader');
-          childrenContained[1].type.name.should.equal('WifSubheader');
+          childrenContained[0].type.should.equal('div');
+          childrenContained[1].type.should.equal('div');
           childrenContained[2].type.name.should.equal('ArticleBodyTemplate');
-          childrenContained[3].type.name.should.equal('WifFooter');
+          childrenContained[3].type.should.equal('div');
         });
 
       });

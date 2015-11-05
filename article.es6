@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { WifHeader as DefaultArticleHeader } from './variants/world-if/header';
-import { WifSubheader as DefaultArticleSubheader } from './variants/world-if/subheader';
-import { WifFooter as DefaultArticleFooter } from './variants/world-if/footer';
-import DefaultArticleBody from './body';
+import ArticleBodyTemplate from './body';
 
 import { passthroughComponentPropTypesOnly } from './utils';
 import { defaultGenerateClassNameList } from './variantify';
 import { isComponent, isImage, isSectionArticles } from './proptypes';
 
+const DefaultArticleHeader = 'div';
+const DefaultArticleSubheader = 'div';
+const DefaultArticleBody = ArticleBodyTemplate;
+const DefaultArticleFooter = 'div';
 function ArticleContainer({ generateClassNameList, sectionName, children }) {
   return (
     <article

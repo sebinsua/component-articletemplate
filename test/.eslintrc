@@ -1,1 +1,10 @@
-{"extends":["strict","strict-react","strict/mocha"]}
+{
+  "rules": {
+    "init-declarations": 0
+  },
+  "extends": [
+    "strict",
+    "strict-react",
+    "strict/mocha"
+  ]
+}

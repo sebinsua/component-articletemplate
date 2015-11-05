@@ -1,0 +1,95 @@
+.world-in-portrait-ArticleTemplate--container {
+  background-color: #E7EBEB;
+}
+
+.world-in-portrait-ArticleTemplate--header {
+  background-color: transparent;
+
+  height: auto;
+  min-height: 140px;
+  border-left: 1px solid var(--color-red);
+  margin-left: 7.5%;
+  width: 83.1%;
+  position: absolute;
+  bottom: 0;
+}
+
+.world-in-portrait-ArticleTemplate--header:after {
+    background-color: #E7EBEB;
+    bottom: -3px;
+    content: none;
+}
+
+.world-in-portrait-ArticleTemplate--imagecontainer {
+  position: relative;
+}
+
+.world-in-portrait-ArticleTemplate--image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.world-in-portrait-ArticleTemplate--title {
+  padding: 25px 0 25px 3%;
+  color: var(--color-dark-grey);
+  width: 100%;
+  background-color: transparent;
+  line-height: 0;
+  padding: 16px 3% 40px 3%;
+}
+
+.world-in-portrait-ArticleTemplate--rubric {
+  color: var(--color-white);
+  font-style: italic;
+  border-left: 1px solid grey;
+  background-color: #748C94;
+  width: 96.9%;
+  margin: 0;
+  padding: 15px 0 3% 3%;
+}
+
+.world-in-portrait-ArticleTemplate--byline {
+  display: none;
+}
+
+.world-in-portrait-ArticleTemplate--container {
+  background-color: #E7EBEB;
+}
+
+.world-in-portrait-ArticleTemplate--image {
+    position: relative;
+    top: -40px;
+}
+
+@media screen and (max-width: 860px) {
+  .world-in-main-ArticleTemplate--flytitle,
+  .world-in-main-ArticleTemplate--title {
+    line-height: 35px;
+  }
+
+  .world-in-portrait-ArticleTemplate--header {
+    position: relative;
+    margin-top: -130px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .world-in-portrait-ArticleTemplate--header {
+    margin-top: -40%;
+    position: relative;
+  }
+  .world-in-portrait-ArticleTemplate--title {
+    margin-bottom: 30%;
+    padding-top: 0;
+    width: 80%;
+    line-height: 34px;
+  }
+
+  .world-in-portrait-ArticleTemplate--image {
+    position: relative;
+    top: 58px;
+    transform: scale(1.4);
+    left: -58px;
+  }
+}

@@ -1,1 +1,17 @@
+@import '@economist/component-font-neutra2';
+@import "@economist/component-font-officina";
+
 @import '.';
+@import "variants/world-in";
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+.ArticleTemplate--blockquote {
+  display: none;
+}
+
+.Gallery {
+  display: none;
+}

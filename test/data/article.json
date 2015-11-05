@@ -83,58 +83,7 @@
       "In 2011 Moscow’s urban middle class took to the streets to demand modernisation. Mr Putin responded by picking out alleged national traitors, annexing Crimea and starting a war against Ukraine. The idea that Russia’s latest foreign-policy adventures might end in the same way as previous ones—with the collapse of the state and disintegration of the country—is not as far-fetched as it might seem.",
       "The Soviet Union came apart because it overstretched itself and ran out of money and ideas. Local elites saw no benefit in remaining part of a bankrupt country. It fragmented along the administrative borders of the 15 republics that made up the giant country.",
       "Yet there was no reason why the process had to stop there. Indeed, many of Russia’s regions—including Siberia, Ural, Karelia and Tatarstan—declared their “sovereignty” at the time. To prevent further disintegration Russia’s then president, Boris Yeltsin, came up with the idea of a federation, promising each region as much “sovereignty as it could swallow”. Yeltsin made this promise in Kazan, the ancient capital of Tatarstan, which acquired many attributes of a separate state: a president, a constitution, a flag and, most important, its own budget. In exchange, Tatarstan promised to stay part of Russia.",
-      {
-        "component": "Gallery",
-        "props": {
-          "images": [
-            {
-              "title": "1",
-              "caption": "ONE RUSSIA",
-              "src": "/assets/a798e3a7.svg"
-            },
-            {
-              "title": "2",
-              "caption": "THE FIRST TO GO?",
-              "src": "/assets/3ff076cc.svg"
-            },
-            {
-              "title": "3",
-              "caption": "CRACKS IN THE CAUCASUS",
-              "src": "/assets/d81fa2d7.svg"
-            },
-            {
-              "title": "4",
-              "caption": "BACK TO THE FUTURE",
-              "src": "/assets/13af8733.svg"
-            },
-            {
-              "title": "5",
-              "caption": "TARTAR SOURCE",
-              "src": "/assets/976778c7.svg"
-            },
-            {
-              "title": "6",
-              "caption": "GOING IT ALONE...",
-              "src": "/assets/5aa8d8c4.svg"
-            },
-            {
-              "title": "7",
-              "caption": "...OR GOING TOGETHER",
-              "src": "/assets/26966ebb.svg"
-            },
-            {
-              "title": "8",
-              "caption": "PANDORA'S BOX",
-              "src": "/assets/7222a1ff.svg"
-            },
-            {
-              "title": "9",
-              "caption": "EX UNO, PLURES?",
-              "src": "/assets/561ee386.svg"
-            }
-          ]
-        }
-      },
+      "Removed Gallery component until it is fixed.",
       "Mr Putin has reversed federalism, and turned Russia into a centralised state. He cancelled regional elections, imposed a “presidential” representative over the heads of governors and redistributed tax revenues in Moscow’s favour. But he did not build common institutions. The Russian state is seen not as an upholder of law but as a source of injustice and corruption.",
       "In the words of Mikhail Iampolski, a historian, Russia at present resembles a khanate in which local princes receive a licence to rule from the chief khan in the Kremlin. For the past decade the main job of the Moscow-appointed governors has been to provide votes for Mr Putin. In exchange they received a share of oil revenues and the right to rule as they see fit. Chechnya under Ramzan Kadyrov, a former warlord installed by Mr Putin, is a grotesque illustration of this. In the most recent presidential election, Chechnya provided 99.7% of its votes for Mr Putin with a turnout of 99.6%. In return, Mr Kadyrov receives subsidies and freedom to subject his people to his own “informal” taxes and Islamic rules. Moscow pays a dictatorial and corrupt Chechnya a vast due in return for Mr Kadyrov pretending to be part of Russia and pledging loyalty to Mr Putin.",
       {

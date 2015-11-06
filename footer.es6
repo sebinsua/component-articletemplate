@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList } from './utils';
 
 function ArticleFooterContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
   return (
-    <footer className={classnames(generateClassNameList('ArticleTemplate--footer'))}>
+    <footer className={generateClassNameList('ArticleTemplate--footer').join(' ')}>
       {children}
     </footer>
   );

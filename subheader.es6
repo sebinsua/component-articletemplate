@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList } from './utils';
 
+const extendedSubheaderClasses = [
+  'margin-l-1',
+  'gutter-l',
+  'col-10',
+];
 function ArticleSubheaderContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
   return (
     <header
-      className={classnames(
-        generateClassNameList('ArticleTemplate--subheader'),
-        'margin-l-1',
-        'gutter-l',
-        'col-10'
-      )}
+      className={[ ...generateClassNameList('ArticleTemplate--subheader'), ...extendedSubheaderClasses ].join(' ')}
     >
       {children}
     </header>

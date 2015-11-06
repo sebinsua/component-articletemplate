@@ -1,6 +1,5 @@
 /* eslint react/no-danger: 0, id-match: 0 */
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
 
 import DefaultAnimatedPanel from '@economist/component-animatedpanel';
 import DefaultGobbet from '@economist/component-wifgobbet';
@@ -8,12 +7,12 @@ import DefaultImageCaption from '@economist/component-imagecaption';
 import DefaultVideo from '@economist/component-video';
 import DefaultGallery from '@economist/component-gallery';
 
-import { defaultGenerateClassNameList } from './variantify';
+import { defaultGenerateClassNameList } from './utils';
 
 export function ArticleBodyContainer({ generateClassNameList, children }) {
   return (
     <section
-      className={classnames(generateClassNameList('ArticleTemplate--section'))}
+      className={generateClassNameList('ArticleTemplate--section').join(' ')}
       itemProp="articleBody"
     >
       {children}

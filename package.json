@@ -143,19 +143,15 @@
     "@economist/component-gallery": "^4.1.0",
     "@economist/component-gridcss": "^2.0.0",
     "@economist/component-imagecaption": "^1.3.0",
-    "@economist/component-tabview": "^1.2.3",
     "@economist/component-video": "^1.0.0",
     "@economist/component-wifgobbet": "^1.3.4",
-    "classnames": "^2.1.5",
-    "lodash.compose": "^2.4.1",
     "lodash.pick": "^3.1.0",
-    "react": "^0.14.1"
+    "react": "^0.14.2"
   },
   "devDependencies": {
     "@economist/component-devpack": "^3.4.3",
     "@economist/component-font-neutra2": "^1.0.4",
     "@economist/component-font-officina": "^1.0.0",
-    "@economist/world-if-assets": "0.0.1438187093644",
     "babel": "^5.8.23",
     "babelify": "^6.3.0",
     "browser-sync": "^2.8.2",
@@ -179,8 +175,8 @@
     "npm-watch": "0.0.1",
     "parallelshell": "^2.0.0",
     "pre-commit": "^1.0.10",
-    "react-addons-test-utils": "^0.14.1",
-    "react-dom": "^0.14.1",
+    "react-addons-test-utils": "^0.14.2",
+    "react-dom": "^0.14.2",
     "teaspoon": "^5.0.0",
     "watchify": "^3.4.0"
   },

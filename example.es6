@@ -1,12 +1,10 @@
 import React from 'react';
-import { WorldInArticle } from './index.es6';
+import ArticleTemplate from './index.es6';
 import article from './test/data/article';
-import sections from './test/data/sections';
 
 export default (
-  <WorldInArticle
+  <ArticleTemplate
     id={article.id}
-    variantName="world-in-main"
     slug={article.attributes.slug}
     title={article.attributes.title}
     flytitle={article.attributes.flytitle}
@@ -17,6 +15,5 @@ export default (
     }}
     content={article.attributes.content}
     sectionName={article.attributes.section}
-    sections={sections}
   />
 );

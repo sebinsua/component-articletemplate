@@ -3,7 +3,6 @@ import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
 import article from './data/article';
-import sections from './data/sections';
 import ArticleTemplate from '../article';
 
 import chai from 'chai';
@@ -34,7 +33,6 @@ describe('article', () => {
           }}
           content={article.attributes.content}
           sectionName={article.attributes.section}
-          sections={sections}
         />
       ).should.equal(true);
     });
@@ -62,7 +60,6 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const sectionName = renderOutput.props.sectionName;
@@ -85,14 +82,13 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const childrenContained = renderOutput.props.children;
-          childrenContained[0].type.name.should.equal('WifHeader');
-          childrenContained[1].type.name.should.equal('WifSubheader');
+          childrenContained[0].type.should.equal('div');
+          childrenContained[1].type.should.equal('div');
           childrenContained[2].type.name.should.equal('ArticleBodyTemplate');
-          childrenContained[3].type.name.should.equal('WifFooter');
+          childrenContained[3].type.should.equal('div');
         });
 
       });
@@ -120,7 +116,6 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const childrenContained = renderOutput.props.children;

@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 
 import { defaultGenerateClassNameList } from './utils';
 
 function ArticleHeaderContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
   return (
-    <header className={classnames(generateClassNameList('ArticleTemplate--header'))}>
+    <header className={generateClassNameList('ArticleTemplate--header').join(' ')}>
       {children}
     </header>
   );
@@ -17,8 +16,8 @@ ArticleHeaderContainer.propTypes = {
 
 function ImageContainer({ generateClassNameList = defaultGenerateClassNameList, children }) {
   return (
-    <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer`))}>
-      <div className={classnames(generateClassNameList(`ArticleTemplate--imagecontainer-inner`))}>
+    <div className={generateClassNameList(`ArticleTemplate--imagecontainer`).join(' ')}>
+      <div className={generateClassNameList(`ArticleTemplate--imagecontainer-inner`).join(' ')}>
         {children}
       </div>
     </div>

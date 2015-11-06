@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
 
 import ArticleBodyTemplate from './body';
 
@@ -13,7 +12,7 @@ const DefaultArticleFooter = 'div';
 function ArticleContainer({ generateClassNameList, sectionName, children }) {
   return (
     <article
-      className={classnames(generateClassNameList(`ArticleTemplate--container`))}
+      className={generateClassNameList(`ArticleTemplate--container`).join(' ')}
       data-section={sectionName}
       itemScope
       itemType="http://schema.org/NewsArticle"

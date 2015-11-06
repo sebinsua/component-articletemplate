@@ -3,7 +3,6 @@ import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
 import article from './data/article';
-import sections from './data/sections';
 import ArticleTemplate from '../article';
 
 import chai from 'chai';
@@ -34,7 +33,6 @@ describe('article', () => {
           }}
           content={article.attributes.content}
           sectionName={article.attributes.section}
-          sections={sections}
         />
       ).should.equal(true);
     });
@@ -62,7 +60,6 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const sectionName = renderOutput.props.sectionName;
@@ -85,7 +82,6 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const childrenContained = renderOutput.props.children;
@@ -120,7 +116,6 @@ describe('article', () => {
               }}
               content={article.attributes.content}
               sectionName={article.attributes.section}
-              sections={sections}
             />, {});
           const renderOutput = renderer.getRenderOutput();
           const childrenContained = renderOutput.props.children;

@@ -1,11 +1,4 @@
-/* eslint react/no-danger: 0, id-match: 0 */
 import React, { Component, PropTypes } from 'react';
-
-import DefaultAnimatedPanel from '@economist/component-animatedpanel';
-import DefaultGobbet from '@economist/component-wifgobbet';
-import DefaultImageCaption from '@economist/component-imagecaption';
-import DefaultVideo from '@economist/component-video';
-import DefaultGallery from '@economist/component-gallery';
 
 import { defaultGenerateClassNameList } from './utils';
 
@@ -42,33 +35,29 @@ class ArticleBodyTemplate extends Component {
         Image: 'img',
         Pullquote: 'blockquote',
         ArticleSubHead: 'h3',
-        Gobbet: DefaultGobbet,
-        ImageCaption: DefaultImageCaption,
-        Video: DefaultVideo,
-        AnimatedPanel: DefaultAnimatedPanel,
-        Gallery: DefaultGallery,
       },
       content: [],
     };
   }
 
-  renderContents = (generateClassNameList, variantName, components, contents = []) => {
+  renderContents(generateClassNameList, variantName, components, contents = []) {
     return contents.map((contentPiece, key) => {
       if (typeof contentPiece === 'string') {
         // `dangerouslySetInnerHTML` is used here to support `<a>`, `<em>`
         // `<strong>`, etc, tags within the paragraph strings.
         // See: https://github.com/economist-components/component-articletemplate/pull/11#discussion_r43002610
         return (
-          <p key={key} dangerouslySetInnerHTML={{ __html: contentPiece }} />
+          <p
+            key={key}
+            dangerouslySetInnerHTML={{ __html: contentPiece }} // eslint-disable-line react/no-danger, id-match
+          />
         );
       }
       const SpecifiedComponent = components[contentPiece.component];
       if (!SpecifiedComponent) {
         throw new Error(`Unknown component ${contentPiece.component}`);
       }
-      /* eslint-disable no-invalid-this */
       const children = this.renderContents(generateClassNameList, variantName, components, contentPiece.content);
-      /* eslint-enable no-invalid-this */
       return (
         <SpecifiedComponent
           key={key}
